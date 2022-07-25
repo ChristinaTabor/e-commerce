@@ -52,23 +52,8 @@ const HeaderOne = ({
     // else document.getElementById("sticky").classList.remove("fixed");
   };
 
-  const openNav = () => {
-    var openmyslide = document.getElementById("mySidenav");
-    if (openmyslide) {
-      openmyslide.classList.add("open-side");
-    }
-  };
   const openSearch = () => {
     document.getElementById("search-overlay").style.display = "block";
-  };
-
-  // eslint-disable-next-line
-  const load = () => {
-    setIsLoading(true);
-    fetch().then(() => {
-      // deal with data fetched
-      setIsLoading(false);
-    });
   };
 
   return (
@@ -83,18 +68,6 @@ const HeaderOne = ({
             <Col>
               <div className="main-menu">
                 <div className="menu-left">
-                  <div className="navbar">
-                    <a href={null} onClick={openNav}>
-                      <div className="bar-style">
-                        <i
-                          className="fa fa-bars sidebar-bar"
-                          aria-hidden="true"
-                        ></i>
-                      </div>
-                    </a>
-                    {/*SideBar Navigation Component*/}
-                    <SideBar />
-                  </div>
                   <div className="brand-logo">
                     <LogoImage logo={logoName} />
                   </div>

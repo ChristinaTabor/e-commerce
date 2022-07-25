@@ -11,6 +11,7 @@ import PostLoader from "../../../components/common/PostLoader";
 import CartContext from "../../../helpers/cart";
 import { WishlistContext } from "../../../helpers/wishlist/WishlistContext";
 import { CompareContext } from "../../../helpers/Compare/CompareContext";
+import { fashionData } from "../../../data/fashionData";
 
 const GET_PRODUCTS = gql`
   query products(
@@ -85,6 +86,10 @@ const ProductList = ({ colClass, layoutList, openSidebar, noSidebar }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [layout, setLayout] = useState(layoutList);
   const [url, setUrl] = useState();
+  
+  const data = fashionData.shop;
+  const loading = false;
+  console.log("data", data)
 
   useEffect(() => {
     const pathname = window.location.pathname;
@@ -94,18 +99,18 @@ const ProductList = ({ colClass, layoutList, openSidebar, noSidebar }) => {
     );
   }, [selectedBrands, selectedColor, selectedSize, selectedPrice]);
 
-  var { loading, data, fetchMore } = useQuery(GET_PRODUCTS, {
-    variables: {
-      type: selectedCategory,
-      priceMax: selectedPrice.max,
-      priceMin: selectedPrice.min,
-      color: selectedColor,
-      brand: selectedBrands,
-      sortBy: sortBy,
-      indexFrom: 0,
-      limit: limit,
-    },
-  });
+  // var { loading, data, fetchMore } = useQuery(GET_PRODUCTS, {
+  //   variables: {
+  //     type: selectedCategory,
+  //     priceMax: selectedPrice.max,
+  //     priceMin: selectedPrice.min,
+  //     color: selectedColor,
+  //     brand: selectedBrands,
+  //     sortBy: sortBy,
+  //     indexFrom: 0,
+  //     limit: limit,
+  //   },
+  // });
 
   const handlePagination = () => {
     setIsLoading(true);

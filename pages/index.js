@@ -5,7 +5,6 @@ import TopCollection from "../components/common/Collections/Collection3";
 import Parallax from "./layouts/Fashion/Components/Parallax";
 import SpecialProducts from "../components/common/Collections/TabCollection1";
 import ServiceLayout from "../components/common/Service/service1";
-import Blog from "../components/common/Blog/blog1";
 import Instagram from "../components/common/instagram/instagram1";
 import LogoBlock from "../components/common/logo-block";
 import HeaderOne from "../components/headers/header-one";
@@ -15,6 +14,7 @@ import Paragraph from "../components/common/Paragraph";
 import ModalComponent from "../components/common/Modal";
 import Helmet from "react-helmet";
 import MasterFooter from "../components/footers/common/MasterFooter";
+import { fashionData } from "./../data/fashionData";
 
 const Fashion = () => {
   return (
@@ -23,18 +23,14 @@ const Fashion = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" type="image/x-icon" href={"/assets/images/favicon/1.png"} />
       </Helmet>
-      <ModalComponent />
+      {/* <ModalComponent /> */}
       <HeaderOne logoName={"logo.png"} topClass="top-header" />
       <Banner />
       <CollectionBanner />
-      <Paragraph
-        title="title1 section-t-space"
-        inner="title-inner1"
-        hrClass={false}
-      />
+      <Paragraph title="title1 section-t-space" inner="title-inner1" hrClass={false} />
       <TopCollection
         noTitle="null"
-        backImage={true}
+        backImage={false}
         type="fashion"
         title="top collection"
         subtitle="special offer"
@@ -46,7 +42,7 @@ const Fashion = () => {
       <Parallax />
       <SpecialProducts
         type="fashion"
-        backImage={true}
+        backImage={false}
         productSlider={Product4}
         line={true}
         title="title1 section-t-space"
@@ -54,10 +50,10 @@ const Fashion = () => {
         designClass="section-b-space p-t-0 ratio_asos"
         noSlider="true"
         cartClass="cart-info cart-wrap"
+        data={fashionData.home}
       />
       <ServiceLayout sectionClass="border-section small-section" />
-      <Blog type="fashion" title="title1" inner="title-inner1" />
-      <Instagram type="fashion" />
+      {/* <Instagram type="fashion" /> */}
       <div className="section-b-space">
         <LogoBlock />
       </div>

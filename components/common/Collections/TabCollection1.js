@@ -59,6 +59,8 @@ const TabContent = ({
   const currency = curContext.state;
   const quantity = context.quantity;
 
+  console.log("DATA", data)
+
   return (
     <Row className="no-slider">
       {!data ||
@@ -134,8 +136,10 @@ const SpecialProducts = ({
   line,
   hrClass,
   backImage,
+  data
 }) => {
   const [activeTab, setActiveTab] = useState(type);
+  const [loading, setLoading] = useState(false)
   const context = useContext(CartContext);
   const wishListContext = useContext(WishlistContext);
   const compareContext = useContext(CompareContext);
@@ -143,13 +147,13 @@ const SpecialProducts = ({
   const currency = curContext.state;
   const quantity = context.quantity;
 
-  var { loading, data } = useQuery(GET_PRODUCTS, {
-    variables: {
-      type: activeTab,
-      indexFrom: 0,
-      limit: 8,
-    },
-  });
+  // var { loading, data } = useQuery(GET_PRODUCTS, {
+  //   variables: {
+  //     type: activeTab,
+  //     indexFrom: 0,
+  //     limit: 8,
+  //   },
+  // });
 
 
   return (

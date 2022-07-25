@@ -54,6 +54,7 @@ const ProductItem = ({
       }
     });
   };
+
   return (
     <div className="product-box product-wrap">
       <div className="img-wrapper">
@@ -140,7 +141,7 @@ const ProductItem = ({
             </ModalBody>
           </Modal>
         </div>
-        {product.images ? (
+        {/* {product.images ? (
           <ul className="product-thumb-list">
             {product.images.map((img, i) => (
               <li
@@ -161,7 +162,7 @@ const ProductItem = ({
           </ul>
         ) : (
           ""
-        )}
+        )} */}
       </div>
       <MasterProductDetail
         product={product}
