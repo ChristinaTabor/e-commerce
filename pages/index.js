@@ -7,14 +7,13 @@ import SpecialProducts from "../components/common/Collections/TabCollection1";
 import ServiceLayout from "../components/common/Service/service1";
 import LogoBlock from "../components/common/logo-block";
 import HeaderOne from "../components/headers/header-one";
-// import { withApollo } from "../helpers/apollo/apollo";
 import { Product4 } from "../services/script";
 import Paragraph from "../components/common/Paragraph";
 import Helmet from "react-helmet";
 import MasterFooter from "../components/footers/common/MasterFooter";
-import { fashionData } from "./../data/fashionData";
+import { getProducts, FASHION_CAT_ID } from "../services/api/data.service";
 
-const Fashion = () => {
+const Fashion = ({ specialProducts, isLoading }) => {
   return (
     <>
       <Helmet>
@@ -36,6 +35,8 @@ const Fashion = () => {
         designClass="section-b-space p-t-0 ratio_asos"
         noSlider="false"
         cartClass="cart-info cart-wrap"
+        data={specialProducts}
+        loading={isLoading}
       />
       <Parallax />
       <SpecialProducts
@@ -48,7 +49,8 @@ const Fashion = () => {
         designClass="section-b-space p-t-0 ratio_asos"
         noSlider="true"
         cartClass="cart-info cart-wrap"
-        data={fashionData.home}
+        data={specialProducts}
+        loading={isLoading}
       />
       <ServiceLayout sectionClass="border-section small-section" />
       {/* <Instagram type="fashion" /> */}
@@ -68,3 +70,14 @@ const Fashion = () => {
 };
 
 export default Fashion;
+
+export async function getServerSideProps() {
+  const specialProducts = await getProducts({
+    queryParams: {
+      relation: true,
+      filter: { "category._id": FASHION_CAT_ID },
+    },
+  });
+
+  return { props: { isLoading: false, specialProducts } };
+}

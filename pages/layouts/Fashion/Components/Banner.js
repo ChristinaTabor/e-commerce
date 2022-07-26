@@ -9,13 +9,13 @@ const Data = [
     img: "home1",
     title: "welcome to fashion",
     desc: "men fashion",
-    link: "/left-sidebar/collection ",
+    link: "/shop",
   },
   {
     img: "home2",
     title: "welcome to fashion",
     desc: "women fashion",
-    link: "/left-sidebar/collection ",
+    link: "/shop",
   },
 ];
 

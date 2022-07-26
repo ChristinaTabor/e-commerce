@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Col, Media } from "reactstrap";
 import sideBanner from "../../../public/assets/images/side-banner.png";
 import NewProduct from "./newProduct";
