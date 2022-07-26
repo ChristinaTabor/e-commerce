@@ -2,7 +2,6 @@ import React from 'react';
 import { Col, Media } from 'reactstrap';
 import sideBanner from '../../../public/assets/images/side-banner.png';
 import NewProduct from './newProduct';
-import Category from './category';
 import Brand from './brand'
 import Color from './color'
 import Size from './size'
@@ -22,7 +21,6 @@ const FilterPage = ({sm,sidebarView,closeSidebar}) => {
                             <i className="fa fa-angle-left" aria-hidden="true"></i> back
                         </span>
                     </div>
-                    {/* <Category /> */}
                     <Brand data={filterData} loading={isLoading}/>
                     <Color data={filterData} loading={isLoading}/>
                     <Size data={filterData} loading={isLoading}/>

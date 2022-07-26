@@ -2,8 +2,6 @@ import React from "react";
 import CommonLayout from "../../components/shop/common-layout";
 import TopCollection from "../../components/common/Collections/Collection3";
 import Collection from "../../components/common/Collections/Collection1";
-import CollectionTwo from "../../components/common/Collections/Collection2";
-import CollectionTen from "../../components/common/Collections/Collection13";
 // import { withApollo } from "../../helpers/apollo/apollo";
 import { Product4 } from "../../services/script";
 
@@ -59,23 +57,6 @@ const ProducxBox = () => {
         designClass="ratio_square section-b-space"
         noSlider="true"
         cartClass="cart-box"
-      />
-      <CollectionTwo
-        type="tools"
-        title="Product style 6"
-        spanClass={true}
-        productSlider={Product4}
-        designClass="ratio_square tools-grey light-layout section-b-space"
-        noSlider="true"
-        cartClass="cart-info cart-wrap"
-      />
-      <CollectionTen
-        type="game"
-        title="Product style 7"
-        productSlider={Product4}
-        designClass="ratio_asos game-product section-b-space"
-        noSlider="true"
-        cartClass="cart-info cart-wrap"
       />
       <Collection
         type="gym"
