@@ -1,6 +1,6 @@
 import * as Bucket from "@spica-devkit/bucket";
 
-export const FASHION_CAT_ID = '62dfc8a6f3ffc4002b57b8e7'
+export const FASHION_CAT_ID = "62dfc8a6f3ffc4002b57b8e7";
 
 const publicUrl = "https://e-commerce-672ba.hq.spicaengine.com/api";
 const publicApiKey = "3qa5e17l6268ks3";
@@ -13,17 +13,17 @@ const buckets = {
 
 function init() {
   let initializeConfig;
-//   if (localStorage.getItem("spicaToken")) {
-//     initializeConfig = {
-//       publicUrl,
-//       identity: localStorage.getItem("spicaToken"),
-//     };
-//   } else {
-    initializeConfig = {
-      publicUrl,
-      apikey: publicApiKey,
-    };
-//   }
+  //   if (localStorage.getItem("spicaToken")) {
+  //     initializeConfig = {
+  //       publicUrl,
+  //       identity: localStorage.getItem("spicaToken"),
+  //     };
+  //   } else {
+  initializeConfig = {
+    publicUrl,
+    apikey: publicApiKey,
+  };
+  //   }
   Bucket.initialize(initializeConfig);
 }
 
@@ -42,7 +42,7 @@ export async function getBrands(options) {
   return Bucket.data.getAll(buckets.BRAND, options);
 }
 
-export async function getNewProducts(options) {
+export async function getProducts(options) {
   init();
   return Bucket.data.getAll(buckets.PRODUCT, options);
 }

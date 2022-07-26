@@ -1,8 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Col, Row, Media, Button, Spinner } from "reactstrap";
 import Menu2 from "../../../public/assets/images/mega-menu/2.jpg";
-import { useQuery } from "@apollo/client";
-import { gql } from "@apollo/client";
 import FilterContext from "../../../helpers/filter/FilterContext";
 import ProductItem from "../../../components/common/product-box/ProductBox1";
 import { CurrencyContext } from "../../../helpers/Currency/CurrencyContext";
@@ -11,62 +9,8 @@ import PostLoader from "../../../components/common/PostLoader";
 import CartContext from "../../../helpers/cart";
 import { WishlistContext } from "../../../helpers/wishlist/WishlistContext";
 import { CompareContext } from "../../../helpers/Compare/CompareContext";
-import { fashionData } from "../../../data/fashionData";
 
-const GET_PRODUCTS = gql`
-  query products(
-    $type: _CategoryType!
-    $indexFrom: Int!
-    $limit: Int!
-    $color: String!
-    $brand: [String!]!
-    $sortBy: _SortBy!
-    $priceMax: Int!
-    $priceMin: Int!
-  ) {
-    products(
-      type: $type
-      indexFrom: $indexFrom
-      limit: $limit
-      color: $color
-      brand: $brand
-      sortBy: $sortBy
-      priceMax: $priceMax
-      priceMin: $priceMin
-    ) {
-      total
-      hasMore
-      items {
-        id
-        title
-        description
-        type
-        brand
-        category
-        price
-        new
-        sale
-        stock
-        discount
-        variants {
-          id
-          sku
-          size
-          color
-          image_id
-        }
-        images {
-          image_id
-          id
-          alt
-          src
-        }
-      }
-    }
-  }
-`;
-
-const ProductList = ({ colClass, layoutList, openSidebar, noSidebar }) => {
+const ProductList = ({data, loading, colClass, layoutList, openSidebar, noSidebar }) => {
   const cartContext = useContext(CartContext);
   const quantity = cartContext.quantity;
   const wishlistContext = useContext(WishlistContext);
@@ -87,9 +31,6 @@ const ProductList = ({ colClass, layoutList, openSidebar, noSidebar }) => {
   const [layout, setLayout] = useState(layoutList);
   const [url, setUrl] = useState();
   
-  const data = fashionData.shop;
-  const loading = false;
-
   useEffect(() => {
     const pathname = window.location.pathname;
     setUrl(pathname);
@@ -98,26 +39,13 @@ const ProductList = ({ colClass, layoutList, openSidebar, noSidebar }) => {
     );
   }, [selectedBrands, selectedColor, selectedSize, selectedPrice]);
 
-  // var { loading, data, fetchMore } = useQuery(GET_PRODUCTS, {
-  //   variables: {
-  //     type: selectedCategory,
-  //     priceMax: selectedPrice.max,
-  //     priceMin: selectedPrice.min,
-  //     color: selectedColor,
-  //     brand: selectedBrands,
-  //     sortBy: sortBy,
-  //     indexFrom: 0,
-  //     limit: limit,
-  //   },
-  // });
-
   const handlePagination = () => {
     setIsLoading(true);
     setTimeout(
       () =>
         fetchMore({
           variables: {
-            indexFrom: data.products.items.length,
+            indexFrom: data.items.length,
           },
           updateQuery: (prev, { fetchMoreResult }) => {
             if (!fetchMoreResult) return prev;
@@ -258,7 +186,7 @@ const ProductList = ({ colClass, layoutList, openSidebar, noSidebar }) => {
                       <div className="search-count">
                         <h5>
                           {data
-                            ? `Showing Products 1-${data.products.items.length} of ${data.products.total}`
+                            ? `Showing Products 1-${data.items.length} of ${data.total}`
                             : "loading"}{" "}
                           Result
                         </h5>
@@ -355,14 +283,12 @@ const ProductList = ({ colClass, layoutList, openSidebar, noSidebar }) => {
                 <Row>
                   {/* Product Box */}
                   {!data ||
-                    !data.products ||
-                    !data.products.items ||
-                    data.products.items.length === 0 ||
+                    !data.items ||
+                    data.items.length === 0 ||
                     loading ? (
                     data &&
-                      data.products &&
-                      data.products.items &&
-                      data.products.items.length === 0 ? (
+                      data.items &&
+                      data.items.length === 0 ? (
                       <Col xs="12">
                         <div>
                           <div className="col-sm-12 empty-cart-cls text-center">
@@ -396,7 +322,7 @@ const ProductList = ({ colClass, layoutList, openSidebar, noSidebar }) => {
                     )
                   ) : (
                     data &&
-                    data.products.items.map((product, i) => (
+                    data.items.map((product, i) => (
                       <div className={grid} key={i}>
                         <div className="product">
                           <div>
@@ -426,7 +352,7 @@ const ProductList = ({ colClass, layoutList, openSidebar, noSidebar }) => {
                 <div className="text-center">
                   <Row>
                     <Col xl="12" md="12" sm="12">
-                      {data && data.products && data.products.hasMore && (
+                      {data && data.hasMore && (
                         <Button onClick={() => handlePagination()}>
                           {isLoading && (
                             <Spinner animation="border" variant="light" />

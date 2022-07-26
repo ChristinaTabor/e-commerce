@@ -7,7 +7,7 @@ import Color from "./color";
 import Size from "./size";
 import Price from "./price";
 
-const FilterPage = ({ data, sm, sidebarView, closeSidebar }) => {
+const FilterPage = ({ data, loading, sm, sidebarView, closeSidebar }) => {
   return (
     <>
       <Col
@@ -21,12 +21,12 @@ const FilterPage = ({ data, sm, sidebarView, closeSidebar }) => {
               <i className="fa fa-angle-left" aria-hidden="true"></i> back
             </span>
           </div>
-          <Brand data={data.brands} loading={data.isLoading} />
+          <Brand data={data.brands} loading={loading} />
           <Color data={data.colors} />
-          <Size data={data.sizes} loading={data.isLoading} />
+          <Size data={data.sizes} loading={loading} />
           <Price />
         </div>
-        <NewProduct data={data.newProducts} loading={data.isLoading} />
+        <NewProduct data={data.newProducts} loading={loading} />
         <div className="collection-sidebar-banner">
           <a href={null}>
             <Media src={sideBanner} className="img-fluid blur-up lazyload" alt="" />

@@ -7,11 +7,11 @@ import {
   getColors,
   getSizes,
   getBrands,
-  getNewProducts,
+  getProducts,
   FASHION_CAT_ID,
 } from "../../services/api/data.service";
 
-const LeftSidebar = ({ filterData }) => {
+const LeftSidebar = ({ filterData, productsData, isLoading }) => {
   const [sidebarView, setSidebarView] = useState(false);
 
   const openCloseSidebar = () => {
@@ -30,10 +30,13 @@ const LeftSidebar = ({ filterData }) => {
               <FilterPage
                 sm="3"
                 data={filterData}
+                loading={isLoading}
                 sidebarView={sidebarView}
                 closeSidebar={() => openCloseSidebar(sidebarView)}
               />
               <ProductList
+                loading={isLoading}
+                data={productsData}
                 colClass="col-xl-3 col-6 col-grid-box"
                 layoutList=""
                 openSidebar={() => openCloseSidebar(sidebarView)}
@@ -52,7 +55,7 @@ export async function getServerSideProps() {
   const colors = await getColors();
   const sizes = await getSizes();
   const brands = await getBrands();
-  const newProducts = await getNewProducts({
+  const newProducts = await getProducts({
     queryParams: {
       relation: true,
       filter: { new: true, "category._id": FASHION_CAT_ID },
@@ -63,8 +66,19 @@ export async function getServerSideProps() {
     sizes,
     brands,
     newProducts,
-    isLoading: false,
   };
 
-  return { props: { filterData } };
+  const products = await getProducts({
+    queryParams: {
+      relation: true,
+      filter: { "category._id": FASHION_CAT_ID },
+    },
+  });
+
+  const productsData = {
+    items: products,
+    total: products.length,
+  };
+
+  return { props: { isLoading: false, filterData, productsData } };
 }
