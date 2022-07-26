@@ -12,18 +12,18 @@ const GET_SIZE = gql`
   }
 `;
 
-const Size = () => {
+const Size = ({data, loading}) => {
   const [isOpen, setIsOpen] = useState(false);
   const context = useContext(FilterContext);
   const isChecked = context.isChecked;
   const filterChecked = context.filterChecked;
   const toggle = () => setIsOpen(!isOpen);
 
-  var { loading, data } = useQuery(GET_SIZE, {
-    variables: {
-      type: context.state,
-    },
-  });
+  // var { loading, data } = useQuery(GET_SIZE, {
+  //   variables: {
+  //     type: context.state,
+  //   },
+  // });
 
   return (
     <div className="collection-collapse-block border-0 open">
@@ -39,7 +39,6 @@ const Size = () => {
                 data.getSize.size.map((size, index) => (
                   <div key={index}
                     className="custom-control custom-checkbox collection-filter-checkbox"
-                    key={index}
                   >
                     <Input
                       checked={context.selectedSize.includes(size)}

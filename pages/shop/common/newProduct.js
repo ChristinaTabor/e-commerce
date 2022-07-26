@@ -18,14 +18,14 @@ const GET_PRODUCTS = gql`
   }
 `;
 
-const NewProduct = () => {
+const NewProduct = ({data, loading}) => {
   const CurContect = useContext(CurrencyContext);
   const symbol = CurContect.state.symbol;
-  var { loading, data } = useQuery(GET_PRODUCTS, {
-    variables: {
-      type: "fashion",
-    },
-  });
+  // var { loading, data } = useQuery(GET_PRODUCTS, {
+  //   variables: {
+  //     type: "fashion",
+  //   },
+  // });
 
   return (
     // <!-- side-bar single product slider start -->

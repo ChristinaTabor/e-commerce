@@ -88,7 +88,7 @@ const MasterFooter = ({
         <section className={belowSection}>
           <Container fluid={belowContainerFluid ? belowContainerFluid : ""}>
             <Row className="footer-theme partition-f">
-              <Col lg="4" md="6">
+              <Col>
                 <div
                   className={`footer-title ${isOpen && collapse == 1 ? "active" : ""
                     } footer-mobile-title`}
@@ -156,97 +156,6 @@ const MasterFooter = ({
                   </div>
                 </Collapse>
               </Col>
-              <Col className="offset-xl-1">
-                <div className="sub-title">
-                  <div
-                    className={`footer-title ${isOpen && collapse == 2 ? "active" : ""
-                      } `}
-                  >
-                    <h4
-                      onClick={() => {
-                        if (width) {
-                          setIsOpen(!isOpen);
-                          setCollapse(2);
-                        } else setIsOpen(true);
-                      }}
-                    >
-                      my account
-                      <span className="according-menu"></span>
-                    </h4>
-                  </div>
-                  <Collapse
-                    isOpen={width ? (collapse === 2 ? isOpen : false) : true}
-                  >
-                    <div className="footer-contant">
-                      <ul>
-                        <li>
-                          <Link href={`/shop/left_sidebar`}>
-                            <a>womens</a>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href={`/shop/left_sidebar`}>
-                            <a> clothing </a>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href={`/shop/left_sidebar`}>
-                            <a>accessories</a>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href={`/shop/left_sidebar`}>
-                            <a> featured </a>
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                  </Collapse>
-                </div>
-              </Col>
-              <Col>
-                <div className="sub-title">
-                  <div
-                    className={`footer-title ${isOpen && collapse == 3 ? "active" : ""
-                      } `}
-                  >
-                    <h4
-                      onClick={() => {
-                        if (width) {
-                          setIsOpen(!isOpen);
-                          setCollapse(3);
-                        } else setIsOpen(true);
-                      }}
-                    >
-                      why we choose
-                      <span className="according-menu"></span>
-                    </h4>
-                  </div>
-                  <Collapse
-                    isOpen={width ? (collapse === 3 ? isOpen : false) : true}
-                  >
-                    <div className="footer-contant">
-                      <ul>
-                        <li>
-                          <a href="#">shipping & return</a>
-                        </li>
-                        <li>
-                          <a href="#">secure shopping</a>
-                        </li>
-                        <li>
-                          <a href="#">gallary</a>
-                        </li>
-                        <li>
-                          <a href="#">affiliates</a>
-                        </li>
-                        <li>
-                          <a href="#">contacts</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </Collapse>
-                </div>
-              </Col>
               <Col>
                 <div className="sub-title">
                   <div
@@ -280,9 +189,6 @@ const MasterFooter = ({
                         <li>
                           <i className="fa fa-envelope-o"></i>Email Us:{" "}
                           <a href="#">Support@Fiot.com</a>
-                        </li>
-                        <li>
-                          <i className="fa fa-fax"></i>Fax: 123456
                         </li>
                       </ul>
                     </div>

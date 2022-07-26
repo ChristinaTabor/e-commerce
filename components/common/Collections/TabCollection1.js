@@ -59,8 +59,6 @@ const TabContent = ({
   const currency = curContext.state;
   const quantity = context.quantity;
 
-  console.log("DATA", data)
-
   return (
     <Row className="no-slider">
       {!data ||

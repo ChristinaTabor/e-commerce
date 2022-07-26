@@ -12,18 +12,18 @@ const GET_BRAND = gql`
   }
 `;
 
-const Brand = () => {
+const Brand = ({data, loading}) => {
   const context = useContext(FilterContext);
   const isChecked = context.isChecked;
   const filterChecked = context.filterChecked;
   const [isOpen, setIsOpen] = useState(false);
   const toggleBrand = () => setIsOpen(!isOpen);
 
-  var { loading, data } = useQuery(GET_BRAND, {
-    variables: {
-      type: context.state,
-    },
-  });
+  // var { loading, data } = useQuery(GET_BRAND, {
+  //   variables: {
+  //     type: context.state,
+  //   },
+  // });
 
   return (
     <div className="collection-collapse-block open">

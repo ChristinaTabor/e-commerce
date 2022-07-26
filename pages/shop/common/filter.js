@@ -7,8 +7,10 @@ import Brand from './brand'
 import Color from './color'
 import Size from './size'
 import Price from './price';
+import { filterData } from '../../../data/filterData'
 
 const FilterPage = ({sm,sidebarView,closeSidebar}) => {
+    const isLoading = false;
     return (
         <>
             <Col sm={sm} className="collection-filter" style={sidebarView ? {left:"0px"} : {}}>
@@ -20,14 +22,14 @@ const FilterPage = ({sm,sidebarView,closeSidebar}) => {
                             <i className="fa fa-angle-left" aria-hidden="true"></i> back
                         </span>
                     </div>
-                    <Category />
-                    <Brand/>
-                    <Color/>
-                    <Size/>
+                    {/* <Category /> */}
+                    <Brand data={filterData} loading={isLoading}/>
+                    <Color data={filterData} loading={isLoading}/>
+                    <Size data={filterData} loading={isLoading}/>
                     <Price />
                 </div>
                 {/* <!-- silde-bar colleps block end here -->*/}
-                <NewProduct />
+                <NewProduct data={filterData} loading={isLoading}/>
                 {/* <!-- side-bar banner start here -->  */}
                 <div className="collection-sidebar-banner">
                     <a href={null}><Media src={sideBanner} className="img-fluid blur-up lazyload" alt="" /></a>

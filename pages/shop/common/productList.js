@@ -89,7 +89,6 @@ const ProductList = ({ colClass, layoutList, openSidebar, noSidebar }) => {
   
   const data = fashionData.shop;
   const loading = false;
-  console.log("data", data)
 
   useEffect(() => {
     const pathname = window.location.pathname;

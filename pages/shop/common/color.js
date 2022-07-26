@@ -12,15 +12,16 @@ const GET_COLOR = gql`
     }
 `;
 
-const Color = () => {
+const Color = ({data, loading}) => {
     const context = useContext(FilterContext);
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
-    var { loading, data } = useQuery(GET_COLOR, {
-        variables: {
-            type: context.state
-        }
-    })
+    
+    // var { loading, data } = useQuery(GET_COLOR, {
+    //     variables: {
+    //         type: context.state
+    //     }
+    // })
 
     return (
         <div className="collection-collapse-block open">
