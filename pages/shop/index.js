@@ -72,12 +72,14 @@ export async function getServerSideProps() {
     queryParams: {
       relation: true,
       filter: { "category._id": FASHION_CAT_ID },
+      paginate: true,
+      limit: 8
     },
   });
 
   const productsData = {
-    items: products,
-    total: products.length,
+    items: products.data,
+    total: products.meta.total,
   };
 
   return { props: { isLoading: false, filterData, productsData } };

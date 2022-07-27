@@ -4,18 +4,27 @@ import Menu2 from "../../../public/assets/images/mega-menu/2.jpg";
 import FilterContext from "../../../helpers/filter/FilterContext";
 import ProductItem from "../../../components/common/product-box/ProductBox1";
 import { CurrencyContext } from "../../../helpers/Currency/CurrencyContext";
-import { useRouter } from "next/router";
 import PostLoader from "../../../components/common/PostLoader";
 import CartContext from "../../../helpers/cart";
 import { WishlistContext } from "../../../helpers/wishlist/WishlistContext";
 import { CompareContext } from "../../../helpers/Compare/CompareContext";
+import { getProducts, FASHION_CAT_ID } from "../../../services/api/data.service";
 
-const ProductList = ({data, loading, colClass, layoutList, openSidebar, noSidebar }) => {
+const sortKeys = {
+  AscOrder: {},
+  HighToLow: { price: -1 },
+  LowToHigh: { price: 1 },
+  Newest: { _id: 1 },
+};
+let sortBy = "AscOrder";
+const filter = { "category._id": FASHION_CAT_ID };
+
+const ProductList = ({ data, loading, colClass, layoutList, openSidebar, noSidebar }) => {
+  let [products, setProducts] = useState(data.items);
   const cartContext = useContext(CartContext);
   const quantity = cartContext.quantity;
   const wishlistContext = useContext(WishlistContext);
   const compareContext = useContext(CompareContext);
-  const router = useRouter();
   const [limit, setLimit] = useState(8);
   const curContext = useContext(CurrencyContext);
   const [grid, setGrid] = useState(colClass);
@@ -24,47 +33,47 @@ const ProductList = ({data, loading, colClass, layoutList, openSidebar, noSideba
   const selectedBrands = filterContext.selectedBrands;
   const selectedColor = filterContext.selectedColor;
   const selectedPrice = filterContext.selectedPrice;
-  const selectedCategory = filterContext.state;
   const selectedSize = filterContext.selectedSize;
-  const [sortBy, setSortBy] = useState("AscOrder");
   const [isLoading, setIsLoading] = useState(false);
   const [layout, setLayout] = useState(layoutList);
-  const [url, setUrl] = useState();
-  
+
   useEffect(() => {
-    const pathname = window.location.pathname;
-    setUrl(pathname);
-    router.push(
-      `${pathname}?${filterContext.state}&brand=${selectedBrands}&color=${selectedColor}&size=${selectedSize}&minPrice=${selectedPrice.min}&maxPrice=${selectedPrice.max}`
-    );
+    filter["brand._id"] = { $in: selectedBrands };
+    filter["variants.color"] = selectedColor;
+    filter["variants.size"] = { $in: selectedSize };
+    filter["price"] = { $gte: selectedPrice.min, $lte: selectedPrice.max };
+
+    if (!selectedBrands.length) delete filter["brand._id"];
+    if (!selectedColor.length) delete filter["variants.color"];
+    if (!selectedSize.length) delete filter["variants.size"];
+
+    products = [];
+    getProductsData();
   }, [selectedBrands, selectedColor, selectedSize, selectedPrice]);
 
-  const handlePagination = () => {
+  const getProductsData = async () => {
+    const productsData = await getProducts({
+      queryParams: {
+        relation: true,
+        filter: filter,
+        sort: sortKeys[sortBy],
+        skip: products.length,
+        limit: limit,
+      },
+    });
+    setProducts([...products, ...productsData]);
+  };
+
+  const handlePagination = async () => {
     setIsLoading(true);
-    setTimeout(
-      () =>
-        fetchMore({
-          variables: {
-            indexFrom: data.items.length,
-          },
-          updateQuery: (prev, { fetchMoreResult }) => {
-            if (!fetchMoreResult) return prev;
-            setIsLoading(false);
-            return {
-              products: {
-                __typename: prev.products.__typename,
-                total: prev.products.total,
-                items: [
-                  ...prev.products.items,
-                  ...fetchMoreResult.products.items,
-                ],
-                hasMore: fetchMoreResult.products.hasMore,
-              },
-            };
-          },
-        }),
-      1000
-    );
+    await getProductsData();
+    setIsLoading(false);
+  };
+
+  const handleSort = async (value) => {
+    sortBy = value;
+    products = [];
+    getProductsData();
   };
 
   const removeBrand = (val) => {
@@ -90,29 +99,24 @@ const ProductList = ({data, loading, colClass, layoutList, openSidebar, noSideba
           <Col sm="12">
             <div className="top-banner-wrapper">
               <a href={null}>
-                <Media
-                  src={Menu2}
-                  className="img-fluid blur-up lazyload"
-                  alt=""
-                />
+                <Media src={Menu2} className="img-fluid blur-up lazyload" alt="" />
               </a>
               <div className="top-banner-content small-section">
                 <h4>fashion</h4>
                 <h5>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry.
+                  Lorem Ipsum is simply dummy text of the printing and typesetting
+                  industry.
                 </h5>
                 <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book. It has survived not only five centuries, but
-                  also the leap into electronic typesetting, remaining
-                  essentially unchanged. It was popularised in the 1960s with
-                  the release of Letraset sheets containing Lorem Ipsum
-                  passages, and more recently with desktop publishing software
-                  like Aldus PageMaker including versions of Lorem Ipsum.
+                  Lorem Ipsum is simply dummy text of the printing and typesetting
+                  industry. Lorem Ipsum has been the industry's standard dummy text ever
+                  since the 1500s, when an unknown printer took a galley of type and
+                  scrambled it to make a type specimen book. It has survived not only five
+                  centuries, but also the leap into electronic typesetting, remaining
+                  essentially unchanged. It was popularised in the 1960s with the release
+                  of Letraset sheets containing Lorem Ipsum passages, and more recently
+                  with desktop publishing software like Aldus PageMaker including versions
+                  of Lorem Ipsum.
                 </p>
               </div>
             </div>
@@ -123,10 +127,7 @@ const ProductList = ({data, loading, colClass, layoutList, openSidebar, noSideba
                     <li key={i}>
                       <a href={null} className="filter_tag">
                         {brand}
-                        <i
-                          className="fa fa-close"
-                          onClick={() => removeBrand(brand)}
-                        ></i>
+                        <i className="fa fa-close" onClick={() => removeBrand(brand)}></i>
                       </a>
                     </li>
                   ))}
@@ -144,10 +145,7 @@ const ProductList = ({data, loading, colClass, layoutList, openSidebar, noSideba
                     <li key={i}>
                       <a href={null} className="filter_tag">
                         {size}
-                        <i
-                          className="fa fa-close"
-                          onClick={() => removeSize(size)}
-                        ></i>
+                        <i className="fa fa-close" onClick={() => removeSize(size)}></i>
                       </a>
                     </li>
                   ))}
@@ -166,13 +164,9 @@ const ProductList = ({data, loading, colClass, layoutList, openSidebar, noSideba
                 {!noSidebar ? (
                   <Row>
                     <Col xl="12">
-                      <div
-                        className="filter-main-btn"
-                        onClick={() => openSidebar()}
-                      >
+                      <div className="filter-main-btn" onClick={() => openSidebar()}>
                         <span className="filter-btn btn btn-theme">
-                          <i className="fa fa-filter" aria-hidden="true"></i>{" "}
-                          Filter
+                          <i className="fa fa-filter" aria-hidden="true"></i> Filter
                         </span>
                       </div>
                     </Col>
@@ -186,7 +180,7 @@ const ProductList = ({data, loading, colClass, layoutList, openSidebar, noSideba
                       <div className="search-count">
                         <h5>
                           {data
-                            ? `Showing Products 1-${data.items.length} of ${data.total}`
+                            ? `Showing Products 1-${products.length} of ${data.total}`
                             : "loading"}{" "}
                           Result
                         </h5>
@@ -215,11 +209,7 @@ const ProductList = ({data, loading, colClass, layoutList, openSidebar, noSideba
                       </div>
                       <div
                         className="collection-grid-view"
-                        style={
-                          layout === "list-view"
-                            ? { opacity: 0 }
-                            : { opacity: 1 }
-                        }
+                        style={layout === "list-view" ? { opacity: 0 } : { opacity: 1 }}
                       >
                         <ul>
                           <li>
@@ -257,22 +247,21 @@ const ProductList = ({data, loading, colClass, layoutList, openSidebar, noSideba
                         </ul>
                       </div>
                       <div className="product-page-per-view">
-                        <select
-                          onChange={(e) => setLimit(parseInt(e.target.value))}
-                        >
+                        <select onChange={(e) => setLimit(parseInt(e.target.value))}>
                           <option value="10">10 Products Par Page</option>
                           <option value="15">15 Products Par Page</option>
                           <option value="20">20 Products Par Page</option>
                         </select>
                       </div>
                       <div className="product-page-filter">
-                        <select onChange={(e) => setSortBy(e.target.value)}>
+                        <select
+                          value={sortBy}
+                          onChange={(e) => handleSort(e.target.value)}
+                        >
                           <option value="AscOrder">Sorting items</option>
                           <option value="HighToLow">High To Low</option>
                           <option value="LowToHigh">Low To High</option>
                           <option value="Newest">Newest</option>
-                          <option value="AscOrder">Asc Order</option>
-                          <option value="DescOrder">Desc Order</option>
                         </select>
                       </div>
                     </div>
@@ -282,13 +271,8 @@ const ProductList = ({data, loading, colClass, layoutList, openSidebar, noSideba
               <div className={`product-wrapper-grid ${layout}`}>
                 <Row>
                   {/* Product Box */}
-                  {!data ||
-                    !data.items ||
-                    data.items.length === 0 ||
-                    loading ? (
-                    data &&
-                      data.items &&
-                      data.items.length === 0 ? (
+                  {!data || !products || products.length === 0 || loading ? (
+                    data && products && products.length === 0 ? (
                       <Col xs="12">
                         <div>
                           <div className="col-sm-12 empty-cart-cls text-center">
@@ -321,8 +305,8 @@ const ProductList = ({data, loading, colClass, layoutList, openSidebar, noSideba
                       </div>
                     )
                   ) : (
-                    data &&
-                    data.items.map((product, i) => (
+                    products &&
+                    products.map((product, i) => (
                       <div className={grid} key={i}>
                         <div className="product">
                           <div>
@@ -331,15 +315,9 @@ const ProductList = ({data, loading, colClass, layoutList, openSidebar, noSideba
                               product={product}
                               symbol={symbol}
                               cartClass="cart-info cart-wrap"
-                              addCompare={() =>
-                                compareContext.addToCompare(product)
-                              }
-                              addWishlist={() =>
-                                wishlistContext.addToWish(product)
-                              }
-                              addCart={() =>
-                                cartContext.addToCart(product, quantity)
-                              }
+                              addCompare={() => compareContext.addToCompare(product)}
+                              addWishlist={() => wishlistContext.addToWish(product)}
+                              addCart={() => cartContext.addToCart(product, quantity)}
                             />
                           </div>
                         </div>
@@ -352,11 +330,9 @@ const ProductList = ({data, loading, colClass, layoutList, openSidebar, noSideba
                 <div className="text-center">
                   <Row>
                     <Col xl="12" md="12" sm="12">
-                      {data && data.hasMore && (
+                      {data && (
                         <Button onClick={() => handlePagination()}>
-                          {isLoading && (
-                            <Spinner animation="border" variant="light" />
-                          )}
+                          {isLoading && <Spinner animation="border" variant="light" />}
                           Load More
                         </Button>
                       )}
