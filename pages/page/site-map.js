@@ -96,7 +96,7 @@ const Data = [
     subtitles: [
       {
         title: "Left Sidebar",
-        link: "/shop/left_sidebar",
+        link: "/shop",
       },
       {
         title: "Right Sidebar",
@@ -120,7 +120,7 @@ const Data = [
       },
       {
         title: "Infinite Scroll",
-        link: "/shop/left_sidebar",
+        link: "/shop",
       },
       {
         title: "Three Grid",

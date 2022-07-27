@@ -25,7 +25,6 @@ const ProductList = ({ data, loading, colClass, layoutList, openSidebar, noSideb
   const quantity = cartContext.quantity;
   const wishlistContext = useContext(WishlistContext);
   const compareContext = useContext(CompareContext);
-  const [limit, setLimit] = useState(8);
   const curContext = useContext(CurrencyContext);
   const [grid, setGrid] = useState(colClass);
   const symbol = curContext.state.symbol;
@@ -58,7 +57,7 @@ const ProductList = ({ data, loading, colClass, layoutList, openSidebar, noSideb
         filter: filter,
         sort: sortKeys[sortBy],
         skip: products.length,
-        limit: limit,
+        limit: 8,
       },
     });
     setProducts([...products, ...productsData]);
@@ -245,13 +244,6 @@ const ProductList = ({ data, loading, colClass, layoutList, openSidebar, noSideb
                             />
                           </li>
                         </ul>
-                      </div>
-                      <div className="product-page-per-view">
-                        <select onChange={(e) => setLimit(parseInt(e.target.value))}>
-                          <option value="10">10 Products Par Page</option>
-                          <option value="15">15 Products Par Page</option>
-                          <option value="20">20 Products Par Page</option>
-                        </select>
                       </div>
                       <div className="product-page-filter">
                         <select

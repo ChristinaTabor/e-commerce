@@ -53,34 +53,34 @@ const FooterTwo = (props) => {
                   <div className="footer-contant">
                     <ul>
                       <li>
-                        <a href={`/shop/left_sidebar`}>womens</a>
+                        <a href={`/shop`}>womens</a>
                       </li>
                       <li>
-                        <a href={`/shop/left_sidebar`}>clothing</a>
+                        <a href={`/shop`}>clothing</a>
                       </li>
                       <li>
-                        <a href={`/shop/left_sidebar`}>accessories</a>
+                        <a href={`/shop`}>accessories</a>
                       </li>
                       <li>
-                        <a href={`/shop/left_sidebar`}>featured</a>
+                        <a href={`/shop`}>featured</a>
                       </li>
                       <li>
-                        <a href={`/shop/left_sidebar`}>service</a>
+                        <a href={`/shop`}>service</a>
                       </li>
                       <li>
-                        <a href={`/shop/left_sidebar`}>cart</a>
+                        <a href={`/shop`}>cart</a>
                       </li>
                       <li>
-                        <a href={`/shop/left_sidebar`}>my order</a>
+                        <a href={`/shop`}>my order</a>
                       </li>
                       <li>
-                        <a href={`/shop/left_sidebar`}>FAQ</a>
+                        <a href={`/shop`}>FAQ</a>
                       </li>
                       <li>
-                        <a href={`/shop/left_sidebar`}>new product</a>
+                        <a href={`/shop`}>new product</a>
                       </li>
                       <li>
-                        <a href={`/shop/left_sidebar`}>featured product</a>
+                        <a href={`/shop`}>featured product</a>
                       </li>
                     </ul>
                   </div>

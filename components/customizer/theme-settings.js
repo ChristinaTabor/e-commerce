@@ -139,7 +139,7 @@ const ThemeSettings = () => {
     {
       bg: "demo22",
       name: "left sidebar",
-      link: "/shop/left_sidebar",
+      link: "/shop",
       btnName: "Preview",
     },
     {
