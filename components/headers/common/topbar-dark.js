@@ -12,7 +12,12 @@ const TopBarDark = ({ topClass, fluid }) => {
   const handleLogout = () => {
     userContext.setUser();
     userLogout();
-    router.push('/page/account/login')
+    router.push("/page/account/login");
+  };
+
+  const navigateToDashboar = () => {
+    if (!userContext.user) return;
+    router.push("/page/account/dashboard");
   };
 
   return (
@@ -40,7 +45,10 @@ const TopBarDark = ({ topClass, fluid }) => {
                 </Link>
               </li>
               <li className="onhover-dropdown mobile-account">
-                <i className="fa fa-user" aria-hidden="true"></i> My Account
+                <span onClick={() => navigateToDashboar()}>
+                  <i className="fa fa-user" aria-hidden="true"></i>
+                  My Account
+                </span>
                 <ul className="onhover-show-div">
                   {userContext.user ? (
                     <li onClick={() => handleLogout()}>

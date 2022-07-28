@@ -1,29 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import {
-  Container,
-  Row,
-  Col,
-  Form,
-  FormGroup,
-  Input,
-  Button,
-  Collapse,
-} from "reactstrap";
+import { Container, Row, Col, Collapse } from "reactstrap";
 import LogoImage from "../../headers/common/logo";
 import CopyRight from "./copyright";
 
 const MasterFooter = ({
-  containerFluid,
   logoName,
   layoutClass,
   footerClass,
-  footerLayOut,
-  footerSection,
   belowSection,
   belowContainerFluid,
   copyRightFluid,
-  newLatter,
 }) => {
   const [isOpen, setIsOpen] = useState();
   const [collapse, setCollapse] = useState(0);
@@ -39,59 +26,20 @@ const MasterFooter = ({
     window.addEventListener("resize", changeCollapse);
 
     return () => {
-      window.removeEventListener('resize', changeCollapse)
-    }
-
+      window.removeEventListener("resize", changeCollapse);
+    };
   }, []);
   return (
     <div>
       <footer className={footerClass}>
-        {newLatter ? (
-          <div className={footerLayOut}>
-            <Container fluid={containerFluid ? containerFluid : ""}>
-              <section className={footerSection}>
-                <Row>
-                  <Col lg="6">
-                    <div className="subscribe">
-                      <div>
-                        <h4>KNOW IT ALL FIRST!</h4>
-                        <p>
-                          Never Miss Anything From Multikart By Signing Up To
-                          Our Newsletter.
-                        </p>
-                      </div>
-                    </div>
-                  </Col>
-                  <Col lg="6">
-                    <Form className="form-inline subscribe-form">
-                      <FormGroup className="mx-sm-3">
-                        <Input
-                          type="text"
-                          className="form-control"
-                          id="exampleFormControlInput1"
-                          placeholder="Enter your email"
-                        />
-                      </FormGroup>
-                      <Button type="submit" className="btn btn-solid">
-                        subscribe
-                      </Button>
-                    </Form>
-                  </Col>
-                </Row>
-              </section>
-            </Container>
-          </div>
-        ) : (
-          ""
-        )}
-
         <section className={belowSection}>
           <Container fluid={belowContainerFluid ? belowContainerFluid : ""}>
             <Row className="footer-theme partition-f">
               <Col>
                 <div
-                  className={`footer-title ${isOpen && collapse == 1 ? "active" : ""
-                    } footer-mobile-title`}
+                  className={`footer-title ${
+                    isOpen && collapse == 1 ? "active" : ""
+                  } footer-mobile-title`}
                 >
                   <h4
                     onClick={() => {
@@ -103,34 +51,26 @@ const MasterFooter = ({
                     <span className="according-menu"></span>
                   </h4>
                 </div>
-                <Collapse
-                  isOpen={width ? (collapse === 1 ? isOpen : false) : true}
-                >
+                <Collapse isOpen={width ? (collapse === 1 ? isOpen : false) : true}>
                   <div className="footer-contant">
                     <div className="footer-logo">
                       <LogoImage logo={logoName} />
                     </div>
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam,
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+                      ad minim veniam,
                     </p>
                     <div className="footer-social">
                       <ul>
                         <li>
                           <a href="https://www.facebook.com" target="_blank">
-                            <i
-                              className="fa fa-facebook"
-                              aria-hidden="true"
-                            ></i>
+                            <i className="fa fa-facebook" aria-hidden="true"></i>
                           </a>
                         </li>
                         <li>
                           <a href="https://plus.google.com" target="_blank">
-                            <i
-                              className="fa fa-google-plus"
-                              aria-hidden="true"
-                            ></i>
+                            <i className="fa fa-google-plus" aria-hidden="true"></i>
                           </a>
                         </li>
                         <li>
@@ -140,10 +80,7 @@ const MasterFooter = ({
                         </li>
                         <li>
                           <a href="https://www.instagram.com" target="_blank">
-                            <i
-                              className="fa fa-instagram"
-                              aria-hidden="true"
-                            ></i>
+                            <i className="fa fa-instagram" aria-hidden="true"></i>
                           </a>
                         </li>
                         <li>
@@ -159,8 +96,7 @@ const MasterFooter = ({
               <Col>
                 <div className="sub-title">
                   <div
-                    className={`footer-title ${isOpen && collapse == 4 ? "active" : ""
-                      } `}
+                    className={`footer-title ${isOpen && collapse == 4 ? "active" : ""} `}
                   >
                     <h4
                       onClick={() => {
@@ -174,14 +110,12 @@ const MasterFooter = ({
                       <span className="according-menu"></span>
                     </h4>
                   </div>
-                  <Collapse
-                    isOpen={width ? (collapse === 4 ? isOpen : false) : true}
-                  >
+                  <Collapse isOpen={width ? (collapse === 4 ? isOpen : false) : true}>
                     <div className="footer-contant">
                       <ul className="contact-list">
                         <li>
-                          <i className="fa fa-map-marker"></i>Multikart Demo
-                          Store, Demo store India 345-659
+                          <i className="fa fa-map-marker"></i>Multikart Demo Store, Demo
+                          store India 345-659
                         </li>
                         <li>
                           <i className="fa fa-phone"></i>Call Us: 123-456-7898
@@ -199,10 +133,7 @@ const MasterFooter = ({
           </Container>
         </section>
 
-        <CopyRight
-          layout={layoutClass}
-          fluid={copyRightFluid ? copyRightFluid : ""}
-        />
+        <CopyRight layout={layoutClass} fluid={copyRightFluid ? copyRightFluid : ""} />
       </footer>
     </div>
   );
