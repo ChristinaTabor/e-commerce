@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Container, Row, Col } from "reactstrap";
 import Link from "next/link";
-import { firebase_app } from "../../../config/base";
 import { useRouter } from "next/router";
+import UserContext from "../../../helpers/user/UserContext";
+import { userLogout } from "../../../services/api/user.service";
 
 const TopBarDark = ({ topClass, fluid }) => {
+  const userContext = useContext(UserContext);
   const router = useRouter();
-  const firebaseLogout = () => {
-    firebase_app.auth().signOut();
-    router.push("/page/account/login-auth");
+
+  const handleLogout = () => {
+    userContext.setUser();
+    userLogout();
+    router.push('/page/account/login')
   };
+
   return (
     <div className={topClass}>
       <Container fluid={fluid}>
@@ -19,8 +24,8 @@ const TopBarDark = ({ topClass, fluid }) => {
               <ul>
                 <li>Welcome to Our store Multikart</li>
                 <li>
-                  <i className="fa fa-phone" aria-hidden="true"></i>Call Us: 123
-                  - 456 - 7890
+                  <i className="fa fa-phone" aria-hidden="true"></i>Call Us: 123 - 456 -
+                  7890
                 </li>
               </ul>
             </div>
@@ -37,19 +42,24 @@ const TopBarDark = ({ topClass, fluid }) => {
               <li className="onhover-dropdown mobile-account">
                 <i className="fa fa-user" aria-hidden="true"></i> My Account
                 <ul className="onhover-show-div">
-                  <li>
-                    <Link href={`/page/account/login`}>
-                      <a>Login</a>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href={`/page/account/register`}>
-                      <a>Register</a>
-                    </Link>
-                  </li>
-                  <li onClick={() => firebaseLogout()}>
-                    <a>Logout</a>
-                  </li>
+                  {userContext.user ? (
+                    <li onClick={() => handleLogout()}>
+                      <a>Logout</a>
+                    </li>
+                  ) : (
+                    <>
+                      <li>
+                        <Link href={`/page/account/login`}>
+                          <a>Login</a>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href={`/page/account/register`}>
+                          <a>Register</a>
+                        </Link>
+                      </li>
+                    </>
+                  )}
                 </ul>
               </li>
             </ul>

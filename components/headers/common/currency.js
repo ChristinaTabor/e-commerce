@@ -1,24 +1,12 @@
 import React, { useContext } from "react";
-import { useQuery } from "@apollo/client";
-import { gql } from '@apollo/client';
 import { Media } from "reactstrap";
 import language from "../../constant/langConfig.json";
 import i18next from "../../constant/i18n";
 import { CurrencyContext } from "../../../helpers/Currency/CurrencyContext";
 
-const GET_CURRENCY = gql`
-  query {
-    getCurrency {
-      currency
-      name
-      symbol
-      value
-    }
-  }
-`;
-
 const Currency = ({ icon }) => {
-  var { data } = useQuery(GET_CURRENCY);
+  // TODO get data
+  let data;
   const Context = useContext(CurrencyContext);
   const selectedCurrency = Context.currencyContext.selectedCurrency;
 

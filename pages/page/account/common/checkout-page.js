@@ -1,8 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useCallback } from "react";
 import { Media, Container, Form, Row, Col } from "reactstrap";
 import CartContext from "../../../../helpers/cart";
-import paypal from "../../../../public/assets/images/paypal.png";
-import { PayPalButton } from "react-paypal-button-v2";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { CurrencyContext } from "../../../../helpers/Currency/CurrencyContext";
@@ -14,21 +12,35 @@ const CheckoutPage = () => {
   const curContext = useContext(CurrencyContext);
   const symbol = curContext.state.symbol;
   const [obj, setObj] = useState({});
-  const [payment, setPayment] = useState("stripe");
-  const { register, handleSubmit, formState: { errors } } = useForm(); // initialise the hook
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const router = useRouter();
 
-  const checkhandle = (value) => {
-    setPayment(value);
-  };
+  const [cardForm, setCardForm] = useState({
+    cardNumber: "",
+    firstName: "",
+    lastName: "",
+    expireDate: "",
+    cvc: "",
+  });
+  const [backSide, setBackSide] = useState(false);
+  const [cardTypeUrl, setCardTypeUrl] = useState(
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/300px-MasterCard_Logo.svg.png"
+  );
+  const chipImgUrl = "https://cdn.freebiesupply.com/logos/thumbs/2x/chip-1-logo.png";
 
   const onSubmit = (data) => {
     if (data !== "") {
-      alert("You submitted the form and stuff!");
-      router.push({
-        pathname: "/page/order-success",
-        state: { items: cartItems, orderTotal: cartTotal, symbol: symbol },
-      });
+      console.log("data", data)
+      console.log("cardData", cardForm)
+      // alert("You submitted the form and stuff!");
+      // router.push({
+      //   pathname: "/page/order-success",
+      //   state: { items: cartItems, orderTotal: cartTotal, symbol: symbol },
+      // });
     } else {
       errors.showMessages();
     }
@@ -39,6 +51,34 @@ const CheckoutPage = () => {
     setObj(obj);
   };
 
+  const formatCardNumber = (value) => {
+    setCardForm({
+      ...cardForm,
+      cardNumber: value.replace(/\s/g, "").replace(/\d{4}(?=.)/g, "$& "),
+    });
+    if (cardForm.cardNumber[0] == 4) {
+      // visa
+      setCardTypeUrl(
+        "https://www.pngitem.com/pimgs/m/35-351816_card-visa-small-logo-png-transparent-png.png"
+      );
+    } else {
+      // mastercard
+      setCardTypeUrl(
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/300px-MasterCard_Logo.svg.png"
+      );
+    }
+  };
+
+  const formatExpireDate = (value) => {
+    let newValue = value;
+    if (value.length > 2) {
+      newValue = value.substring(0, 2) + "/" + value.substring(2 + 1);
+    }
+    setCardForm({
+      ...cardForm,
+      expireDate: newValue,
+    });
+  };
 
   return (
     <section className="section-b-space">
@@ -56,12 +96,12 @@ const CheckoutPage = () => {
                       <div className="field-label">First Name</div>
                       <input
                         type="text"
-                        className={`${errors.firstName ? "error_border" : ""}`}
+                        className={`${errors.first_name ? "error_border" : ""}`}
                         name="first_name"
-                        {...register('first_name', { required: true })}
+                        {...register("first_name", { required: true })}
                       />
                       <span className="error-message">
-                        {errors.firstName && "First name is required"}
+                        {errors.first_name && "First name is required"}
                       </span>
                     </div>
                     <div className="form-group col-md-6 col-sm-6 col-xs-12">
@@ -70,7 +110,7 @@ const CheckoutPage = () => {
                         type="text"
                         className={`${errors.last_name ? "error_border" : ""}`}
                         name="last_name"
-                        {...register('last_name', { required: true })}
+                        {...register("last_name", { required: true })}
                       />
                       <span className="error-message">
                         {errors.last_name && "Last name is required"}
@@ -82,7 +122,7 @@ const CheckoutPage = () => {
                         type="text"
                         name="phone"
                         className={`${errors.phone ? "error_border" : ""}`}
-                        {...register('phone', { pattern: /\d+/ })}
+                        {...register("phone", { pattern: /\d+/ })}
                       />
                       <span className="error-message">
                         {errors.phone && "Please enter number for phone."}
@@ -91,11 +131,10 @@ const CheckoutPage = () => {
                     <div className="form-group col-md-6 col-sm-6 col-xs-12">
                       <div className="field-label">Email Address</div>
                       <input
-                        //className="form-control"
                         className={`${errors.email ? "error_border" : ""}`}
                         type="text"
                         name="email"
-                        {...register('email', {
+                        {...register("email", {
                           required: true,
                           pattern: /^\S+@\S+$/i,
                         })}
@@ -116,7 +155,6 @@ const CheckoutPage = () => {
                     <div className="form-group col-md-12 col-sm-12 col-xs-12">
                       <div className="field-label">Address</div>
                       <input
-                        //className="form-control"
                         className={`${errors.address ? "error_border" : ""}`}
                         type="text"
                         name="address"
@@ -130,11 +168,10 @@ const CheckoutPage = () => {
                     <div className="form-group col-md-12 col-sm-12 col-xs-12">
                       <div className="field-label">Town/City</div>
                       <input
-                        //className="form-control"
                         type="text"
                         className={`${errors.city ? "error_border" : ""}`}
                         name="city"
-                        {...register('city', { required: true })}
+                        {...register("city", { required: true })}
                         onChange={setStateFromInput}
                       />
                       <span className="error-message">
@@ -144,11 +181,10 @@ const CheckoutPage = () => {
                     <div className="form-group col-md-12 col-sm-6 col-xs-12">
                       <div className="field-label">State / County</div>
                       <input
-                        //className="form-control"
                         type="text"
                         className={`${errors.state ? "error_border" : ""}`}
                         name="state"
-                        {...register('state', { required: true })}
+                        {...register("state", { required: true })}
                         onChange={setStateFromInput}
                       />
                       <span className="error-message">
@@ -158,24 +194,18 @@ const CheckoutPage = () => {
                     <div className="form-group col-md-12 col-sm-6 col-xs-12">
                       <div className="field-label">Postal Code</div>
                       <input
-                        //className="form-control"
                         type="text"
                         name="pincode"
                         className={`${errors.pincode ? "error_border" : ""}`}
-                        {...register('pincode', { pattern: /\d+/ })}
+                        {...register("pincode", { pattern: /\d+/ })}
                       />
                       <span className="error-message">
                         {errors.pincode && "Required integer"}
                       </span>
                     </div>
                     <div className="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                      <input
-                        type="checkbox"
-                        name="create_account"
-                        id="account-option"
-                      />
-                      &ensp;{" "}
-                      <label htmlFor="account-option">Create An Account?</label>
+                      <input type="checkbox" name="create_account" id="account-option" />
+                      &ensp; <label htmlFor="account-option">Create An Account?</label>
                     </div>
                   </div>
                 </Col>
@@ -216,9 +246,7 @@ const CheckoutPage = () => {
                                   name="free-shipping"
                                   id="free-shipping"
                                 />
-                                <label htmlFor="free-shipping">
-                                  Free Shipping
-                                </label>
+                                <label htmlFor="free-shipping">Free Shipping</label>
                               </div>
                               <div className="shopping-option">
                                 <input
@@ -226,9 +254,7 @@ const CheckoutPage = () => {
                                   name="local-pickup"
                                   id="local-pickup"
                                 />
-                                <label htmlFor="local-pickup">
-                                  Local Pickup
-                                </label>
+                                <label htmlFor="local-pickup">Local Pickup</label>
                               </div>
                             </div>
                           </li>
@@ -244,65 +270,108 @@ const CheckoutPage = () => {
                         </ul>
                       </div>
                       <div className="payment-box">
-                        <div className="upper-box">
-                          <div className="payment-options">
-                            <ul>
-                              <li>
-                                <div className="radio-option stripe">
-                                  <input
-                                    type="radio"
-                                    name="payment-group"
-                                    id="payment-2"
-                                    defaultChecked={true}
-                                    onClick={() => checkhandle("stripe")}
-                                  />
-                                  <label htmlFor="payment-2">Stripe</label>
+                        <div className="custom-card-container">
+                          <div className={`card-container ${backSide && "back-side"}`}>
+                            <div className="front">
+                              <div className="top">
+                                <img className="chip" src={chipImgUrl} />
+                                <img className="logo" src={cardTypeUrl} />
+                              </div>
+                              <span className="card-number">{cardForm.cardNumber}</span>
+                              <div className="bottom">
+                                <span className="user-name">
+                                  {cardForm.firstName + " " + cardForm.lastName}
+                                </span>
+                                <div className="valid-container">
+                                  <span>
+                                    VALID
+                                    <br />
+                                    DATE
+                                  </span>
+                                  <span>{cardForm.expireDate}</span>
                                 </div>
-                              </li>
-                              <li>
-                                <div className="radio-option paypal">
-                                  <input
-                                    type="radio"
-                                    name="payment-group"
-                                    id="payment-1"
-                                    onClick={() => checkhandle("paypal")}
-                                  />
-                                  <label htmlFor="payment-1">
-                                    PayPal
-                                    <span className="image">
-                                      <Media src={paypal} alt="" />
-                                    </span>
-                                  </label>
+                              </div>
+                            </div>
+                            <div className="back">
+                              <div className="top-back"></div>
+                              <span></span>
+                              <div className="middle-back">
+                                <div className="left">
+                                  <span>{cardForm.cvc}</span>
                                 </div>
-                              </li>
-                            </ul>
+                              </div>
+                              <div className="bottom-back">
+                                <div className="sticky"></div>
+                                <span>
+                                  Lorem ipsum dolor sit, amet consectetur adipisicing
+                                  elit. Dolorem totam, consequuntur reiciendis nihil
+                                  labore ipsa sed! Magnam fugiat cum, iure nihil quasi
+                                  sunt delectus voluptate!
+                                </span>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                        {cartTotal !== 0 ? (
-                          <div className="text-right">
-                            {payment === "stripe" ? (
-                              <button type="submit" className="btn-solid btn">
-                                Place Order
-                              </button>
-                            ) : (
-                              <PayPalButton
-                                amount="0.01"
-                                onSuccess={(details, data) => {
-                                  alert("Transaction completed by " + details.payer.name.given_name);
 
-                                  return fetch("/paypal-transaction-complete", {
-                                    method: "post",
-                                    body: JSON.stringify({
-                                      orderID: data.orderID
-                                    })
-                                  });
-                                }}
+                          <div className="card-data">
+                            <input
+                              placeholder="Card Number"
+                              type="tel"
+                              maxLength="19"
+                              minLength="19"
+                              value={cardForm.cardNumber}
+                              onChange={(e) => formatCardNumber(e.target.value)}
+                            />
+                            <div className="card-data-middle">
+                              <input
+                                placeholder="First Name"
+                                type="text"
+                                onChange={(e) =>
+                                  setCardForm({
+                                    ...cardForm,
+                                    firstName: e.target.value,
+                                  })
+                                }
                               />
-                            )}
+                              <input
+                                placeholder="Lats Name"
+                                type="text"
+                                onChange={(e) =>
+                                  setCardForm({
+                                    ...cardForm,
+                                    lastName: e.target.value,
+                                  })
+                                }
+                              />
+                            </div>
+                            <div className="card-data-bottom">
+                              <input
+                                placeholder="Exp Date"
+                                maxLength="7"
+                                minLength="7"
+                                type="text"
+                                value={cardForm.expireDate}
+                                onChange={(e) => formatExpireDate(e.target.value)}
+                              />
+                              <input
+                                placeholder="CVC"
+                                type="text"
+                                maxLength="3"
+                                minLength="3"
+                                onFocus={() => setBackSide(true)}
+                                onBlur={() => setBackSide(false)}
+                                onChange={(e) =>
+                                  setCardForm({
+                                    ...cardForm,
+                                    cvc: e.target.value,
+                                  })
+                                }
+                              />
+                            </div>
                           </div>
-                        ) : (
-                          ""
-                        )}
+                          <button type="submit" className="btn-solid btn">
+                            Place Order
+                          </button>
+                        </div>
                       </div>
                     </div>
                   ) : (

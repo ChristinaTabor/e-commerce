@@ -8,7 +8,8 @@ import PostLoader from "../../../components/common/PostLoader";
 import CartContext from "../../../helpers/cart";
 import { WishlistContext } from "../../../helpers/wishlist/WishlistContext";
 import { CompareContext } from "../../../helpers/Compare/CompareContext";
-import { getProducts, FASHION_CAT_ID } from "../../../services/api/data.service";
+import { FASHION_CAT_ID } from "../../../services/api/data.service";
+import { getProducts } from "../../../services/api/shop.service";
 
 const sortKeys = {
   AscOrder: {},

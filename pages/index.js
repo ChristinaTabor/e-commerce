@@ -11,7 +11,8 @@ import { Product4 } from "../services/script";
 import Paragraph from "../components/common/Paragraph";
 import Helmet from "react-helmet";
 import MasterFooter from "../components/footers/common/MasterFooter";
-import { getProducts, FASHION_CAT_ID } from "../services/api/data.service";
+import { FASHION_CAT_ID } from "../services/api/data.service";
+import { getProducts } from "../services/api/shop.service";
 
 const Fashion = ({ specialProducts, isLoading }) => {
   return (

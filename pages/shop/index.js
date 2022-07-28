@@ -3,13 +3,13 @@ import CommonLayout from "../../components/shop/common-layout";
 import ProductList from "./common/productList";
 import { Container, Row } from "reactstrap";
 import FilterPage from "./common/filter";
+import { FASHION_CAT_ID } from "../../services/api/data.service";
 import {
   getColors,
   getSizes,
   getBrands,
   getProducts,
-  FASHION_CAT_ID,
-} from "../../services/api/data.service";
+} from "../../services/api/shop.service";
 
 const LeftSidebar = ({ filterData, productsData, isLoading }) => {
   const [sidebarView, setSidebarView] = useState(false);
@@ -73,7 +73,7 @@ export async function getServerSideProps() {
       relation: true,
       filter: { "category._id": FASHION_CAT_ID },
       paginate: true,
-      limit: 8
+      limit: 8,
     },
   });
 
