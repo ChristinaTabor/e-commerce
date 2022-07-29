@@ -2,15 +2,21 @@ import React, { useState, useContext } from "react";
 import { Container, Row, Col } from "reactstrap";
 import UserContext from "../../helpers/user/UserContext";
 import CommonLayout from "../shop/common-layout";
+import { useRouter } from "next/router";
 
-const AccountLayout = ({ children, title, parent, subTitle }) => {
+const AccountLayout = ({ children }) => {
   const [accountInfo, setAccountInfo] = useState(false);
   const userContext = useContext(UserContext);
+  const router = useRouter();
 
   const handleLogout = () => {
     userContext.setUser();
     userLogout();
-    router.push("/page/account/login");
+    navigateToPage("/page/account/login");
+  };
+
+  const navigateToPage = (path) => {
+    router.push(path);
   };
 
   return (
@@ -41,10 +47,10 @@ const AccountLayout = ({ children, title, parent, subTitle }) => {
                 <div className="block-content">
                   <ul>
                     <li className="active">
-                      <a href="dashboard">Account Info</a>
+                      <a onClick={() => navigateToPage("dashboard")}>Account Info</a>
                     </li>
                     <li>
-                      <a href="#">Address Book</a>
+                      <a onClick={() => navigateToPage("address-book")}>Address Book</a>
                     </li>
                     <li>
                       <a href="#">My Orders</a>
@@ -56,7 +62,7 @@ const AccountLayout = ({ children, title, parent, subTitle }) => {
                       <a href="#">Newsletter</a>
                     </li>
                     <li>
-                      <a href="profile">My Account</a>
+                      <a onClick={() => navigateToPage("profile")}>My Account</a>
                     </li>
                     <li>
                       <a href="#">Change Password</a>

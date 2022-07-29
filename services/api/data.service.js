@@ -9,6 +9,7 @@ export const buckets = {
   SIZE: "62dfc5def3ffc4002b57b83a",
   BRAND: "62dfc3d2f3ffc4002b57b7f9",
   USER: "62e12d0af3ffc4002b57c2fc",
+  ADDRESS: "62e2811ef3ffc4002b57c587",
 };
 
 function init() {
@@ -39,7 +40,25 @@ export async function get(bucketId, documentId, options) {
 
 export async function post(bucketId, data) {
   init();
+  data = normalizeData(data);
   return Bucket.data.insert(bucketId, data);
+}
+
+export async function update(bucketId, documentId, data) {
+  init();
+  data = normalizeData(data);
+  return Bucket.data.update(bucketId, documentId, data);
+}
+
+export async function patch(bucketId, documentId, data) {
+  init();
+  data = normalizeData(data);
+  return Bucket.data.patch(bucketId, documentId, data);
+}
+
+export async function remove(bucketId, documentId) {
+  init();
+  return Bucket.data.remove(bucketId, documentId);
 }
 
 export async function httpGet() {}
@@ -63,4 +82,13 @@ export async function httpPost(path, data) {
       console.log("resJson", resJson);
       return resJson;
     });
+}
+
+function normalizeData(data) {
+  Object.entries(data).forEach(([field, value]) => {
+    if (data[field] && data[field][0] && data[field][0]._id) {
+      data[field] = data[field].map((item) => item._id);
+    }
+  });
+  return data;
 }

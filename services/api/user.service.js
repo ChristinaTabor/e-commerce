@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import * as Identity from "@spica-devkit/identity";
 import { publicUrl, publicApiKey, httpPost } from "./data.service";
-import { buckets, get, getAll } from "./data.service";
+import { buckets, get, post, getAll } from "./data.service";
 import jwt_decode from "jwt-decode";
 
 function init() {
@@ -30,7 +30,7 @@ export async function userLogin(identifier, password) {
   });
 }
 
-export function userLogout(){
+export function userLogout() {
   localStorage.clear();
 }
 
