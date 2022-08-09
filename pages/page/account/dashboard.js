@@ -53,18 +53,9 @@ const Dashboard = () => {
             <div className="box">
               <div className="box-title">
                 <h3>Address Book</h3>
-                <a href="#">Manage Addresses</a>
               </div>
               <Row>
-                <Col sm="6">
-                  <h6>Default Billing Address</h6>
-                  <address>
-                    You have not set a default billing address.
-                    <br />
-                    <a href="#">Edit Address</a>
-                  </address>
-                </Col>
-                <Col sm="6">
+                <Col>
                   <h6>Default Shipping Address</h6>
                   <address>
                     You have not set a default shipping address.

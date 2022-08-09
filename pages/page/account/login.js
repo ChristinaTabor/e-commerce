@@ -5,6 +5,7 @@ import { Container, Row, Form, Label, Input, Col } from "reactstrap";
 import { userLogin } from "../../../services/api/user.service";
 import UserContext from "../../../helpers/user/UserContext";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const context = useContext(UserContext);
@@ -19,7 +20,7 @@ const Login = () => {
   const onSubmit = async (data) => {
     if (data !== "") {
       const user = await userLogin(data.email, data.password).catch((err) => {
-        console.log(err);
+        toast.error(err.message || "Error! Please try again later");
       });
 
       if (user) {

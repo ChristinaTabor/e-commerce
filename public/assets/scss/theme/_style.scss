@@ -10816,7 +10816,8 @@ footer {
   }
 }
 
-.address-book {
+.address-book, 
+.my-order {
   border: 1px solid #ddd;
   background: #f8f8f8;
   padding: 30px;
@@ -10870,6 +10871,52 @@ footer {
   }
 }
 
+.order-section{
+  .header{
+    font-weight: 700;
+  }
+
+  .row{
+    border-bottom: 1px solid $border;
+    padding: 10px 0;
+
+    div{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+    }
+  }
+  .product {
+    span{
+      img{
+        margin: 3px 0;
+        margin-right: 10px;
+        height: 80px;
+        width: fit-content;
+      }
+    }
+  }
+
+  .status{
+    padding: 3px 12px;
+    border-radius: 20px;
+    color: $white;
+
+    &.Pending {
+      background: #6c757d;
+    }
+    &.Shipped{
+      background: $green;
+    }
+    &.Canceled{
+      background: $red;
+    }
+  }
+
+    
+}
+
 .confirmation-modal{
   width: 280px;
   .modal-content{
@@ -10911,6 +10958,7 @@ footer {
   right: 0;
 
   .modal-content {
+    height: 100%;
     width: 380px;
     background: white;
     border-radius: 0;
@@ -12969,6 +13017,7 @@ footer {
   }
 
   .dashboard {
+    background: #f8f8f8;
     border: 1px solid #ddd;
     padding: 30px;
 

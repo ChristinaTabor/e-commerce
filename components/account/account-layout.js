@@ -9,6 +9,9 @@ const AccountLayout = ({ children }) => {
   const userContext = useContext(UserContext);
   const router = useRouter();
 
+  let pathArr = router.pathname.split("/");
+  let activePath = pathArr[pathArr.length - 1];
+
   const handleLogout = () => {
     userContext.setUser();
     userLogout();
@@ -46,22 +49,16 @@ const AccountLayout = ({ children }) => {
                 </div>
                 <div className="block-content">
                   <ul>
-                    <li className="active">
+                    <li className={`${activePath == "dashboard" && "active"}`}>
                       <a onClick={() => navigateToPage("dashboard")}>Account Info</a>
                     </li>
-                    <li>
+                    <li className={`${activePath == "address-book" && "active"}`}>
                       <a onClick={() => navigateToPage("address-book")}>Address Book</a>
                     </li>
-                    <li>
-                      <a href="#">My Orders</a>
+                    <li className={`${activePath == "my-order" && "active"}`}>
+                      <a onClick={() => navigateToPage("my-order")}>My Orders</a>
                     </li>
-                    <li>
-                      <a href="#">My Wishlist</a>
-                    </li>
-                    <li>
-                      <a href="#">Newsletter</a>
-                    </li>
-                    <li>
+                    <li className={`${activePath == "profile" && "active"}`}>
                       <a onClick={() => navigateToPage("profile")}>My Account</a>
                     </li>
                     <li>

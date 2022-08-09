@@ -14,9 +14,11 @@ function init() {
 
 export async function userLogin(identifier, password) {
   init();
-  const res = await Identity.login(identifier, password).catch((err) => {
-    console.log(err);
-  });
+  const res = await Identity.login(identifier, password);
+
+  if (!res) {
+    throw 'Token is empty!';
+  }
 
   localStorage.setItem("spicaToken", res);
 

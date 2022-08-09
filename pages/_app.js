@@ -31,7 +31,7 @@ export default function MyApp({ Component, pageProps }) {
     let userId = localStorage.getItem("userId");
 
     if (userId) {
-      let userData = await getUser(userId, {queryParams: {relation: true}}).catch((err) => {
+      let userData = await getUser(userId, {queryParams: {relation: ["orders.products.product","addresses"]}}).catch((err) => {
         console.log(err);
       });
       setUser(userData);

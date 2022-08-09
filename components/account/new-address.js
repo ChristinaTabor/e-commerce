@@ -26,7 +26,7 @@ const NewAddress = ({ address, saveAddress }) => {
     <Container>
       <Row>
         <Col lg="12">
-          <h3>New Address</h3>
+          <h3>{address._id ? 'Edit Address' : 'New Address'}</h3>
           <div className="theme-card">
             <Form className="theme-form" onSubmit={handleSubmit(onSubmit)}>
               <Row>
