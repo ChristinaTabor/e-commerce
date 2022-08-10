@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import CommonLayout from "../../../components/shop/common-layout";
 import { Container, Row, Form, Label, Input, Col } from "reactstrap";
-import { userLogin } from "../../../services/api/user.service";
+import { userLogin, getUser } from "../../../services/api/user.service";
 import UserContext from "../../../helpers/user/UserContext";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
@@ -22,9 +22,15 @@ const Login = () => {
       const user = await userLogin(data.email, data.password).catch((err) => {
         toast.error(err.message || "Error! Please try again later");
       });
-
+    
       if (user) {
-        context.setUser(user);
+        let userData = await getUser(user._id, {
+          queryParams: { relation: ["orders.products.product", "addresses"] },
+        }).catch((err) => {
+          console.log(err);
+        });
+
+        context.setUser(userData);
         router.push("/page/account/dashboard");
       }
     } else {

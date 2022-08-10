@@ -390,6 +390,10 @@ hr.style1 {
 
 .Toastify__toast {
   min-height: 36px;
+  color: white;
+  svg {
+    color: white;
+  }
 }
 
 .input-range__track--active {

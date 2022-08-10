@@ -14,17 +14,17 @@ export const buckets = {
 
 function init() {
   let initializeConfig;
-  //   if (localStorage.getItem("spicaToken")) {
-  //     initializeConfig = {
-  //       publicUrl,
-  //       identity: localStorage.getItem("spicaToken"),
-  //     };
-  //   } else {
-  initializeConfig = {
-    publicUrl,
-    apikey: publicApiKey,
-  };
-  //   }
+  if (typeof window !== "undefined" && localStorage.getItem("spicaToken")) {
+    initializeConfig = {
+      publicUrl,
+      identity: localStorage.getItem("spicaToken"),
+    };
+  } else {
+    initializeConfig = {
+      publicUrl,
+      apikey: publicApiKey,
+    };
+  }
   Bucket.initialize(initializeConfig);
 }
 
@@ -64,22 +64,27 @@ export async function remove(bucketId, documentId) {
 export async function httpGet() {}
 
 export async function httpPost(path, data) {
+  let token = localStorage.getItem("spicaToken");
   const obj = {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `APIKEY ${publicApiKey}`,
+      Authorization: token ? `IDENTITY ${token}` : `APIKEY ${publicApiKey}`,
     },
     body: JSON.stringify(data),
   };
 
   return fetch(`${publicUrl}/fn-execute/${path}`, obj)
-    .then(function (res) {
-      return res.json();
+    .then(async (res) => {
+      if (res.ok) {
+        return res.json();
+      }
+
+      const resErr = await res.json();
+      throw new Error(resErr.message || "Something went wrong");
     })
-    .then(function (resJson) {
-      console.log("resJson", resJson);
+    .then((resJson) => {
       return resJson;
     });
 }

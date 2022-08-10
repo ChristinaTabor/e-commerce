@@ -61,8 +61,10 @@ const AccountLayout = ({ children }) => {
                     <li className={`${activePath == "profile" && "active"}`}>
                       <a onClick={() => navigateToPage("profile")}>My Account</a>
                     </li>
-                    <li>
-                      <a href="#">Change Password</a>
+                    <li className={`${activePath == "change-password" && "active"}`}>
+                      <a onClick={() => navigateToPage("change-password")}>
+                        Change Password
+                      </a>
                     </li>
                     <li className="last">
                       <a href="#" onClick={handleLogout}>

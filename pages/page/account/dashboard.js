@@ -10,6 +10,10 @@ const Dashboard = () => {
   const router = useRouter();
   const user = userContext.user;
 
+  const navigateToPage = (path) => {
+    router.push(path);
+  };
+
   return (
     <AccountLayout>
       <div className="dashboard">
@@ -35,7 +39,7 @@ const Dashboard = () => {
               <div className="box">
                 <div className="box-title">
                   <h3>Contact Information</h3>
-                  <a href="#">Edit</a>
+                  <a onClick={() => navigateToPage("profile")}>Edit</a>
                 </div>
                 <div className="box-content">
                   <h6>
@@ -58,9 +62,12 @@ const Dashboard = () => {
                 <Col>
                   <h6>Default Shipping Address</h6>
                   <address>
-                    You have not set a default shipping address.
+                    {user.addresses[0]
+                      ? `${user.addresses[0].address} ${user.addresses[0].state}/${user.addresses[0].city}`
+                      : "You have not set a default shipping address."}
+
                     <br />
-                    <a href="#">Edit Address</a>
+                    <a onClick={() => navigateToPage("address-book")}>Edit Address</a>
                   </address>
                 </Col>
               </Row>

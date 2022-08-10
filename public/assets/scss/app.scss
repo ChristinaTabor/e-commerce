@@ -3,6 +3,12 @@
     // This gradient color only for gym layout
     --theme-gradient1: #01effc;
     --theme-gradient2: #485ff2;
+
+    --toastify-icon-color-info: var(--toastify-icon-color) !important;
+    --toastify-icon-color-success: var(--toastify-icon-color) !important;
+    --toastify-icon-color-warning: var(--toastify-icon-color) !important;
+    --toastify-icon-color-error: var(--toastify-icon-color) !important;
+    --toastify-icon-color: white !important;
   }
 
 

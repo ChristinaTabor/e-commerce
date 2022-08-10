@@ -1,64 +1,60 @@
 import React from "react";
 import { Container, Row, Form, Input, Label, Col } from "reactstrap";
+import { useForm } from "react-hook-form";
 
-const ProfilePage = () => {
+const ProfilePage = ({user, saveUser }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    if (data !== "") {
+      saveUser(data);
+    } else {
+      errors.showMessages();
+    }
+  };
+
   return (
     <div className="contact-page register-page account-page">
       <Row>
         <Col sm="12">
           <h3>PERSONAL DETAIL</h3>
-          <Form className="theme-form">
+          <Form className="theme-form" onSubmit={handleSubmit(onSubmit)}>
             <Row>
               <Col md="6">
                 <Label for="name">First Name</Label>
-                <Input
+                <input
                   type="text"
                   className="form-control"
-                  id="name"
                   placeholder="Enter Your name"
-                  required=""
+                  {...register("first_name", { value: user?.first_name, required: true })}
                 />
               </Col>
               <Col md="6">
                 <Label for="email">Last Name</Label>
-                <Input
+                <input
                   type="text"
                   className="form-control"
-                  id="last-name"
-                  placeholder="Email"
-                  required=""
-                />
-              </Col>
-              <Col md="6">
-                <Label for="review">Phone number</Label>
-                <Input
-                  type="text"
-                  className="form-control"
-                  id="review"
-                  placeholder="Enter your number"
-                  required=""
-                />
-              </Col>
-              <Col md="6">
-                <Label for="email">Email</Label>
-                <Input
-                  type="text"
-                  className="form-control"
-                  id="email"
-                  placeholder="Email"
-                  required=""
+                  placeholder="Enter Your last name"
+                  {...register("last_name", { value: user?.last_name, required: true })}
                 />
               </Col>
               <Col md="12">
-                <Label for="review">Write Your Message</Label>
-                <textarea
-                  className="form-control mb-0"
-                  placeholder="Write Your Message"
-                  id="exampleFormControlTextarea1"
-                  rows="6"
-                ></textarea>
+                <Label for="email">Email</Label>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Email"
+                  {...register("email", { value: user?.email, required: true })}
+                />
               </Col>
             </Row>
+            <button type="submit" className="btn btn-solid">
+              save
+            </button>
           </Form>
         </Col>
       </Row>
