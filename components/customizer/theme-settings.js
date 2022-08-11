@@ -143,12 +143,6 @@ const ThemeSettings = () => {
       btnName: "Preview",
     },
     {
-      bg: "demo24",
-      name: "right sidebar",
-      link: "/shop/right_sidebar",
-      btnName: "Preview",
-    },
-    {
       bg: "demo23",
       name: "no sidebar",
       link: "/shop/no_sidebar",
@@ -176,21 +170,9 @@ const ThemeSettings = () => {
       btnName: "Preview",
     },
     {
-      bg: "demo36",
-      name: "right sidebar",
-      link: "/product-details/right_sidebar",
-      btnName: "Preview",
-    },
-    {
       bg: "demo34",
       name: "no sidebar",
       link: "/product-details/no-sidebar",
-      btnName: "Preview",
-    },
-    {
-      bg: "demo34",
-      name: "col right",
-      link: "/product-details/3_col_right",
       btnName: "Preview",
     },
     {

@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
 import Link from "next/link";
 import { Container, Row, Col, Media } from "reactstrap";
-import banner1 from "../../../../public/assets/images/sub-banner1.jpg";
-import banner2 from "../../../../public/assets/images/sub-banner2.jpg";
+import banner1 from "../../../public/assets/images/sub-banner1.jpg";
+import banner2 from "../../../public/assets/images/sub-banner2.jpg";
 
 const Data = [
   {

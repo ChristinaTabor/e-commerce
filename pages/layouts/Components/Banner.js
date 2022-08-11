@@ -1,6 +1,6 @@
 import React, { Fragment, useContext } from "react";
 import Slider from "react-slick";
-import CommonContext from "../../../../helpers/common/CommonContext";
+import CommonContext from "../../../helpers/common/CommonContext";
 import MasterBanner from "./MasterBanner";
 
 const Banner = () => {

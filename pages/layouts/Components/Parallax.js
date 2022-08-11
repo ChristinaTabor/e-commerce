@@ -1,5 +1,5 @@
 import React, { Fragment, useContext } from "react";
-import CommonContext from "../../../../helpers/common/CommonContext";
+import CommonContext from "../../../helpers/common/CommonContext";
 import MasterParallaxBanner from "./MasterParallaxBanner";
 
 const Parallax = () => {

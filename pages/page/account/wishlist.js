@@ -3,7 +3,7 @@ import CommonLayout from '../../../components/shop/common-layout';
 import WishlistPage from './common/wishlist-page';
 
 
-const Wishliat = () => {
+const Wishlist = () => {
     return (
         <CommonLayout parent="home" title="wishlist">
             <WishlistPage />
@@ -11,4 +11,4 @@ const Wishliat = () => {
     )
 }
 
-export default Wishliat;
+export default Wishlist;
