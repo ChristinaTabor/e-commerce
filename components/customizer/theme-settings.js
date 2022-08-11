@@ -409,44 +409,6 @@ const ThemeSettings = () => {
                 </ul>
               </div>
             </Collapse>
-            <div className="buy_btn">
-              <a
-                href="https://themeforest.net/item/multikart-responsive-react-ecommerce-template/23067773?s_rank=1"
-                className="btn btn-block purchase_btn"
-              >
-                <i className="fa fa-shopping-cart" aria-hidden="true"></i>{" "}
-                purchase Multikart now!
-              </a>
-              <a
-                href="https://themeforest.net/item/multikart-responsive-angular-ecommerce-template/22905358?s_rank=3"
-                className="btn btn-block purchase_btn"
-              >
-                <Media
-                  src={`/assets/images/icon/angular.png`}
-                  alt=""
-                  className="img-fluid"
-                />{" "}
-                Multikart Angular
-              </a>
-              <a
-                href="https://themeforest.net/item/multikart-responsive-ecommerce-html-template/22809967"
-                className="btn btn-block purchase_btn"
-              >
-                <i className="fa fa-html5" aria-hidden="true"></i> Multikart
-                HTML
-              </a>
-              <a
-                href="https://themeforest.net/item/multikart-multipurpose-shopify-sections-theme/23093831?s_rank=1"
-                className="btn btn-block purchase_btn"
-              >
-                <Media
-                  src={`/assets/images/icon/shopify.png`}
-                  alt=""
-                  className="img-fluid"
-                />{" "}
-                Multikart Shopify
-              </a>
-            </div>
           </div>
         </div>
       </div>

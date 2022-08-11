@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import ProductTab from "../common/product-tab";
 import Service from "../common/service";
 import Slider from "react-slick";
 import ImageZoom from "../common/image-zoom";
