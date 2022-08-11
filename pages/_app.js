@@ -81,7 +81,7 @@ export default function MyApp({ Component, pageProps }) {
           >
             <Helmet>
               <meta name="viewport" content="width=device-width, initial-scale=1" />
-              <title>Multikart - Multi-purpopse E-commerce React Template</title>
+              <title>E-commerce React Template</title>
             </Helmet>
             <div>
               <SettingProvider>

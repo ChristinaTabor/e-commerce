@@ -10,13 +10,13 @@ const CartHeader = ({ item, symbol }) => {
     <Fragment>
       <li>
         <div className="media">
-          <Link href={"/product/" + item.id}>
+          <Link href={"/product-details/" + item._id}>
             <a>
               <Media alt="" className="mr-3" src={`${item.images[0].src}`} />
             </a>
           </Link>
           <div className="media-body">
-            <Link href={"/product/" + item.id}>
+            <Link href={"/product-details/" + item._id}>
               <a>
                 <h4>{item.name}</h4>
               </a>
