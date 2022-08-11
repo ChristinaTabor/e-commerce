@@ -4470,10 +4470,6 @@ header {
     }
   }
 
-  &.parallax-christmas {
-    background-image: url("/assets/images/christmas/parallax/1.jpg");
-  }
-
   &.parallax-layout {
     padding-top: 350px;
     padding-bottom: 350px;
@@ -6421,94 +6417,6 @@ footer {
   &.footer_digital {
     .white-bg {
       background-color: white;
-    }
-  }
-
-  &.footer-christmas {
-    background-image: url("/assets/images/christmas/footer-bg.jpg");
-    background-size: cover;
-    background-position: center;
-    display: block;
-
-    .footer-title {
-      h4 {
-        color: $white;
-      }
-    }
-
-    .light-layout {
-      background: transparent;
-    }
-
-    .sub-footer {
-      background-color: transparent;
-    }
-
-    p {
-      color: white;
-    }
-
-    .subscribe {
-      text-align: left;
-
-      h4 {
-        color: $white;
-      }
-    }
-
-    .footer-theme {
-      .sub-title {
-        h4 {
-          color: $white;
-        }
-
-        li {
-          color: $white;
-
-          a {
-            color: $white;
-          }
-
-          &:hover {
-            a {
-              &:before {
-                width: 100%;
-                height: 2px;
-                transition: 0.5s ease;
-              }
-            }
-          }
-        }
-
-        .contact-list {
-          li {
-            a {
-              &:hover {
-                color: var(--theme-deafult);
-                transition: all 0.5s ease;
-              }
-            }
-
-            &:hover {
-              color: lighten($black, 60%);
-              transition: all 0.3s ease;
-            }
-          }
-        }
-      }
-    }
-
-    .footer-social,
-    .social-white {
-      i {
-        color: $white;
-        transition: 0.5s ease;
-
-        &:hover {
-          color: var(--theme-deafult) !important;
-          transition: 0.5s ease;
-        }
-      }
     }
   }
 }
@@ -16572,7 +16480,6 @@ table {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background: #fff url("/assets/images/christmas/loading.gif") no-repeat center center;
 }
 
 /*=====================

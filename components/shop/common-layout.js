@@ -1,12 +1,9 @@
 import React, {useContext} from "react";
 import HeaderOne from "../headers/header-one";
-import Breadcrubs from "../common/widgets/breadcrubs";
-import Helmet from "react-helmet";
-import favicon from "../../public/assets/images/favicon/1.png";
 import MasterFooter from "../footers/common/MasterFooter";
 import CommonContext from "../../helpers/common/CommonContext";
 
-const CommonLayout = ({ children, title, parent, subTitle }) => {
+const CommonLayout = ({ children }) => {
   const commonContext = useContext(CommonContext)
   console.log("commonContext", commonContext)
   return (
@@ -16,7 +13,6 @@ const CommonLayout = ({ children, title, parent, subTitle }) => {
         <link rel="icon" type="image/x-icon" href={favicon ? favicon : ""} />
       </Helmet> */}
       <HeaderOne topClass="top-header" data={commonContext.commonData} />
-      <Breadcrubs title={title} parent={parent} subTitle={subTitle} />
       <>{children}</>
       <MasterFooter
         footerClass={`footer-light `}

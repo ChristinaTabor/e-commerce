@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "./common/navbar";
-import SideBar from "./common/sidebar";
 import CartContainer from "../containers/CartContainer";
 import TopBarDark from "./common/topbar-dark";
 import { Media, Container, Row, Col } from "reactstrap";
@@ -20,9 +19,6 @@ const HeaderOne = ({ data, topClass }) => {
     setTimeout(function () {
       document.querySelectorAll(".loader-wrapper").style = "display:none";
     }, 2000);
-
-    if (router.asPath !== "/layouts/Christmas")
-      window.addEventListener("scroll", handleScroll);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
