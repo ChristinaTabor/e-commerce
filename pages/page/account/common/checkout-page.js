@@ -4,6 +4,9 @@ import CartContext from "../../../../helpers/cart";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { CurrencyContext } from "../../../../helpers/Currency/CurrencyContext";
+import mastercard from "../../../../public/assets/img/mastercard.png";
+import visa from "../../../../public/assets/img/visa.png";
+import chip from "../../../../public/assets/img/chip.png";
 
 const CheckoutPage = () => {
   const cartContext = useContext(CartContext);
@@ -27,15 +30,12 @@ const CheckoutPage = () => {
     cvc: "",
   });
   const [backSide, setBackSide] = useState(false);
-  const [cardTypeUrl, setCardTypeUrl] = useState(
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/300px-MasterCard_Logo.svg.png"
-  );
-  const chipImgUrl = "https://cdn.freebiesupply.com/logos/thumbs/2x/chip-1-logo.png";
+  const [cardType, setCardType] = useState(mastercard);
 
   const onSubmit = (data) => {
     if (data !== "") {
-      console.log("data", data)
-      console.log("cardData", cardForm)
+      console.log("data", data);
+      console.log("cardData", cardForm);
       // alert("You submitted the form and stuff!");
       // router.push({
       //   pathname: "/page/order-success",
@@ -58,14 +58,10 @@ const CheckoutPage = () => {
     });
     if (cardForm.cardNumber[0] == 4) {
       // visa
-      setCardTypeUrl(
-        "https://www.pngitem.com/pimgs/m/35-351816_card-visa-small-logo-png-transparent-png.png"
-      );
+      setCardType(visa);
     } else {
       // mastercard
-      setCardTypeUrl(
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/300px-MasterCard_Logo.svg.png"
-      );
+      setCardType(mastercard);
     }
   };
 
@@ -274,8 +270,8 @@ const CheckoutPage = () => {
                           <div className={`card-container ${backSide && "back-side"}`}>
                             <div className="front">
                               <div className="top">
-                                <img className="chip" src={chipImgUrl} />
-                                <img className="logo" src={cardTypeUrl} />
+                                <img className="chip" src={chip.src} />
+                                <img className="logo" src={cardType.src} />
                               </div>
                               <span className="card-number">{cardForm.cardNumber}</span>
                               <div className="bottom">

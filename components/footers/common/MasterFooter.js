@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
 import { Container, Row, Col, Collapse } from "reactstrap";
 import LogoImage from "../../headers/common/logo";
 import CopyRight from "./copyright";
 
 const MasterFooter = ({
-  logoName,
+  data,
   layoutClass,
   footerClass,
   belowSection,
@@ -54,13 +53,9 @@ const MasterFooter = ({
                 <Collapse isOpen={width ? (collapse === 1 ? isOpen : false) : true}>
                   <div className="footer-contant">
                     <div className="footer-logo">
-                      <LogoImage logo={logoName} />
+                      <LogoImage logo={data.logo} />
                     </div>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                      ad minim veniam,
-                    </p>
+                    <p>{data.description}</p>
                     <div className="footer-social">
                       <ul>
                         <li>
@@ -114,15 +109,15 @@ const MasterFooter = ({
                     <div className="footer-contant">
                       <ul className="contact-list">
                         <li>
-                          <i className="fa fa-map-marker"></i>Multikart Demo Store, Demo
-                          store India 345-659
+                          <i className="fa fa-map-marker"></i>
+                          {data.address}
                         </li>
                         <li>
-                          <i className="fa fa-phone"></i>Call Us: 123-456-7898
+                          <i className="fa fa-phone"></i>Call Us: {data.phone}
                         </li>
                         <li>
                           <i className="fa fa-envelope-o"></i>Email Us:{" "}
-                          <a href="#">Support@Fiot.com</a>
+                          <a href="#">{data.email}</a>
                         </li>
                       </ul>
                     </div>
@@ -133,7 +128,7 @@ const MasterFooter = ({
           </Container>
         </section>
 
-        <CopyRight layout={layoutClass} fluid={copyRightFluid ? copyRightFluid : ""} />
+        <CopyRight message={data.footer_end} layout={layoutClass} fluid={copyRightFluid ? copyRightFluid : ""} />
       </footer>
     </div>
   );

@@ -66,7 +66,7 @@ const LeftSidebarPage = ({ data, loading }) => {
                           </div>
                         ))}
                       </Slider>
-                      <Slider
+                      {/* <Slider
                         className="slider-nav"
                         {...productsnav}
                         asNavFor={nav1}
@@ -84,18 +84,14 @@ const LeftSidebarPage = ({ data, loading }) => {
                               </div>
                             ))
                           : ""}
-                      </Slider>
+                      </Slider> */}
                     </Col>
                     <Col lg="6" className="rtl-text">
-                      <DetailsWithPrice
-                        item={data}
-                        changeColorVar={changeColorVar}
-                      />
+                      <DetailsWithPrice item={data} changeColorVar={changeColorVar} />
                     </Col>
                   </Row>
                 )}
               </Container>
-              <ProductTab />
             </Col>
           </Row>
         </Container>

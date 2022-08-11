@@ -12,11 +12,14 @@ import { CurrencyContextProvider } from "../helpers/Currency/CurrencyContext";
 import Helmet from "react-helmet";
 import Router from "next/router";
 import { getUser } from "../services/api/user.service";
+import { getAll, buckets, FASHION_CAT_ID } from "../services/api/data.service";
 import UserContext from "../helpers/user/UserContext";
+import CommonContext from "../helpers/common/CommonContext";
 
 export default function MyApp({ Component, pageProps }) {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState();
+  const [commonData, setCommonData] = useState();
   // Router.events.on('routeChangeStart', (url) => {
   //   console.log("START")
   //   setIsLoading(true)
@@ -28,10 +31,22 @@ export default function MyApp({ Component, pageProps }) {
   // })
 
   useEffect(async () => {
+    let common = await getAll(buckets.COMMON, {
+      queryParams: {
+        filter: { "category._id": FASHION_CAT_ID },
+      },
+    }).then((res) => {
+      return res[0];
+    });
+
+    setCommonData(common);
+
     let userId = localStorage.getItem("userId");
 
     if (userId) {
-      let userData = await getUser(userId, {queryParams: {relation: ["orders.products.product","addresses"]}}).catch((err) => {
+      let userData = await getUser(userId, {
+        queryParams: { relation: ["orders.products.product", "addresses"] },
+      }).catch((err) => {
         console.log(err);
       });
       setUser(userData);
@@ -52,35 +67,42 @@ export default function MyApp({ Component, pageProps }) {
           <div className="loader"></div>
         </div>
       ) : (
-        <UserContext.Provider
+        <CommonContext.Provider
           value={{
-            user,
-            setUser,
+            commonData,
+            setCommonData,
           }}
         >
-          <Helmet>
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <title>Multikart - Multi-purpopse E-commerce React Template</title>
-          </Helmet>
-          <div>
-            <SettingProvider>
-              <CompareContextProvider>
-                <CurrencyContextProvider>
-                  <CartContextProvider>
-                    <WishlistContextProvider>
-                      <FilterProvider>
-                        <Component {...pageProps} />
-                      </FilterProvider>
-                    </WishlistContextProvider>
-                  </CartContextProvider>
-                </CurrencyContextProvider>
-                <ThemeSettings />
-              </CompareContextProvider>
-            </SettingProvider>
-            <ToastContainer />
-            <TapTop />
-          </div>
-        </UserContext.Provider>
+          <UserContext.Provider
+            value={{
+              user,
+              setUser,
+            }}
+          >
+            <Helmet>
+              <meta name="viewport" content="width=device-width, initial-scale=1" />
+              <title>Multikart - Multi-purpopse E-commerce React Template</title>
+            </Helmet>
+            <div>
+              <SettingProvider>
+                <CompareContextProvider>
+                  <CurrencyContextProvider>
+                    <CartContextProvider>
+                      <WishlistContextProvider>
+                        <FilterProvider>
+                          <Component {...pageProps} />
+                        </FilterProvider>
+                      </WishlistContextProvider>
+                    </CartContextProvider>
+                  </CurrencyContextProvider>
+                  <ThemeSettings />
+                </CompareContextProvider>
+              </SettingProvider>
+              <ToastContainer />
+              <TapTop />
+            </div>
+          </UserContext.Provider>
+        </CommonContext.Provider>
       )}
     </>
   );

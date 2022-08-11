@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "./common/navbar";
 import SideBar from "./common/sidebar";
-import Cart from "../containers/Cart";
 import CartContainer from "../containers/CartContainer";
 import TopBarDark from "./common/topbar-dark";
 import { Media, Container, Row, Col } from "reactstrap";
 import LogoImage from "./common/logo";
 import search from "../../public/assets/images/icon/search.png";
-import settings from "../../public/assets/images/icon/setting.png";
 import cart from "../../public/assets/images/icon/cart.png";
-import Currency from "./common/currency";
 import { useRouter } from "next/router";
 import SearchOverlay from "./common/search-overlay";
 
-const HeaderOne = ({ logoName, headerClass, topClass, direction }) => {
+const HeaderOne = ({ data, topClass }) => {
   const router = useRouter();
 
   /*=====================
@@ -55,7 +52,7 @@ const HeaderOne = ({ logoName, headerClass, topClass, direction }) => {
       <header id="sticky">
         <div className="mobile-fix-option"></div>
         {/*Top Header Component*/}
-        <TopBarDark topClass={topClass} />
+        <TopBarDark data={data} topClass={topClass} />
 
         <Container>
           <Row>
@@ -63,7 +60,7 @@ const HeaderOne = ({ logoName, headerClass, topClass, direction }) => {
               <div className="main-menu">
                 <div className="menu-left">
                   <div className="brand-logo">
-                    <LogoImage logo={logoName} />
+                    <LogoImage logo={data.logo} />
                   </div>
                 </div>
                 <div className="menu-right pull-right">
@@ -83,13 +80,7 @@ const HeaderOne = ({ logoName, headerClass, topClass, direction }) => {
                             />
                           </div>
                         </li>
-                        <Currency icon={settings} />
-                        {/*Header Cart Component */}
-                        {direction === undefined ? (
-                          <CartContainer layout={direction} icon={cart} />
-                        ) : (
-                          <Cart layout={direction} icon={cart} />
-                        )}
+                        <CartContainer icon={cart} />
                       </ul>
                     </div>
                   </div>

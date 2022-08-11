@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Banner from "./layouts/Fashion/Components/Banner";
 import CollectionBanner from "./layouts/Fashion/Components/Collection-Banner";
 import TopCollection from "../components/common/Collections/Collection3";
@@ -13,16 +13,18 @@ import Helmet from "react-helmet";
 import MasterFooter from "../components/footers/common/MasterFooter";
 import { FASHION_CAT_ID } from "../services/api/data.service";
 import { getProducts } from "../services/api/shop.service";
+import CommonContext from "../helpers/common/CommonContext";
 
 const Fashion = ({ specialProducts, isLoading }) => {
+  const commonContext = useContext(CommonContext);
+
   return (
     <>
       <Helmet>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" type="image/x-icon" href={"/assets/images/favicon/1.png"} />
       </Helmet>
-      {/* <ModalComponent /> */}
-      <HeaderOne logoName={"logo.png"} topClass="top-header" />
+      <HeaderOne data={commonContext.commonData} topClass="top-header" />
       <Banner />
       <CollectionBanner />
       <Paragraph title="title1 section-t-space" inner="title-inner1" hrClass={false} />
@@ -54,7 +56,6 @@ const Fashion = ({ specialProducts, isLoading }) => {
         loading={isLoading}
       />
       <ServiceLayout sectionClass="border-section small-section" />
-      {/* <Instagram type="fashion" /> */}
       <div className="section-b-space">
         <LogoBlock />
       </div>
@@ -62,6 +63,7 @@ const Fashion = ({ specialProducts, isLoading }) => {
         footerClass={`footer-light`}
         belowSection={"section-b-space light-layout"}
         logoName={"logo.png"}
+        data={commonContext.commonData}
       />
     </>
   );

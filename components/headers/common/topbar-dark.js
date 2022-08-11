@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import UserContext from "../../../helpers/user/UserContext";
 import { userLogout } from "../../../services/api/user.service";
 
-const TopBarDark = ({ topClass, fluid }) => {
+const TopBarDark = ({ data, topClass, fluid }) => {
   const userContext = useContext(UserContext);
   const router = useRouter();
 
@@ -27,10 +27,9 @@ const TopBarDark = ({ topClass, fluid }) => {
           <Col lg="6">
             <div className="header-contact">
               <ul>
-                <li>Welcome to Our store Multikart</li>
+                <li>{data.welcome_message}</li>
                 <li>
-                  <i className="fa fa-phone" aria-hidden="true"></i>Call Us: 123 - 456 -
-                  7890
+                  <i className="fa fa-phone" aria-hidden="true"></i>Call Us: {data.phone}
                 </li>
               </ul>
             </div>

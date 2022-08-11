@@ -67,6 +67,16 @@ body {
   }
 }
 
+a{
+  cursor: pointer;
+}
+
+.brand-logo,
+.footer-logo{
+  max-width: 130px;
+  max-height: 40px;
+}
+
 h1 {
   font-size: 60px;
   color: $dark-font;
@@ -2000,11 +2010,11 @@ header {
     background-position: center;
     height: 75vh;
 
-    @for $i from 1 through 56 {
-      &.home#{$i} {
-        background-image: url("#{$assetspath}/home-banner/#{$i}.jpg");
-      }
-    }
+    // @for $i from 1 through 56 {
+    //   &.home#{$i} {
+    //     background-image: url("#{$assetspath}/home-banner/#{$i}.jpg");
+    //   }
+    // }
   }
 
   .slider-details {

@@ -1,25 +1,21 @@
 import React, { Fragment } from "react";
 import { Container, Row, Col } from "reactstrap";
 
-const MasterParallaxBanner = ({
-  parallaxSectionClass,
-  bg,
-  parallaxClass,
-  title,
-  subTitle1,
-  subTitle2,
-}) => {
+const MasterParallaxBanner = ({ data, parallaxSectionClass, parallaxClass }) => {
   return (
     <Fragment>
       <section className={`p-0 ${parallaxSectionClass}`}>
-        <div className={`full-banner ${bg} parallax ${parallaxClass}`}>
+        <div
+          style={{ "background-image": `url(${data.img})` }}
+          className={`full-banner parallax ${parallaxClass}`}
+        >
           <Container>
             <Row>
               <Col>
                 <div className="banner-contain">
-                  <h2>{title}</h2>
-                  <h3>{subTitle1}</h3>
-                  <h4>{subTitle2}</h4>
+                  <h2>{data.title}</h2>
+                  <h3>{data.sub_title_1}</h3>
+                  <h4>{data.sub_title_2}</h4>
                 </div>
               </Col>
             </Row>

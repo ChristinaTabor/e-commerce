@@ -17,7 +17,7 @@ const LeftSidebar = () => {
   useEffect(() => {
     getProduct(id, {
       queryParams: {
-        relation: true,
+        relation: ["brand", "category", "variants.color", "variants.size"],
         filter: { "category._id": FASHION_CAT_ID },
       },
     })
