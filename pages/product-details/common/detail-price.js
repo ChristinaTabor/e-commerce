@@ -4,7 +4,6 @@ import sizeChart from "../../../public/assets/images/size-chart.jpg";
 import { Modal, ModalBody, ModalHeader, Media, Input } from "reactstrap";
 import { CurrencyContext } from "../../../helpers/Currency/CurrencyContext";
 import CartContext from "../../../helpers/cart";
-import CountdownComponent from "../../../components/common/widgets/countdownComponent";
 import MasterSocial from "./master_social";
 
 const DetailsWithPrice = ({ item, stickyClass, changeColorVar }) => {
@@ -42,7 +41,7 @@ const DetailsWithPrice = ({ item, stickyClass, changeColorVar }) => {
           {product.price - (product.price * product.discount) / 100}
         </h3>
         {product.variants.map((vari) => {
-          var findItem = uniqueColor.find((x) => x.color === vari.color);
+          var findItem = uniqueColor.find((x) => x.color === vari.color.title);
           if (!findItem) uniqueColor.push(vari);
           var findItemSize = uniqueSize.find((x) => x === vari.size);
           if (!findItemSize) uniqueSize.push(vari.size);
@@ -53,7 +52,7 @@ const DetailsWithPrice = ({ item, stickyClass, changeColorVar }) => {
               <ul className="color-variant">
                 {uniqueColor.map((vari, i) => {
                   return (
-                    <li className={vari.color} key={i} title={vari.color}></li>
+                    <li className={vari.color.title} key={i} title={vari.color.title}></li>
                   );
                 })}
               </ul>
@@ -68,9 +67,9 @@ const DetailsWithPrice = ({ item, stickyClass, changeColorVar }) => {
                 {uniqueColor.map((vari, i) => {
                   return (
                     <li
-                      className={vari.color}
+                      className={vari.color.title}
                       key={i}
-                      title={vari.color}
+                      title={vari.color.title}
                       onClick={() => changeColorVar(i)}
                     ></li>
                   );
@@ -82,7 +81,7 @@ const DetailsWithPrice = ({ item, stickyClass, changeColorVar }) => {
           </>
         )}
         <div className="product-description border-product">
-          {product.variants ? (
+          {product.variants && (
             <div>
               <h6 className="product-title size-text">
                 select size
@@ -108,15 +107,13 @@ const DetailsWithPrice = ({ item, stickyClass, changeColorVar }) => {
                   {uniqueSize.map((data, i) => {
                     return (
                       <li key={i}>
-                        <a href={null}>{data}</a>
+                        <a href={null}>{data.title}</a>
                       </li>
                     );
                   })}
                 </ul>
               </div>
             </div>
-          ) : (
-            ""
           )}
           <span className="instock-cls">{stock}</span>
           <h6 className="product-title">quantity</h6>

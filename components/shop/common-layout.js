@@ -5,7 +5,7 @@ import CommonContext from "../../helpers/common/CommonContext";
 
 const CommonLayout = ({ children }) => {
   const commonContext = useContext(CommonContext)
-  console.log("commonContext", commonContext)
+  
   return (
     <>
       {/* <Helmet>

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
 import CommonLayout from "../../components/shop/common-layout";
 import ProductSection from "./common/product_section";
-// import { withApollo } from '../../helpers/apollo/apollo';
 import LeftSidebarPage from "./product/leftSidebarPage";
 import { getProduct, getProducts } from "../../services/api/shop.service";
 import { FASHION_CAT_ID } from "../../services/api/data.service";
+import FilterDataContext from "../../helpers/filter-data/FilterDataContext";
 
 const LeftSidebar = () => {
   const router = useRouter();
@@ -13,6 +13,10 @@ const LeftSidebar = () => {
   const [product, setProduct] = useState();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const filterDataContext = useContext(FilterDataContext);
+
+  const colors = filterDataContext.filterData.colors;
+  const sizes = filterDataContext.filterData.sizes;
 
   useEffect(() => {
     getProduct(id, {
@@ -22,6 +26,16 @@ const LeftSidebar = () => {
       },
     })
       .then((res) => {
+        res.variants.forEach((el) => {
+          el.color = colors.find((color) => {
+            return color._id == el.color;
+          });
+
+          el.size = sizes.find((size) => {
+            return size._id == el.size;
+          });
+        });
+
         setProduct(res);
       })
       .catch(console.error);
@@ -33,8 +47,8 @@ const LeftSidebar = () => {
         limit: 8,
       },
     }).then((res) => {
-      setLoading(false);
       setProducts(res);
+      setLoading(false);
     });
   }, []);
 

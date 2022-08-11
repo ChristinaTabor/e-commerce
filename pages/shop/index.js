@@ -1,18 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import CommonLayout from "../../components/shop/common-layout";
 import ProductList from "./common/productList";
 import { Container, Row } from "reactstrap";
 import FilterPage from "./common/filter";
 import { FASHION_CAT_ID } from "../../services/api/data.service";
-import {
-  getColors,
-  getSizes,
-  getBrands,
-  getProducts,
-} from "../../services/api/shop.service";
+import { getProducts } from "../../services/api/shop.service";
+import FilterDataContext from "../../helpers/filter-data/FilterDataContext";
 
-const LeftSidebar = ({ filterData, productsData, isLoading }) => {
+const LeftSidebar = ({ productsData, isLoading }) => {
   const [sidebarView, setSidebarView] = useState(false);
+  const filterDataContext = useContext(FilterDataContext)
 
   const openCloseSidebar = () => {
     if (sidebarView) {
@@ -29,7 +26,7 @@ const LeftSidebar = ({ filterData, productsData, isLoading }) => {
             <Row>
               <FilterPage
                 sm="3"
-                data={filterData}
+                data={filterDataContext.filterData}
                 loading={isLoading}
                 sidebarView={sidebarView}
                 closeSidebar={() => openCloseSidebar(sidebarView)}
@@ -52,22 +49,6 @@ const LeftSidebar = ({ filterData, productsData, isLoading }) => {
 export default LeftSidebar;
 
 export async function getServerSideProps() {
-  const colors = await getColors();
-  const sizes = await getSizes();
-  const brands = await getBrands();
-  const newProducts = await getProducts({
-    queryParams: {
-      relation: true,
-      filter: { new: true, "category._id": FASHION_CAT_ID },
-    },
-  });
-  const filterData = {
-    colors,
-    sizes,
-    brands,
-    newProducts,
-  };
-
   const products = await getProducts({
     queryParams: {
       relation: true,
@@ -82,5 +63,5 @@ export async function getServerSideProps() {
     total: products.meta.total,
   };
 
-  return { props: { isLoading: false, filterData, productsData } };
+  return { props: { isLoading: false, productsData } };
 }

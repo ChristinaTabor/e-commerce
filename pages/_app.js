@@ -14,11 +14,19 @@ import { getUser } from "../services/api/user.service";
 import { getAll, buckets, FASHION_CAT_ID } from "../services/api/data.service";
 import UserContext from "../helpers/user/UserContext";
 import CommonContext from "../helpers/common/CommonContext";
+import FilterDataContext from "../helpers/filter-data/FilterDataContext";
+import {
+  getBrands,
+  getColors,
+  getProducts,
+  getSizes,
+} from "../services/api/shop.service";
 
 export default function MyApp({ Component, pageProps }) {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState();
   const [commonData, setCommonData] = useState();
+  const [filterData, setFilterData] = useState();
 
   useEffect(async () => {
     let common = await getAll(buckets.COMMON, {
@@ -50,6 +58,20 @@ export default function MyApp({ Component, pageProps }) {
     };
   }, []);
 
+  useEffect(async () => {
+    const colors = await getColors();
+    const sizes = await getSizes();
+    const brands = await getBrands();
+    const newProducts = await getProducts({
+      queryParams: {
+        relation: true,
+        filter: { new: true, "category._id": FASHION_CAT_ID },
+      },
+    });
+
+    setFilterData({ colors, sizes, brands, newProducts });
+  }, []);
+
   return (
     <>
       {isLoading ? (
@@ -63,35 +85,41 @@ export default function MyApp({ Component, pageProps }) {
             setCommonData,
           }}
         >
-          <UserContext.Provider
+          <FilterDataContext.Provider
             value={{
-              user,
-              setUser,
+              filterData,
             }}
           >
-            <Helmet>
-              <meta name="viewport" content="width=device-width, initial-scale=1" />
-              <title>E-commerce React Template</title>
-            </Helmet>
-            <div>
-              <SettingProvider>
-                <CompareContextProvider>
-                  <CurrencyContextProvider>
-                    <CartContextProvider>
-                      <WishlistContextProvider>
-                        <FilterProvider>
-                          <Component {...pageProps} />
-                        </FilterProvider>
-                      </WishlistContextProvider>
-                    </CartContextProvider>
-                  </CurrencyContextProvider>
-                  <ThemeSettings />
-                </CompareContextProvider>
-              </SettingProvider>
-              <ToastContainer />
-              <TapTop />
-            </div>
-          </UserContext.Provider>
+            <UserContext.Provider
+              value={{
+                user,
+                setUser,
+              }}
+            >
+              <Helmet>
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <title>E-commerce React Template</title>
+              </Helmet>
+              <div>
+                <SettingProvider>
+                  <CompareContextProvider>
+                    <CurrencyContextProvider>
+                      <CartContextProvider>
+                        <WishlistContextProvider>
+                          <FilterProvider>
+                            <Component {...pageProps} />
+                          </FilterProvider>
+                        </WishlistContextProvider>
+                      </CartContextProvider>
+                    </CurrencyContextProvider>
+                    <ThemeSettings />
+                  </CompareContextProvider>
+                </SettingProvider>
+                <ToastContainer />
+                <TapTop />
+              </div>
+            </UserContext.Provider>
+          </FilterDataContext.Provider>
         </CommonContext.Provider>
       )}
     </>
