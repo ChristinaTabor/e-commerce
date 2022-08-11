@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import Banner from "./layouts/Components/Banner";
-import CollectionBanner from "./layouts/Components/Collection-Banner";
 import TopCollection from "../components/common/Collections/Collection3";
 import Parallax from "./layouts/Components/Parallax";
 import SpecialProducts from "../components/common/Collections/TabCollection1";
@@ -26,7 +25,6 @@ const Fashion = ({ specialProducts, isLoading }) => {
       </Helmet>
       <HeaderOne data={commonContext.commonData} topClass="top-header" />
       <Banner />
-      <CollectionBanner />
       <Paragraph title="title1 section-t-space" inner="title-inner1" hrClass={false} />
       <TopCollection
         noTitle="null"

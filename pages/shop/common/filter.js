@@ -1,6 +1,5 @@
 import React from "react";
-import { Col, Media } from "reactstrap";
-import sideBanner from "../../../public/assets/images/side-banner.png";
+import { Col } from "reactstrap";
 import NewProduct from "./newProduct";
 import Brand from "./brand";
 import Color from "./color";
@@ -27,11 +26,6 @@ const FilterPage = ({ data, loading, sm, sidebarView, closeSidebar }) => {
           <Price />
         </div>
         <NewProduct data={data.newProducts} loading={loading} />
-        <div className="collection-sidebar-banner">
-          <a href={null}>
-            <Media src={sideBanner} className="img-fluid blur-up lazyload" alt="" />
-          </a>
-        </div>
       </Col>
     </>
   );
