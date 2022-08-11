@@ -139,7 +139,7 @@ const ThemeSettings = () => {
     {
       bg: "demo22",
       name: "left sidebar",
-      link: "/shop/left_sidebar",
+      link: "/shop",
       btnName: "Preview",
     },
     {
@@ -259,13 +259,13 @@ const ThemeSettings = () => {
 
   return (
     <div>
-      <a href={null} onClick={() => openSetting()}>
+      {/* <a href={null} onClick={() => openSetting()}>
         <div className="setting-sidebar" id="setting-icon">
           <div>
             <i className="fa fa-cog" aria-hidden="true"></i>
           </div>
         </div>
-      </a>
+      </a> */}
       <div id="setting_box" className="setting-box">
         <a href="# " className="overlay" onClick={() => closeSetting()}></a>
         <div className="setting_box_body">
@@ -468,7 +468,7 @@ const ThemeSettings = () => {
           </div>
         </div>
       </div>
-      <div className="sidebar-btn dark-light-btn">
+      {/* <div className="sidebar-btn dark-light-btn">
         <div className="dark-light">
           <div
             className="theme-layout-version"
@@ -477,8 +477,8 @@ const ThemeSettings = () => {
             {themeLayout ? "Light" : "Dark"}
           </div>
         </div>
-      </div>
-      <div className="addcart_btm_popup" id="fixed_cart_icon">
+      </div> */}
+      {/* <div className="addcart_btm_popup" id="fixed_cart_icon">
         <a href={null} className="fixed_cart">
           <i
             className="fa fa-clone"
@@ -487,7 +487,7 @@ const ThemeSettings = () => {
             title="Configuration"
           ></i>
         </a>
-      </div>
+      </div> */}
       <Modal centered={true} isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Config</ModalHeader>
         <ModalBody className="p-3">

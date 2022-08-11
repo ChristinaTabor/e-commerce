@@ -1,29 +1,13 @@
 import React, { useState, useContext } from "react";
-import { useQuery } from "@apollo/client";
-import { gql } from "@apollo/client";
 import { Collapse, Input } from "reactstrap";
 import FilterContext from "../../../helpers/filter/FilterContext";
 
-const GET_SIZE = gql`
-  query getSize($type: String) {
-    getSize(type: $type) {
-      size
-    }
-  }
-`;
-
-const Size = () => {
+const Size = ({ data, loading }) => {
   const [isOpen, setIsOpen] = useState(false);
   const context = useContext(FilterContext);
   const isChecked = context.isChecked;
   const filterChecked = context.filterChecked;
   const toggle = () => setIsOpen(!isOpen);
-
-  var { loading, data } = useQuery(GET_SIZE, {
-    variables: {
-      type: context.state,
-    },
-  });
 
   return (
     <div className="collection-collapse-block border-0 open">
@@ -33,26 +17,26 @@ const Size = () => {
       <Collapse isOpen={isOpen}>
         <div className="collection-collapse-block-content">
           <div className="collection-size-filter">
-            {!data || !data.getSize || data.getSize.length === 0 || loading
+            {!data || data.length === 0 || loading
               ? "loading"
               : data &&
-                data.getSize.size.map((size, index) => (
-                  <div key={index}
-                    className="custom-control custom-checkbox collection-filter-checkbox"
+                data.map((size, index) => (
+                  <div
                     key={index}
+                    className="custom-control custom-checkbox collection-filter-checkbox"
                   >
                     <Input
-                      checked={context.selectedSize.includes(size)}
+                      checked={context.selectedSize.includes(size.title)}
                       onChange={() => {
-                        context.handleSizes(size, isChecked);
+                        context.handleSizes(size._id, isChecked);
                       }}
                       type="checkbox"
                       className="custom-control-input"
-                      id={size}
+                      id={size.title}
                     />
 
-                    <label className="custom-control-label" htmlFor={size}>
-                      {size}
+                    <label className="custom-control-label" htmlFor={size.title}>
+                      {size.title}
                     </label>
                   </div>
                 ))}

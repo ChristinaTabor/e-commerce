@@ -1,29 +1,13 @@
 import React, { useState, useContext } from "react";
-import { useQuery } from "@apollo/client";
-import { gql } from "@apollo/client";
 import { Collapse, Input } from "reactstrap";
 import FilterContext from "../../../helpers/filter/FilterContext";
 
-const GET_BRAND = gql`
-  query getBrands($type: String) {
-    getBrands(type: $type) {
-      brand
-    }
-  }
-`;
-
-const Brand = () => {
+const Brand = ({ data, loading }) => {
   const context = useContext(FilterContext);
   const isChecked = context.isChecked;
   const filterChecked = context.filterChecked;
   const [isOpen, setIsOpen] = useState(false);
   const toggleBrand = () => setIsOpen(!isOpen);
-
-  var { loading, data } = useQuery(GET_BRAND, {
-    variables: {
-      type: context.state,
-    },
-  });
 
   return (
     <div className="collection-collapse-block open">
@@ -33,10 +17,10 @@ const Brand = () => {
       <Collapse isOpen={isOpen}>
         <div className="collection-collapse-block-content">
           <div className="collection-brand-filter">
-            {!data || !data.getBrands || data.getBrands.length === 0 || loading
+            {!data || data.length === 0 || loading
               ? "loading"
               : data &&
-                data.getBrands.brand.map((brand, index) => (
+                data.map((brand, index) => (
                   <div
                     className="custom-control custom-checkbox collection-filter-checkbox"
                     key={index}
@@ -44,14 +28,14 @@ const Brand = () => {
                     <Input
                       checked={context.selectedBrands.includes(brand)}
                       onChange={() => {
-                        context.handleBrands(brand, isChecked);
+                        context.handleBrands(brand._id, isChecked);
                       }}
                       type="checkbox"
                       className="custom-control-input"
-                      id={brand}
+                      id={brand.title}
                     />
-                    <label className="custom-control-label" htmlFor={brand}>
-                      {brand}
+                    <label className="custom-control-label" htmlFor={brand.title}>
+                      {brand.title}
                     </label>
                   </div>
                 ))}

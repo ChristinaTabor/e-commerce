@@ -1,25 +1,16 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "./common/navbar";
 import SideBar from "./common/sidebar";
-import Cart from "../containers/Cart";
 import CartContainer from "../containers/CartContainer";
 import TopBarDark from "./common/topbar-dark";
 import { Media, Container, Row, Col } from "reactstrap";
 import LogoImage from "./common/logo";
 import search from "../../public/assets/images/icon/search.png";
-import settings from "../../public/assets/images/icon/setting.png";
 import cart from "../../public/assets/images/icon/cart.png";
-import Currency from "./common/currency";
 import { useRouter } from "next/router";
 import SearchOverlay from "./common/search-overlay";
 
-const HeaderOne = ({
-  logoName,
-  headerClass,
-  topClass,
-  noTopBar,
-  direction,
-}) => {
+const HeaderOne = ({ data, topClass }) => {
   const router = useRouter();
 
   /*=====================
@@ -52,51 +43,24 @@ const HeaderOne = ({
     // else document.getElementById("sticky").classList.remove("fixed");
   };
 
-  const openNav = () => {
-    var openmyslide = document.getElementById("mySidenav");
-    if (openmyslide) {
-      openmyslide.classList.add("open-side");
-    }
-  };
   const openSearch = () => {
     document.getElementById("search-overlay").style.display = "block";
   };
 
-  // eslint-disable-next-line
-  const load = () => {
-    setIsLoading(true);
-    fetch().then(() => {
-      // deal with data fetched
-      setIsLoading(false);
-    });
-  };
-
   return (
     <div>
-      <header id="sticky" className={`sticky ${headerClass}`}>
+      <header id="sticky">
         <div className="mobile-fix-option"></div>
         {/*Top Header Component*/}
-        {noTopBar ? "" : <TopBarDark topClass={topClass} />}
+        <TopBarDark data={data} topClass={topClass} />
 
         <Container>
           <Row>
             <Col>
               <div className="main-menu">
                 <div className="menu-left">
-                  <div className="navbar">
-                    <a href={null} onClick={openNav}>
-                      <div className="bar-style">
-                        <i
-                          className="fa fa-bars sidebar-bar"
-                          aria-hidden="true"
-                        ></i>
-                      </div>
-                    </a>
-                    {/*SideBar Navigation Component*/}
-                    <SideBar />
-                  </div>
                   <div className="brand-logo">
-                    <LogoImage logo={logoName} />
+                    <LogoImage logo={data.logo} />
                   </div>
                 </div>
                 <div className="menu-right pull-right">
@@ -116,13 +80,7 @@ const HeaderOne = ({
                             />
                           </div>
                         </li>
-                        <Currency icon={settings} />
-                        {/*Header Cart Component */}
-                        {direction === undefined ? (
-                          <CartContainer layout={direction} icon={cart} />
-                        ) : (
-                          <Cart layout={direction} icon={cart} />
-                        )}
+                        <CartContainer icon={cart} />
                       </ul>
                     </div>
                   </div>

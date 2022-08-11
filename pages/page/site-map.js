@@ -5,161 +5,6 @@ import { Container, Row, Col } from "reactstrap";
 const Data = [
   {
     mainTitle: "Home Demos",
-    newCol: true,
-    subtitles: [
-      {
-        title: "New Demos",
-        link: "#",
-        subtitle: [
-          {
-            title: "tools",
-            link: "/layouts/Tools",
-          },
-          {
-            title: "marketplace",
-            link: "/layouts/Marketplace",
-          },
-          {
-            title: "game",
-            link: "/layouts/Game",
-          },
-          {
-            title: "gym",
-            link: "/layouts/Gym",
-          },
-          {
-            title: "Marijuana",
-            link: "/layouts/Marijuana",
-          },
-          {
-            title: "Left Sidebar",
-            link: "/shop/left_sidebar",
-          },
-          {
-            title: "Jewellery",
-            link: "/layouts/Jewellery",
-          },
-          {
-            title: "Pets",
-            link: "/layouts/Pets",
-          },
-          {
-            title: "Metro",
-            link: "/layouts/Metro",
-          },
-          {
-            title: "Video Slider",
-            link: "/layouts/Vedioslider",
-          },
-        ],
-      },
-      {
-        title: "Clothing",
-        link: "#",
-        subtitle: [
-          {
-            title: "Fashion 1",
-            link: "/",
-          },
-          {
-            title: "Fashion 2",
-            link: "/layouts/Fashion2",
-          },
-          {
-            title: "Fashion 3",
-            link: "/layouts/Fashion3",
-          },
-          {
-            title: "Kids",
-            link: "/layouts/Kids",
-          },
-        ],
-      },
-      {
-        title: "Electronics",
-        link: "#",
-        subtitle: [
-          {
-            title: "Electronic 1",
-            link: "/layouts/Electronic/Electronic-1",
-          },
-          {
-            title: "Electronic 2",
-            link: "/layouts/Electronic/Electronic-2",
-          },
-        ],
-      },
-      {
-        title: "Watch",
-        link: "/layouts/Watch",
-      },
-      {
-        title: "Shoes",
-        link: "/layouts/Shoes",
-      },
-      {
-        title: "Bags",
-        link: "/layouts/Bags",
-      },
-      {
-        title: "Nursery",
-        link: "/layouts/Nursery",
-      },
-      {
-        title: "Vegetable",
-        link: "/layouts/Vegetable",
-      },
-      {
-        title: "Beauty",
-        link: "/layouts/Beauty",
-      },
-      {
-        title: "Light",
-        link: "/layouts/Light",
-      },
-      {
-        title: "Furniture",
-        link: "/layouts/Furniture",
-      },
-      {
-        title: " Goggles",
-        link: "/layouts/Goggles",
-      },
-      {
-        title: "Basics",
-        link: "#",
-        subtitle: [
-          {
-            title: "Lookbook",
-            link: "/layouts/Basics/Lookbook",
-          },
-          {
-            title: "Instagram",
-            link: "/layouts/Basics/Instagram",
-          },
-          {
-            title: "Video",
-            link: "/layouts/Basics/Video",
-          },
-          {
-            title: "Parallax",
-            link: "/layouts/Basics/Parallax",
-          },
-          {
-            title: "Full Page",
-            link: "/layouts/Basics/Fullpage",
-          },
-        ],
-      },
-      {
-        title: "Beauty",
-        link: "/layouts/Beauty",
-      },
-      {
-        title: "Beauty",
-        link: "/layouts/Beauty",
-      },
-    ],
   },
   {
     mainTitle: "Product Pages",
@@ -251,7 +96,7 @@ const Data = [
     subtitles: [
       {
         title: "Left Sidebar",
-        link: "/shop/left_sidebar",
+        link: "/shop",
       },
       {
         title: "Right Sidebar",
@@ -275,7 +120,7 @@ const Data = [
       },
       {
         title: "Infinite Scroll",
-        link: "/shop/left_sidebar",
+        link: "/shop",
       },
       {
         title: "Three Grid",
@@ -289,16 +134,6 @@ const Data = [
         title: "List View",
         link: "/shop/list_view",
       },
-    ],
-  },
-  {
-    mainTitle: "Blog Pages",
-    newCol: true,
-    subtitles: [
-      { title: "Left Sidebar", link: "/blogs/blog_left_sidebar" },
-      { title: "Right Sidebar", link: "/blogs/blog_right_sidebar" },
-      { title: "No Sidebar", link: "/blogs/no_sidebar" },
-      { title: "Blog Details", link: "blogs/blog_detail" },
     ],
   },
   {

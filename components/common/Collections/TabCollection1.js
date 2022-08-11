@@ -1,7 +1,5 @@
 import React, { useState, useContext } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import { useQuery } from "@apollo/client";
-import { gql } from "@apollo/client";
 import ProductItem from "../product-box/ProductBox1";
 import CartContext from "../../../helpers/cart/index";
 import { Container, Row, Col, Media } from "reactstrap";
@@ -10,39 +8,6 @@ import PostLoader from "../PostLoader";
 import { CompareContext } from "../../../helpers/Compare/CompareContext";
 import { CurrencyContext } from "../../../helpers/Currency/CurrencyContext";
 import emptySearch from "../../../public/assets/images/empty-search.jpg";
-
-const GET_PRODUCTS = gql`
-  query products($type: _CategoryType!, $indexFrom: Int!, $limit: Int!) {
-    products(type: $type, indexFrom: $indexFrom, limit: $limit) {
-      items {
-        id
-        title
-        description
-        type
-        brand
-        category
-        price
-        new
-        stock
-        sale
-        discount
-        variants {
-          id
-          sku
-          size
-          color
-          image_id
-        }
-        images {
-          image_id
-          id
-          alt
-          src
-        }
-      }
-    }
-  }
-`;
 
 const TabContent = ({
   data,
@@ -62,14 +27,10 @@ const TabContent = ({
   return (
     <Row className="no-slider">
       {!data ||
-      !data.products ||
-      !data.products.items ||
-      data.products.items.length === 0 ||
+      data.length === 0 ||
       loading ? (
         data &&
-        data.products &&
-        data.products.items &&
-        data.products.items.length === 0 ? (
+        data.length === 0 ? (
           <Col xs="12">
             <div>
               <div className="col-sm-12 empty-cart-cls text-center">
@@ -102,8 +63,7 @@ const TabContent = ({
           </div>
         )
       ) : (
-        data &&
-        data.products.items
+        data
           .slice(startIndex, endIndex)
           .map((product, i) => (
             <ProductItem
@@ -134,6 +94,8 @@ const SpecialProducts = ({
   line,
   hrClass,
   backImage,
+  data,
+  loading
 }) => {
   const [activeTab, setActiveTab] = useState(type);
   const context = useContext(CartContext);
@@ -142,15 +104,6 @@ const SpecialProducts = ({
   const curContext = useContext(CurrencyContext);
   const currency = curContext.state;
   const quantity = context.quantity;
-
-  var { loading, data } = useQuery(GET_PRODUCTS, {
-    variables: {
-      type: activeTab,
-      indexFrom: 0,
-      limit: 8,
-    },
-  });
-
 
   return (
     <div>

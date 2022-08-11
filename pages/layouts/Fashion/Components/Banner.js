@@ -1,37 +1,23 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import Slider from "react-slick";
-import Link from "next/link";
-import { Container, Row, Col } from "reactstrap";
+import CommonContext from "../../../../helpers/common/CommonContext";
 import MasterBanner from "./MasterBanner";
 
-const Data = [
-  {
-    img: "home1",
-    title: "welcome to fashion",
-    desc: "men fashion",
-    link: "/left-sidebar/collection ",
-  },
-  {
-    img: "home2",
-    title: "welcome to fashion",
-    desc: "women fashion",
-    link: "/left-sidebar/collection ",
-  },
-];
-
 const Banner = () => {
+  const commonContext = useContext(CommonContext);
+
   return (
     <Fragment>
       <section className="p-0">
         <Slider className="slide-1 home-slider">
-          {Data.map((data, i) => {
+          {commonContext.commonData.home_banner.map((data, i) => {
             return (
               <MasterBanner
                 key={i}
                 img={data.img}
                 desc={data.desc}
                 title={data.title}
-                link={data.link}
+                link={"/shop"}
               />
             );
           })}

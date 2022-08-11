@@ -1,47 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Container, Row, Col, Media, Modal, ModalBody } from "reactstrap";
-import { useQuery } from "@apollo/client";
-import { gql } from '@apollo/client';
 import { CurrencyContext } from "../../../helpers/Currency/CurrencyContext";
 import CartContext from "../../../helpers/cart";
 import { WishlistContext } from "../../../helpers/wishlist/WishlistContext";
 import { CompareContext } from "../../../helpers/Compare/CompareContext";
 import { useRouter } from "next/router";
 
-const GET_PRODUCTS = gql`
-  query products($type: _CategoryType!, $indexFrom: Int!, $limit: Int!) {
-    products(type: $type, indexFrom: $indexFrom, limit: $limit) {
-      items {
-        id
-        title
-        description
-        type
-        brand
-        category
-        price
-        new
-        stock
-        sale
-        discount
-        variants {
-          id
-          sku
-          size
-          color
-          image_id
-        }
-        images {
-          image_id
-          id
-          alt
-          src
-        }
-      }
-    }
-  }
-`;
-
-const ProductSection = () => {
+const ProductSection = ({ data, loading }) => {
   const router = useRouter();
   const curContext = useContext(CurrencyContext);
   const wishlistContext = useContext(WishlistContext);
@@ -64,22 +29,13 @@ const ProductSection = () => {
   };
 
   const clickProductDetail = (product) => {
-    const titleProps = product.title.split(" ").join("");
-    router.push(`/product-details/${product.id}` + "-" + `${titleProps}`);
+    router.push(`/product-details/${product._id}`);
   };
 
   const getSelectedProduct = (item) => {
     setSelectedProduct(item);
     toggle();
   };
-
-  var { loading, data } = useQuery(GET_PRODUCTS, {
-    variables: {
-      type: "fashion",
-      indexFrom: 0,
-      limit: 8,
-    },
-  });
 
   return (
     <section className="section-b-space ratio_asos">
@@ -90,15 +46,12 @@ const ProductSection = () => {
           </Col>
         </Row>
         <Row className="search-product">
-          {!data ||
-            !data.products ||
-            data.products.items.length === 0 ||
-            loading ? (
+          {!data || data.length === 0 || loading ? (
             "loading"
           ) : (
             <>
               {data &&
-                data.products.items.slice(0, 6).map((product, index) => (
+                data.slice(0, 6).map((product, index) => (
                   <Col xl="2" md="4" sm="6" key={index}>
                     <div className="product-box">
                       <div className="img-wrapper">
@@ -107,15 +60,6 @@ const ProductSection = () => {
                             <Media
                               onClick={() => clickProductDetail(product)}
                               src={product.images[0].src}
-                              className="img-fluid blur-up lazyload bg-img"
-                              alt=""
-                            />
-                          </a>
-                        </div>
-                        <div className="back">
-                          <a href={null}>
-                            <Media
-                              src={product.images[1].src}
                               className="img-fluid blur-up lazyload bg-img"
                               alt=""
                             />
@@ -157,10 +101,8 @@ const ProductSection = () => {
                       </div>
                       <div className="product-detail">
                         <div className="rating">
-                          <i className="fa fa-star"></i>{" "}
-                          <i className="fa fa-star"></i>{" "}
-                          <i className="fa fa-star"></i>{" "}
-                          <i className="fa fa-star"></i>{" "}
+                          <i className="fa fa-star"></i> <i className="fa fa-star"></i>{" "}
+                          <i className="fa fa-star"></i> <i className="fa fa-star"></i>{" "}
                           <i className="fa fa-star"></i>
                         </div>
                         <a href={null}>
@@ -212,12 +154,12 @@ const ProductSection = () => {
                         {uniqueTags ? (
                           <ul className="color-variant">
                             {selectedProduct.type === "jewellery" ||
-                              selectedProduct.type === "nursery" ||
-                              selectedProduct.type === "beauty" ||
-                              selectedProduct.type === "electronics" ||
-                              selectedProduct.type === "goggles" ||
-                              selectedProduct.type === "watch" ||
-                              selectedProduct.type === "pets" ? (
+                            selectedProduct.type === "nursery" ||
+                            selectedProduct.type === "beauty" ||
+                            selectedProduct.type === "electronics" ||
+                            selectedProduct.type === "goggles" ||
+                            selectedProduct.type === "watch" ||
+                            selectedProduct.type === "pets" ? (
                               ""
                             ) : (
                               <>
