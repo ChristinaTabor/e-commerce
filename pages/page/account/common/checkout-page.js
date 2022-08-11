@@ -7,8 +7,11 @@ import { CurrencyContext } from "../../../../helpers/Currency/CurrencyContext";
 import mastercard from "../../../../public/assets/img/mastercard.png";
 import visa from "../../../../public/assets/img/visa.png";
 import chip from "../../../../public/assets/img/chip.png";
+import UserContext from "../../../../helpers/user/UserContext";
+import { httpPost } from "../../../../services/api/data.service";
 
 const CheckoutPage = () => {
+  const userContext = useContext(UserContext);
   const cartContext = useContext(CartContext);
   const cartItems = cartContext.state;
   const cartTotal = cartContext.cartTotal;
@@ -34,13 +37,25 @@ const CheckoutPage = () => {
 
   const onSubmit = (data) => {
     if (data !== "") {
-      console.log("data", data);
-      console.log("cardData", cardForm);
-      // alert("You submitted the form and stuff!");
-      // router.push({
-      //   pathname: "/page/order-success",
-      //   state: { items: cartItems, orderTotal: cartTotal, symbol: symbol },
-      // });
+      const products = [];
+
+      cartItems.forEach((el) => {
+        products.push({ _id: el._id, qty: el.qty });
+      });
+
+      httpPost("placeOrder", {
+        userData: data,
+        cardData: cardForm,
+        productData: products,
+      })
+        .then((res) => {
+          router.push({
+            pathname: "/page/order-success",
+            state: { items: cartItems, orderTotal: cartTotal, symbol: symbol},
+            query: {orderId: res.order_id }
+          });
+        })
+        .catch(() => {});
     } else {
       errors.showMessages();
     }
@@ -83,128 +98,133 @@ const CheckoutPage = () => {
           <div className="checkout-form">
             <Form onSubmit={handleSubmit(onSubmit)}>
               <Row>
-                <Col lg="6" sm="12" xs="12">
-                  <div className="checkout-title">
-                    <h3>Billing Details</h3>
-                  </div>
-                  <div className="row check-out">
-                    <div className="form-group col-md-6 col-sm-6 col-xs-12">
-                      <div className="field-label">First Name</div>
-                      <input
-                        type="text"
-                        className={`${errors.first_name ? "error_border" : ""}`}
-                        name="first_name"
-                        {...register("first_name", { required: true })}
-                      />
-                      <span className="error-message">
-                        {errors.first_name && "First name is required"}
-                      </span>
+                {!userContext.user && (
+                  <Col lg="6" sm="12" xs="12">
+                    <div className="checkout-title">
+                      <h3>Billing Details</h3>
                     </div>
-                    <div className="form-group col-md-6 col-sm-6 col-xs-12">
-                      <div className="field-label">Last Name</div>
-                      <input
-                        type="text"
-                        className={`${errors.last_name ? "error_border" : ""}`}
-                        name="last_name"
-                        {...register("last_name", { required: true })}
-                      />
-                      <span className="error-message">
-                        {errors.last_name && "Last name is required"}
-                      </span>
+                    <div className="row check-out">
+                      <div className="form-group col-md-6 col-sm-6 col-xs-12">
+                        <div className="field-label">First Name</div>
+                        <input
+                          type="text"
+                          className={`${errors.first_name ? "error_border" : ""}`}
+                          name="first_name"
+                          {...register("first_name", { required: true })}
+                        />
+                        <span className="error-message">
+                          {errors.first_name && "First name is required"}
+                        </span>
+                      </div>
+                      <div className="form-group col-md-6 col-sm-6 col-xs-12">
+                        <div className="field-label">Last Name</div>
+                        <input
+                          type="text"
+                          className={`${errors.last_name ? "error_border" : ""}`}
+                          name="last_name"
+                          {...register("last_name", { required: true })}
+                        />
+                        <span className="error-message">
+                          {errors.last_name && "Last name is required"}
+                        </span>
+                      </div>
+                      <div className="form-group col-md-6 col-sm-6 col-xs-12">
+                        <div className="field-label">Phone</div>
+                        <input
+                          type="text"
+                          name="phone"
+                          className={`${errors.phone ? "error_border" : ""}`}
+                          {...register("phone", { pattern: /\d+/ })}
+                        />
+                        <span className="error-message">
+                          {errors.phone && "Please enter number for phone."}
+                        </span>
+                      </div>
+                      <div className="form-group col-md-6 col-sm-6 col-xs-12">
+                        <div className="field-label">Email Address</div>
+                        <input
+                          className={`${errors.email ? "error_border" : ""}`}
+                          type="text"
+                          name="email"
+                          {...register("email", {
+                            required: true,
+                            pattern: /^\S+@\S+$/i,
+                          })}
+                        />
+                        <span className="error-message">
+                          {errors.email && "Please enter proper email address ."}
+                        </span>
+                      </div>
+                      <div className="form-group col-md-12 col-sm-12 col-xs-12">
+                        <div className="field-label">Country</div>
+                        <select
+                          name="country"
+                          {...register("country", { required: true })}
+                        >
+                          <option>India</option>
+                          <option>South Africa</option>
+                          <option>United State</option>
+                          <option>Australia</option>
+                        </select>
+                      </div>
+                      <div className="form-group col-md-12 col-sm-12 col-xs-12">
+                        <div className="field-label">Address</div>
+                        <input
+                          className={`${errors.address ? "error_border" : ""}`}
+                          type="text"
+                          name="address"
+                          {...register("address", { required: true, min: 20, max: 120 })}
+                          placeholder="Street address"
+                        />
+                        <span className="error-message">
+                          {errors.address && "Please right your address ."}
+                        </span>
+                      </div>
+                      <div className="form-group col-md-12 col-sm-12 col-xs-12">
+                        <div className="field-label">Town/City</div>
+                        <input
+                          type="text"
+                          className={`${errors.city ? "error_border" : ""}`}
+                          name="city"
+                          {...register("city", { required: true })}
+                          onChange={setStateFromInput}
+                        />
+                        <span className="error-message">
+                          {errors.city && "select one city"}
+                        </span>
+                      </div>
+                      <div className="form-group col-md-12 col-sm-6 col-xs-12">
+                        <div className="field-label">State / County</div>
+                        <input
+                          type="text"
+                          className={`${errors.state ? "error_border" : ""}`}
+                          name="state"
+                          {...register("state", { required: true })}
+                          onChange={setStateFromInput}
+                        />
+                        <span className="error-message">
+                          {errors.state && "select one state"}
+                        </span>
+                      </div>
+                      <div className="form-group col-md-12 col-sm-6 col-xs-12">
+                        <div className="field-label">Postal Code</div>
+                        <input
+                          type="text"
+                          name="pincode"
+                          className={`${errors.pincode ? "error_border" : ""}`}
+                          {...register("pincode", { pattern: /\d+/ })}
+                        />
+                        <span className="error-message">
+                          {errors.pincode && "Required integer"}
+                        </span>
+                      </div>
+                      {/* <div className="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <input type="checkbox" name="create_account" id="account-option" />
+                                    &ensp; <label htmlFor="account-option">Create An Account?</label>
+                                  </div> */}
                     </div>
-                    <div className="form-group col-md-6 col-sm-6 col-xs-12">
-                      <div className="field-label">Phone</div>
-                      <input
-                        type="text"
-                        name="phone"
-                        className={`${errors.phone ? "error_border" : ""}`}
-                        {...register("phone", { pattern: /\d+/ })}
-                      />
-                      <span className="error-message">
-                        {errors.phone && "Please enter number for phone."}
-                      </span>
-                    </div>
-                    <div className="form-group col-md-6 col-sm-6 col-xs-12">
-                      <div className="field-label">Email Address</div>
-                      <input
-                        className={`${errors.email ? "error_border" : ""}`}
-                        type="text"
-                        name="email"
-                        {...register("email", {
-                          required: true,
-                          pattern: /^\S+@\S+$/i,
-                        })}
-                      />
-                      <span className="error-message">
-                        {errors.email && "Please enter proper email address ."}
-                      </span>
-                    </div>
-                    <div className="form-group col-md-12 col-sm-12 col-xs-12">
-                      <div className="field-label">Country</div>
-                      <select name="country" {...register("country", { required: true })}>
-                        <option>India</option>
-                        <option>South Africa</option>
-                        <option>United State</option>
-                        <option>Australia</option>
-                      </select>
-                    </div>
-                    <div className="form-group col-md-12 col-sm-12 col-xs-12">
-                      <div className="field-label">Address</div>
-                      <input
-                        className={`${errors.address ? "error_border" : ""}`}
-                        type="text"
-                        name="address"
-                        {...register("address", { required: true, min: 20, max: 120 })}
-                        placeholder="Street address"
-                      />
-                      <span className="error-message">
-                        {errors.address && "Please right your address ."}
-                      </span>
-                    </div>
-                    <div className="form-group col-md-12 col-sm-12 col-xs-12">
-                      <div className="field-label">Town/City</div>
-                      <input
-                        type="text"
-                        className={`${errors.city ? "error_border" : ""}`}
-                        name="city"
-                        {...register("city", { required: true })}
-                        onChange={setStateFromInput}
-                      />
-                      <span className="error-message">
-                        {errors.city && "select one city"}
-                      </span>
-                    </div>
-                    <div className="form-group col-md-12 col-sm-6 col-xs-12">
-                      <div className="field-label">State / County</div>
-                      <input
-                        type="text"
-                        className={`${errors.state ? "error_border" : ""}`}
-                        name="state"
-                        {...register("state", { required: true })}
-                        onChange={setStateFromInput}
-                      />
-                      <span className="error-message">
-                        {errors.state && "select one state"}
-                      </span>
-                    </div>
-                    <div className="form-group col-md-12 col-sm-6 col-xs-12">
-                      <div className="field-label">Postal Code</div>
-                      <input
-                        type="text"
-                        name="pincode"
-                        className={`${errors.pincode ? "error_border" : ""}`}
-                        {...register("pincode", { pattern: /\d+/ })}
-                      />
-                      <span className="error-message">
-                        {errors.pincode && "Required integer"}
-                      </span>
-                    </div>
-                    <div className="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                      <input type="checkbox" name="create_account" id="account-option" />
-                      &ensp; <label htmlFor="account-option">Create An Account?</label>
-                    </div>
-                  </div>
-                </Col>
+                  </Col>
+                )}
                 <Col lg="6" sm="12" xs="12">
                   {cartItems && cartItems.length > 0 > 0 ? (
                     <div className="checkout-details">

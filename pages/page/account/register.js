@@ -4,6 +4,7 @@ import CommonLayout from "../../../components/shop/common-layout";
 import { Container, Row, Form, Label, Col } from "reactstrap";
 import { userRegister } from "../../../services/api/user.service";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const router = useRouter();
@@ -18,10 +19,11 @@ const Register = () => {
     if (data !== "") {
       userRegister(data)
         .then((_) => {
-          router.push("page/account/login");
+          toast.success("Register is successfully");
+          router.push("login");
         })
         .catch((err) => {
-          console.log(err);
+          toast.success(err.message || "Error! Please try again later");
         });
     } else {
       errors.showMessages();
