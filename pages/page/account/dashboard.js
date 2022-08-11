@@ -47,7 +47,7 @@ const Dashboard = () => {
                   </h6>
                   <h6>{user.email}</h6>
                   <h6>
-                    <a href="#">Change Password</a>
+                    <a onClick={() => navigateToPage("change-password")}>Change Password</a>
                   </h6>
                 </div>
               </div>

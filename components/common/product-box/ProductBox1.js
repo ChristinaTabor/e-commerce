@@ -43,8 +43,7 @@ const ProductItem = ({
   };
 
   const clickProductDetail = () => {
-    const titleProps = product.title.split(" ").join("");
-    router.push(`/product-details/${product.id}` + "-" + `${titleProps}`);
+    router.push(`/product-details/${product._id}`);
   };
 
   const variantChangeByColor = (imgId, product_images) => {
@@ -98,29 +97,19 @@ const ProductItem = ({
           <a href={null} title="Compare" onClick={toggleCompare}>
             <i className="fa fa-refresh" aria-hidden="true"></i>
           </a>
-          <Modal
-            isOpen={modalCompare}
-            toggle={toggleCompare}
-            size="lg"
-            centered
-          >
+          <Modal isOpen={modalCompare} toggle={toggleCompare} size="lg" centered>
             <ModalBody>
               <Row className="compare-modal">
                 <Col lg="12">
                   <div className="media">
                     <Media
-                      src={`${
-                        product.variants && image
-                          ? image
-                          : product.images[0].src
-                      }`}
+                      src={`${product.variants && image ? image : product.images[0].src}`}
                       alt=""
                       className="img-fluid"
                     />
                     <div className="media-body align-self-center text-center">
                       <h5>
-                        <i className="fa fa-check"></i>Item{" "}
-                        <span>{product.title}</span>
+                        <i className="fa fa-check"></i>Item <span>{product.title}</span>
                         <span>successfully added to your Compare list</span>
                       </h5>
                       <div className="buttons d-flex justify-content-center">
@@ -173,20 +162,13 @@ const ProductItem = ({
         des={des}
         variantChangeByColor={variantChangeByColor}
       />
-      <Modal
-        isOpen={modal}
-        toggle={toggle}
-        className="modal-lg quickview-modal"
-        centered
-      >
+      <Modal isOpen={modal} toggle={toggle} className="modal-lg quickview-modal" centered>
         <ModalBody>
           <Row>
             <Col lg="6" xs="12">
               <div className="quick-view-img">
                 <Media
-                  src={`${
-                    product.variants && image ? image : product.images[0].src
-                  }`}
+                  src={`${product.variants && image ? image : product.images[0].src}`}
                   alt=""
                   className="img-fluid"
                 />
@@ -220,10 +202,7 @@ const ProductItem = ({
                                   key={i}
                                   title={vari.color}
                                   onClick={() =>
-                                    variantChangeByColor(
-                                      vari.image_id,
-                                      product.images
-                                    )
+                                    variantChangeByColor(vari.image_id, product.images)
                                   }
                                 ></li>
                               );
@@ -294,16 +273,10 @@ const ProductItem = ({
                   </div>
                 </div>
                 <div className="product-buttons">
-                  <button
-                    className="btn btn-solid"
-                    onClick={() => addCart(product)}
-                  >
+                  <button className="btn btn-solid" onClick={() => addCart(product)}>
                     add to cart
                   </button>
-                  <button
-                    className="btn btn-solid"
-                    onClick={clickProductDetail}
-                  >
+                  <button className="btn btn-solid" onClick={clickProductDetail}>
                     View detail
                   </button>
                 </div>
