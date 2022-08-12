@@ -69,7 +69,7 @@ const Fashion = ({ specialProducts, isLoading }) => {
 
 export default Fashion;
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const specialProducts = await getProducts({
     queryParams: {
       relation: true,
