@@ -77,5 +77,5 @@ export async function getStaticProps() {
     },
   });
 
-  return { props: { isLoading: false, specialProducts } };
+  return { props: { isLoading: false, specialProducts }, revalidate: 10 };
 }
