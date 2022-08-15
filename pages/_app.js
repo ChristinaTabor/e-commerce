@@ -7,11 +7,10 @@ import CartContextProvider from "../helpers/cart/CartContext";
 import { WishlistContextProvider } from "../helpers/wishlist/WishlistContext";
 import FilterProvider from "../helpers/filter/FilterProvider";
 import SettingProvider from "../helpers/theme-setting/SettingProvider";
-import { CompareContextProvider } from "../helpers/Compare/CompareContext";
 import { CurrencyContextProvider } from "../helpers/Currency/CurrencyContext";
 import Helmet from "react-helmet";
 import { getUser } from "../services/api/user.service";
-import { getAll, buckets, FASHION_CAT_ID } from "../services/api/data.service";
+import { getAll, buckets, GAME_CAT_ID } from "../services/api/data.service";
 import UserContext from "../helpers/user/UserContext";
 import CommonContext from "../helpers/common/CommonContext";
 import FilterDataContext from "../helpers/filter-data/FilterDataContext";
@@ -31,11 +30,16 @@ export default function MyApp({ Component, pageProps }) {
   useEffect(async () => {
     let common = await getAll(buckets.COMMON, {
       queryParams: {
-        filter: { "category._id": FASHION_CAT_ID },
+        filter: { "category._id": GAME_CAT_ID },
       },
     }).then((res) => {
       return res[0];
     });
+
+    if (common.theme) {
+      let element = document.getElementsByTagName("body")[0];
+      element.classList.add(common.theme);
+    }
 
     setCommonData(common);
 
@@ -65,7 +69,7 @@ export default function MyApp({ Component, pageProps }) {
     const newProducts = await getProducts({
       queryParams: {
         relation: true,
-        filter: { new: true, "category._id": FASHION_CAT_ID },
+        filter: { new: true, "category._id": GAME_CAT_ID },
       },
     });
 
@@ -102,18 +106,16 @@ export default function MyApp({ Component, pageProps }) {
               </Helmet>
               <div>
                 <SettingProvider>
-                  <CompareContextProvider>
-                    <CurrencyContextProvider>
-                      <CartContextProvider>
-                        <WishlistContextProvider>
-                          <FilterProvider>
-                            <Component {...pageProps} />
-                          </FilterProvider>
-                        </WishlistContextProvider>
-                      </CartContextProvider>
-                    </CurrencyContextProvider>
-                    <ThemeSettings />
-                  </CompareContextProvider>
+                  <CurrencyContextProvider>
+                    <CartContextProvider>
+                      <WishlistContextProvider>
+                        <FilterProvider>
+                          <Component {...pageProps} />
+                        </FilterProvider>
+                      </WishlistContextProvider>
+                    </CartContextProvider>
+                  </CurrencyContextProvider>
+                  {/* <ThemeSettings /> */}
                 </SettingProvider>
                 <ToastContainer />
                 <TapTop />

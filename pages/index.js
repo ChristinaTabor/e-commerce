@@ -10,7 +10,7 @@ import { Product4 } from "../services/script";
 import Paragraph from "../components/common/Paragraph";
 import Helmet from "react-helmet";
 import MasterFooter from "../components/footers/common/MasterFooter";
-import { FASHION_CAT_ID } from "../services/api/data.service";
+import { GAME_CAT_ID } from "../services/api/data.service";
 import { getProducts } from "../services/api/shop.service";
 import CommonContext from "../helpers/common/CommonContext";
 
@@ -53,7 +53,10 @@ const Fashion = ({ specialProducts, isLoading }) => {
         data={specialProducts}
         loading={isLoading}
       />
-      <ServiceLayout sectionClass="border-section small-section" />
+      {commonContext.commonData.service_layout && (
+        <ServiceLayout sectionClass="border-section small-section" />
+      )}
+
       <div className="section-b-space">
         <LogoBlock />
       </div>
@@ -73,7 +76,7 @@ export async function getStaticProps() {
   const specialProducts = await getProducts({
     queryParams: {
       relation: true,
-      filter: { "category._id": FASHION_CAT_ID },
+      filter: { "category._id": GAME_CAT_ID },
     },
   });
 

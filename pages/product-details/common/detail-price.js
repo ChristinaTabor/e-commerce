@@ -40,7 +40,7 @@ const DetailsWithPrice = ({ item, stickyClass, changeColorVar }) => {
           {symbol}
           {product.price - (product.price * product.discount) / 100}
         </h3>
-        {product.variants.map((vari) => {
+        {product?.variants?.map((vari) => {
           var findItem = uniqueColor.find((x) => x.color === vari.color.title);
           if (!findItem) uniqueColor.push(vari);
           var findItemSize = uniqueSize.find((x) => x === vari.size);

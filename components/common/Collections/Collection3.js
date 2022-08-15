@@ -5,7 +5,6 @@ import { Row, Col, Container, Media } from "reactstrap";
 import CartContext from "../../../helpers/cart";
 import { WishlistContext } from "../../../helpers/wishlist/WishlistContext";
 import PostLoader from "../PostLoader";
-import { CompareContext } from "../../../helpers/Compare/CompareContext";
 
 const TopCollection = ({
   title,
@@ -24,7 +23,6 @@ const TopCollection = ({
 }) => {
   const context = useContext(CartContext);
   const contextWishlist = useContext(WishlistContext);
-  const comapreList = useContext(CompareContext);
   const quantity = context.quantity;
   const [delayProduct, setDelayProduct] = useState(true);
 
@@ -85,7 +83,6 @@ const TopCollection = ({
                             title={title}
                             addWishlist={() => contextWishlist.addToWish(product)}
                             addCart={() => context.addToCart(product, quantity)}
-                            addCompare={() => comapreList.addToCompare(product)}
                             cartClass={cartClass}
                             backImage={backImage}
                           />
@@ -132,7 +129,6 @@ const TopCollection = ({
                         <ProductItems
                           product={product}
                           backImage={backImage}
-                          addCompare={() => comapreList.addToCompare(product)}
                           addWishlist={() => contextWishlist.addToWish(product)}
                           title={title}
                           cartClass={cartClass}

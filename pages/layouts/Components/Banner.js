@@ -17,6 +17,7 @@ const Banner = () => {
                 img={data.img}
                 desc={data.desc}
                 title={data.title}
+                btn={data.btn}
                 link={"/shop"}
               />
             );

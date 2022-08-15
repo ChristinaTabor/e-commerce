@@ -3,14 +3,12 @@ import { Container, Row, Col, Media, Modal, ModalBody } from "reactstrap";
 import { CurrencyContext } from "../../../helpers/Currency/CurrencyContext";
 import CartContext from "../../../helpers/cart";
 import { WishlistContext } from "../../../helpers/wishlist/WishlistContext";
-import { CompareContext } from "../../../helpers/Compare/CompareContext";
 import { useRouter } from "next/router";
 
 const ProductSection = ({ data, loading }) => {
   const router = useRouter();
   const curContext = useContext(CurrencyContext);
   const wishlistContext = useContext(WishlistContext);
-  const compareContext = useContext(CompareContext);
   const symbol = curContext.state.symbol;
   const currency = curContext.state;
   const cartCtx = useContext(CartContext);
@@ -90,13 +88,6 @@ const ProductSection = ({ data, loading }) => {
                           >
                             <i className="fa fa-search" aria-hidden="true"></i>
                           </a>
-                          <a
-                            href="#"
-                            onClick={() => compareContext.addToCompare(product)}
-                            title="Compare"
-                          >
-                            <i className="fa fa-refresh" aria-hidden="true"></i>
-                          </a>
                         </div>
                       </div>
                       <div className="product-detail">
@@ -149,7 +140,7 @@ const ProductSection = ({ data, loading }) => {
                       {currency.symbol}
                       {(selectedProduct.price * currency.value).toFixed(2)}
                     </h3>
-                    {selectedProduct.variants ? (
+                    {selectedProduct?.variants ? (
                       <ul className="color-variant">
                         {uniqueTags ? (
                           <ul className="color-variant">

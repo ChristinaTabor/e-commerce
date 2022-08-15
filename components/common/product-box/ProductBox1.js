@@ -14,7 +14,6 @@ const ProductItem = ({
   addWishlist,
   cartClass,
   productDetail,
-  addCompare,
   title,
 }) => {
   // eslint-disable-next-line
@@ -29,8 +28,6 @@ const ProductItem = ({
 
   const [image, setImage] = useState("");
   const [modal, setModal] = useState(false);
-  const [modalCompare, setModalCompare] = useState(false);
-  const toggleCompare = () => setModalCompare(!modalCompare);
   const toggle = () => setModal(!modal);
   const uniqueTags = [];
 
@@ -94,41 +91,6 @@ const ProductItem = ({
           <a href={null} title="Quick View" onClick={toggle}>
             <i className="fa fa-search" aria-hidden="true"></i>
           </a>
-          <a href={null} title="Compare" onClick={toggleCompare}>
-            <i className="fa fa-refresh" aria-hidden="true"></i>
-          </a>
-          <Modal isOpen={modalCompare} toggle={toggleCompare} size="lg" centered>
-            <ModalBody>
-              <Row className="compare-modal">
-                <Col lg="12">
-                  <div className="media">
-                    <Media
-                      src={`${product.variants && image ? image : product.images[0].src}`}
-                      alt=""
-                      className="img-fluid"
-                    />
-                    <div className="media-body align-self-center text-center">
-                      <h5>
-                        <i className="fa fa-check"></i>Item <span>{product.title}</span>
-                        <span>successfully added to your Compare list</span>
-                      </h5>
-                      <div className="buttons d-flex justify-content-center">
-                        <Link href="/page/compare">
-                          <a
-                            href={null}
-                            className="btn-sm btn-solid"
-                            onClick={addCompare}
-                          >
-                            View Compare list
-                          </a>
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </Col>
-              </Row>
-            </ModalBody>
-          </Modal>
         </div>
         {/* {product.images ? (
           <ul className="product-thumb-list">
@@ -168,7 +130,7 @@ const ProductItem = ({
             <Col lg="6" xs="12">
               <div className="quick-view-img">
                 <Media
-                  src={`${product.variants && image ? image : product.images[0].src}`}
+                  src={`${product?.variants && image ? image : product.images[0].src}`}
                   alt=""
                   className="img-fluid"
                 />

@@ -4,7 +4,7 @@ import CommonLayout from "../../components/shop/common-layout";
 import ProductSection from "./common/product_section";
 import LeftSidebarPage from "./product/leftSidebarPage";
 import { getProduct, getProducts } from "../../services/api/shop.service";
-import { FASHION_CAT_ID } from "../../services/api/data.service";
+import { GAME_CAT_ID } from "../../services/api/data.service";
 import FilterDataContext from "../../helpers/filter-data/FilterDataContext";
 
 const LeftSidebar = () => {
@@ -22,7 +22,7 @@ const LeftSidebar = () => {
     getProduct(id, {
       queryParams: {
         relation: ["brand", "category", "variants.color", "variants.size"],
-        filter: { "category._id": FASHION_CAT_ID },
+        filter: { "category._id": GAME_CAT_ID },
       },
     })
       .then((res) => {
@@ -43,7 +43,7 @@ const LeftSidebar = () => {
     getProducts({
       queryParams: {
         relation: true,
-        filter: { "category._id": FASHION_CAT_ID },
+        filter: { "category._id": GAME_CAT_ID },
         limit: 8,
       },
     }).then((res) => {
