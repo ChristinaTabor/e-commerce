@@ -2,7 +2,7 @@ import * as Bucket from "@spica-devkit/bucket";
 
 export const publicUrl = "https://e-commerce-672ba.hq.spicaengine.com/api";
 export const publicApiKey = "3qa5e17l6268ks3";
-export const GAME_CAT_ID = "62f9f058452333002c0029e3";
+export const CAT_ID = "62f9f058452333002c0029e3";
 
 export const buckets = {
   PRODUCT: "62dfc35af3ffc4002b57b7f1",

@@ -10,7 +10,7 @@ import SettingProvider from "../helpers/theme-setting/SettingProvider";
 import { CurrencyContextProvider } from "../helpers/Currency/CurrencyContext";
 import Helmet from "react-helmet";
 import { getUser } from "../services/api/user.service";
-import { getAll, buckets, GAME_CAT_ID } from "../services/api/data.service";
+import { getAll, buckets, CAT_ID } from "../services/api/data.service";
 import UserContext from "../helpers/user/UserContext";
 import CommonContext from "../helpers/common/CommonContext";
 import FilterDataContext from "../helpers/filter-data/FilterDataContext";
@@ -30,7 +30,7 @@ export default function MyApp({ Component, pageProps }) {
   useEffect(async () => {
     let common = await getAll(buckets.COMMON, {
       queryParams: {
-        filter: { "category._id": GAME_CAT_ID },
+        filter: { "category._id": CAT_ID },
       },
     }).then((res) => {
       return res[0];
@@ -69,7 +69,7 @@ export default function MyApp({ Component, pageProps }) {
     const newProducts = await getProducts({
       queryParams: {
         relation: true,
-        filter: { new: true, "category._id": GAME_CAT_ID },
+        filter: { new: true, "category._id": CAT_ID },
       },
     });
 

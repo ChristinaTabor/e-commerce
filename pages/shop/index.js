@@ -3,7 +3,7 @@ import CommonLayout from "../../components/shop/common-layout";
 import ProductList from "./common/productList";
 import { Container, Row } from "reactstrap";
 import FilterPage from "./common/filter";
-import { GAME_CAT_ID } from "../../services/api/data.service";
+import { CAT_ID } from "../../services/api/data.service";
 import { getProducts } from "../../services/api/shop.service";
 import FilterDataContext from "../../helpers/filter-data/FilterDataContext";
 
@@ -52,7 +52,7 @@ export async function getServerSideProps() {
   const products = await getProducts({
     queryParams: {
       relation: true,
-      filter: { "category._id": GAME_CAT_ID },
+      filter: { "category._id": CAT_ID },
       paginate: true,
       limit: 8,
     },

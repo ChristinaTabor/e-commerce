@@ -6,7 +6,7 @@ import { CurrencyContext } from "../../../helpers/Currency/CurrencyContext";
 import PostLoader from "../../../components/common/PostLoader";
 import CartContext from "../../../helpers/cart";
 import { WishlistContext } from "../../../helpers/wishlist/WishlistContext";
-import { GAME_CAT_ID } from "../../../services/api/data.service";
+import { CAT_ID } from "../../../services/api/data.service";
 import { getProducts } from "../../../services/api/shop.service";
 
 const sortKeys = {
@@ -16,7 +16,7 @@ const sortKeys = {
   Newest: { _id: 1 },
 };
 let sortBy = "AscOrder";
-const filter = { "category._id": GAME_CAT_ID };
+const filter = { "category._id": CAT_ID };
 
 const ProductList = ({ data, loading, colClass, layoutList, openSidebar, noSidebar }) => {
   let [products, setProducts] = useState(data.items);
