@@ -3539,6 +3539,7 @@ header {
 
 .product-box,
 .product-wrap {
+  cursor: pointer;
   position: relative;
   transition: all 0.5s ease;
 
@@ -3606,6 +3607,18 @@ header {
   .img-wrapper {
     position: relative;
     overflow: hidden;
+    border-radius: 15px;
+    overflow: hidden;
+
+    img{
+      transition: all 0.5s ease;
+    }
+
+    :hover{
+      img{
+        transform: scale(1.1);
+      }
+    }
 
     .front {
       opacity: 1;
@@ -3647,7 +3660,7 @@ header {
       }
 
       i {
-        color: #bbbbbb;
+        color: #000;
         font-size: 18px;
         padding-left: 8px;
         padding-right: 8px;
@@ -3755,7 +3768,7 @@ header {
     }
 
     i {
-      color: #bbbbbb;
+      color: #000;
       font-size: 18px;
       padding-right: 10px;
       padding-left: 10px;
@@ -3791,7 +3804,7 @@ header {
 
   .product-detail,
   .product-info {
-    padding-left: 5px;
+    padding: 7px 5px;
 
     .rating {
       margin-top: 15px;
@@ -10752,7 +10765,7 @@ footer {
     .address-box {
       width: calc(33% - 11px);
       min-width: 210px;
-      background: white;
+      background: $white;
       min-height: 230px;
       padding: 15px;
       display: flex;
@@ -12343,8 +12356,19 @@ footer {
       font-weight: 700;
     }
   }
+  
+  .cards {
+    margin-top: 20px;
+    height: 50px;
+    background: white;
+    border-radius: 3px;
+  }
 
   .checkout-form {
+    .main-row{
+      justify-content: center;
+    }
+
     .checkout-details {
       position: relative;
       background-color: $grey-lighter;
@@ -12578,6 +12602,15 @@ footer {
 
   .upper-box {
     position: relative;
+  }
+
+  .check-box-container {
+    margin: 15px 0;
+    .check-box {
+      label {
+        margin-left: 5px;
+      }
+    }
   }
 
   .payment-options {
@@ -13024,8 +13057,20 @@ footer {
 }
 
 // Order-success //
-.success-text {
+.result-text {
   text-align: center;
+
+  &.success-text{
+    i {
+      color: #4ead4e;
+    }
+  }
+
+  &.fail-text{
+    i {
+      color: #d20000;
+    }
+  }
 
   i {
     font-size: 50px;

@@ -20,7 +20,7 @@ const FilterProvider = (props) => {
   const [selectedSize, setSelectedSize] = useState(sizeParam ? sizeParam : []);
   const [selectedPrice, setSelectedPrice] = useState({
     min: min ? min : 0,
-    max: max ? max : 500,
+    max: max ? max : 999500,
   });
   const [isChecked, setIsChecked] = useState(true);
   const [filterChecked, setFilterChecked] = useState([{}]);

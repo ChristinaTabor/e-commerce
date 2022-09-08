@@ -123,26 +123,6 @@ const SpecialProducts = ({
           )}
 
           <Tabs className="theme-tab">
-            <TabList className="tabs tab-title">
-              <Tab
-                className={activeTab == type ? "active" : ""}
-                onClick={() => setActiveTab(type)}
-              >
-                NEW ARRIVAL
-              </Tab>
-              <Tab
-                className={activeTab == "furniture" ? "active" : ""}
-                onClick={() => setActiveTab("furniture")}
-              >
-                FEATURED{" "}
-              </Tab>
-              <Tab
-                className={activeTab == "furniture" ? "active" : ""}
-                onClick={() => setActiveTab("furniture")}
-              >
-                SPECIAL
-              </Tab>
-            </TabList>
 
             <TabPanel>
               <TabContent

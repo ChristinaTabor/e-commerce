@@ -91,11 +91,6 @@ const ProductSection = ({ data, loading }) => {
                         </div>
                       </div>
                       <div className="product-detail">
-                        <div className="rating">
-                          <i className="fa fa-star"></i> <i className="fa fa-star"></i>{" "}
-                          <i className="fa fa-star"></i> <i className="fa fa-star"></i>{" "}
-                          <i className="fa fa-star"></i>
-                        </div>
                         <a href={null}>
                           <h6>{product.title}</h6>
                         </a>
@@ -103,11 +98,6 @@ const ProductSection = ({ data, loading }) => {
                           {symbol}
                           {product.price}
                         </h4>
-                        <ul className="color-variant">
-                          <li className="bg-light0"></li>
-                          <li className="bg-light1"></li>
-                          <li className="bg-light2"></li>
-                        </ul>
                       </div>
                     </div>
                   </Col>

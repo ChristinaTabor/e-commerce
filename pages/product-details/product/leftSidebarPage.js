@@ -16,6 +16,7 @@ const LeftSidebarPage = ({ data, loading }) => {
     dots: false,
     arrows: true,
     fade: true,
+    swipeToSlide: true
   };
   var productsnav = {
     slidesToShow: 3,
@@ -43,16 +44,13 @@ const LeftSidebarPage = ({ data, loading }) => {
       <div className="collection-wrapper">
         <Container>
           <Row>
-            <Col sm="3" className="collection-filter">
-              <Service />
-            </Col>
-            <Col lg="9" sm="12" xs="12">
+            <Col lg="12" sm="12" xs="12">
               <Container fluid={true}>
                 {!data || loading ? (
                   "loading"
                 ) : (
                   <Row>
-                    <Col lg="6" className="product-thumbnail">
+                    <Col lg="4" className="product-thumbnail">
                       <Slider
                         {...products}
                         asNavFor={nav2}
@@ -65,27 +63,8 @@ const LeftSidebarPage = ({ data, loading }) => {
                           </div>
                         ))}
                       </Slider>
-                      <Slider
-                        className="slider-nav"
-                        {...productsnav}
-                        asNavFor={nav1}
-                        ref={(slider) => (slider2.current = slider)}
-                      >
-                        {data.variants
-                          ? data.images.map((vari, index) => (
-                              <div key={index}>
-                                <Media
-                                  src={`${vari.src}`}
-                                  key={index}
-                                  alt={vari.alt}
-                                  className="img-fluid"
-                                />
-                              </div>
-                            ))
-                          : ""}
-                      </Slider>
                     </Col>
-                    <Col lg="6" className="rtl-text">
+                    <Col lg="8" className="rtl-text">
                       <DetailsWithPrice item={data} changeColorVar={changeColorVar} />
                     </Col>
                   </Row>

@@ -26,15 +26,16 @@ const LeftSidebar = () => {
       },
     })
       .then((res) => {
-        res.variants.forEach((el) => {
-          el.color = colors.find((color) => {
-            return color._id == el.color;
-          });
+        console.log("res", res)
+        // res.variants.forEach((el) => {
+        //   el.color = colors.find((color) => {
+        //     return color._id == el.color;
+        //   });
 
-          el.size = sizes.find((size) => {
-            return size._id == el.size;
-          });
-        });
+        //   el.size = sizes.find((size) => {
+        //     return size._id == el.size;
+        //   });
+        // });
 
         setProduct(res);
       })

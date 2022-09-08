@@ -1,39 +1,46 @@
 import React, { useContext, useState, useCallback } from "react";
-import { Media, Container, Form, Row, Col } from "reactstrap";
+import { Container, Form, Row, Col, Label } from "reactstrap";
 import CartContext from "../../../../helpers/cart";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { CurrencyContext } from "../../../../helpers/Currency/CurrencyContext";
-import mastercard from "../../../../public/assets/img/mastercard.png";
-import visa from "../../../../public/assets/img/visa.png";
-import chip from "../../../../public/assets/img/chip.png";
+import cards from "../../../../public/assets/img/cards.png";
+
 import UserContext from "../../../../helpers/user/UserContext";
 import { httpPost } from "../../../../services/api/data.service";
 
 const CheckoutPage = () => {
+  const month = ["Month", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+  const year = [
+    "Year",
+    "2022",
+    "2023",
+    "2024",
+    "2025",
+    "2026",
+    "2027",
+    "2028",
+    "2029",
+    "2030",
+  ];
+
   const userContext = useContext(UserContext);
   const cartContext = useContext(CartContext);
   const cartItems = cartContext.state;
   const cartTotal = cartContext.cartTotal;
   const curContext = useContext(CurrencyContext);
   const symbol = curContext.state.symbol;
+  const [termsChecked, setTermsChecked] = useState(false);
+  const [privacyChecked, setPrivacyChecked] = useState(false);
   const [obj, setObj] = useState({});
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const router = useRouter();
 
-  const [cardForm, setCardForm] = useState({
-    cardNumber: "",
-    firstName: "",
-    lastName: "",
-    expireDate: "",
-    cvc: "",
-  });
-  const [backSide, setBackSide] = useState(false);
-  const [cardType, setCardType] = useState(mastercard);
+  const router = useRouter();
+  const [creq, setCreq] = useState("");
 
   const onSubmit = (data) => {
     if (data !== "") {
@@ -43,16 +50,41 @@ const CheckoutPage = () => {
         products.push({ _id: el._id, qty: el.qty });
       });
 
+      const metaData = {
+        browserIP: "192.168.1.107",
+        browserUserAgent: navigator.userAgent,
+        browserLanguage: navigator.language,
+        browserJavaEnabled: navigator.javaEnabled(),
+        browserScreenWidth: screen.width,
+        browserScreenHeight: screen.height,
+        browserColorDepth: screen.colorDepth,
+        browserTZ: new Date().getTimezoneOffset(),
+      };
+
       httpPost("placeOrder", {
-        userData: data,
-        cardData: cardForm,
+        userData: Object.keys(data).length ? data.userData : userContext.user,
+        cardData: data.cardData,
         productData: products,
+        metaData: metaData,
       })
         .then((res) => {
+          if (!res) {
+            return;
+          }
+
+          if (res.messagetype == "threeDSRes") {
+            setCreq(res.message.creq);
+            if (typeof document.getElementById("creq-form").submit === "object") {
+              document.getElementById("creq-form").submit.remove();
+            }
+            document.getElementById("creq-form").submit();
+            return;
+          }
+
           router.push({
             pathname: "/page/order-success",
-            state: { items: cartItems, orderTotal: cartTotal, symbol: symbol},
-            query: {orderId: res.order_id }
+            state: { items: cartItems, orderTotal: cartTotal, symbol: symbol },
+            query: JSON.stringify({ status: "successful", refNo: res.message.refNo }),
           });
         })
         .catch(() => {});
@@ -66,163 +98,123 @@ const CheckoutPage = () => {
     setObj(obj);
   };
 
-  const formatCardNumber = (value) => {
-    setCardForm({
-      ...cardForm,
-      cardNumber: value.replace(/\s/g, "").replace(/\d{4}(?=.)/g, "$& "),
-    });
-    if (cardForm.cardNumber[0] == 4) {
-      // visa
-      setCardType(visa);
-    } else {
-      // mastercard
-      setCardType(mastercard);
-    }
-  };
-
-  const formatExpireDate = (value) => {
-    let newValue = value;
-    if (value.length > 2) {
-      newValue = value.substring(0, 2) + "/" + value.substring(2 + 1);
-    }
-    setCardForm({
-      ...cardForm,
-      expireDate: newValue,
-    });
-  };
-
   return (
     <section className="section-b-space">
+      <form
+        autoComplete="off"
+        action="https://www.threedsecurempi.com/EMVTDS/AUT?Action=ProcessCReq"
+        method="post"
+        id="creq-form"
+      >
+        <input type="hidden" name="creq" value={creq} />
+      </form>
       <Container>
         <div className="checkout-page">
           <div className="checkout-form">
             <Form onSubmit={handleSubmit(onSubmit)}>
-              <Row>
+              <Row className="main-row">
                 {!userContext.user && (
                   <Col lg="6" sm="12" xs="12">
-                    <div className="checkout-title">
-                      <h3>Billing Details</h3>
-                    </div>
-                    <div className="row check-out">
-                      <div className="form-group col-md-6 col-sm-6 col-xs-12">
-                        <div className="field-label">First Name</div>
+                    <Row>
+                      <Col md="12">
+                        <div className="checkout-title">
+                          <h3>Billing Details</h3>
+                        </div>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md="6">
+                        <Label>First Name</Label>
                         <input
-                          type="text"
-                          className={`${errors.first_name ? "error_border" : ""}`}
-                          name="first_name"
-                          {...register("first_name", { required: true })}
+                          className="form-group form-control"
+                          placeholder="First Name"
+                          {...register("userData.first_name", { required: true })}
                         />
-                        <span className="error-message">
-                          {errors.first_name && "First name is required"}
-                        </span>
-                      </div>
-                      <div className="form-group col-md-6 col-sm-6 col-xs-12">
-                        <div className="field-label">Last Name</div>
+                      </Col>
+                      <Col md="6">
+                        <Label>Last Name</Label>
                         <input
-                          type="text"
-                          className={`${errors.last_name ? "error_border" : ""}`}
-                          name="last_name"
-                          {...register("last_name", { required: true })}
+                          className="form-group form-control"
+                          placeholder="Last Name"
+                          {...register("userData.last_name", { required: true })}
                         />
-                        <span className="error-message">
-                          {errors.last_name && "Last name is required"}
-                        </span>
-                      </div>
-                      <div className="form-group col-md-6 col-sm-6 col-xs-12">
-                        <div className="field-label">Phone</div>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md="6">
+                        <Label>Phone</Label>
                         <input
-                          type="text"
-                          name="phone"
-                          className={`${errors.phone ? "error_border" : ""}`}
-                          {...register("phone", { pattern: /\d+/ })}
+                          className="form-group form-control"
+                          placeholder="Phone"
+                          {...register("userData.phone", { pattern: /\d+/ })}
                         />
-                        <span className="error-message">
-                          {errors.phone && "Please enter number for phone."}
-                        </span>
-                      </div>
-                      <div className="form-group col-md-6 col-sm-6 col-xs-12">
-                        <div className="field-label">Email Address</div>
+                      </Col>
+                      <Col md="6">
+                        <Label>Email Address</Label>
                         <input
-                          className={`${errors.email ? "error_border" : ""}`}
-                          type="text"
-                          name="email"
-                          {...register("email", {
+                          className="form-group form-control"
+                          placeholder="Email Address"
+                          {...register("userData.email", {
                             required: true,
                             pattern: /^\S+@\S+$/i,
                           })}
                         />
-                        <span className="error-message">
-                          {errors.email && "Please enter proper email address ."}
-                        </span>
-                      </div>
-                      <div className="form-group col-md-12 col-sm-12 col-xs-12">
-                        <div className="field-label">Country</div>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md="12">
+                        <Label>Country</Label>
                         <select
-                          name="country"
-                          {...register("country", { required: true })}
+                          className="form-group form-control"
+                          placeholder="Country"
+                          {...register("userData.country", { required: true })}
                         >
-                          <option>India</option>
-                          <option>South Africa</option>
                           <option>United State</option>
                           <option>Australia</option>
+                          <option>South Africa</option>
                         </select>
-                      </div>
-                      <div className="form-group col-md-12 col-sm-12 col-xs-12">
-                        <div className="field-label">Address</div>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md="12">
+                        <Label>Address</Label>
                         <input
-                          className={`${errors.address ? "error_border" : ""}`}
-                          type="text"
-                          name="address"
-                          {...register("address", { required: true, min: 20, max: 120 })}
-                          placeholder="Street address"
+                          className="form-group form-control"
+                          placeholder="Address"
+                          {...register("userData.address", { required: true })}
                         />
-                        <span className="error-message">
-                          {errors.address && "Please right your address ."}
-                        </span>
-                      </div>
-                      <div className="form-group col-md-12 col-sm-12 col-xs-12">
-                        <div className="field-label">Town/City</div>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md="12">
+                        <Label>Town / City</Label>
                         <input
-                          type="text"
-                          className={`${errors.city ? "error_border" : ""}`}
-                          name="city"
-                          {...register("city", { required: true })}
-                          onChange={setStateFromInput}
+                          className="form-group form-control"
+                          placeholder="Town/City"
+                          {...register("userData.city", { required: true })}
                         />
-                        <span className="error-message">
-                          {errors.city && "select one city"}
-                        </span>
-                      </div>
-                      <div className="form-group col-md-12 col-sm-6 col-xs-12">
-                        <div className="field-label">State / County</div>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md="12">
+                        <Label>State / County</Label>
                         <input
-                          type="text"
-                          className={`${errors.state ? "error_border" : ""}`}
-                          name="state"
-                          {...register("state", { required: true })}
-                          onChange={setStateFromInput}
+                          className="form-group form-control"
+                          placeholder="State / County"
+                          {...register("userData.state", { required: true })}
                         />
-                        <span className="error-message">
-                          {errors.state && "select one state"}
-                        </span>
-                      </div>
-                      <div className="form-group col-md-12 col-sm-6 col-xs-12">
-                        <div className="field-label">Postal Code</div>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md="12">
+                        <Label>Postal Code</Label>
                         <input
-                          type="text"
-                          name="pincode"
-                          className={`${errors.pincode ? "error_border" : ""}`}
-                          {...register("pincode", { pattern: /\d+/ })}
+                          className="form-group form-control"
+                          placeholder="Postal Code"
+                          {...register("userData.postal_code")}
                         />
-                        <span className="error-message">
-                          {errors.pincode && "Required integer"}
-                        </span>
-                      </div>
-                      {/* <div className="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <input type="checkbox" name="create_account" id="account-option" />
-                                    &ensp; <label htmlFor="account-option">Create An Account?</label>
-                                  </div> */}
-                    </div>
+                      </Col>
+                    </Row>
                   </Col>
                 )}
                 <Col lg="6" sm="12" xs="12">
@@ -245,36 +237,6 @@ const CheckoutPage = () => {
                             </li>
                           ))}
                         </ul>
-                        <ul className="sub-total">
-                          <li>
-                            Subtotal{" "}
-                            <span className="count">
-                              {symbol}
-                              {cartTotal}
-                            </span>
-                          </li>
-                          <li>
-                            Shipping
-                            <div className="shipping">
-                              <div className="shopping-option">
-                                <input
-                                  type="checkbox"
-                                  name="free-shipping"
-                                  id="free-shipping"
-                                />
-                                <label htmlFor="free-shipping">Free Shipping</label>
-                              </div>
-                              <div className="shopping-option">
-                                <input
-                                  type="checkbox"
-                                  name="local-pickup"
-                                  id="local-pickup"
-                                />
-                                <label htmlFor="local-pickup">Local Pickup</label>
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
                         <ul className="total">
                           <li>
                             Total{" "}
@@ -286,108 +248,159 @@ const CheckoutPage = () => {
                         </ul>
                       </div>
                       <div className="payment-box">
-                        <div className="custom-card-container">
-                          <div className={`card-container ${backSide && "back-side"}`}>
-                            <div className="front">
-                              <div className="top">
-                                <img className="chip" src={chip.src} />
-                                <img className="logo" src={cardType.src} />
-                              </div>
-                              <span className="card-number">{cardForm.cardNumber}</span>
-                              <div className="bottom">
-                                <span className="user-name">
-                                  {cardForm.firstName + " " + cardForm.lastName}
-                                </span>
-                                <div className="valid-container">
-                                  <span>
-                                    VALID
-                                    <br />
-                                    DATE
-                                  </span>
-                                  <span>{cardForm.expireDate}</span>
-                                </div>
-                              </div>
+                        <Row>
+                          <Col md="12">
+                            <div className="checkout-title">
+                              <h3>Credit Card Details</h3>
                             </div>
-                            <div className="back">
-                              <div className="top-back"></div>
-                              <span></span>
-                              <div className="middle-back">
-                                <div className="left">
-                                  <span>{cardForm.cvc}</span>
-                                </div>
-                              </div>
-                              <div className="bottom-back">
-                                <div className="sticky"></div>
-                                <span>
-                                  Lorem ipsum dolor sit, amet consectetur adipisicing
-                                  elit. Dolorem totam, consequuntur reiciendis nihil
-                                  labore ipsa sed! Magnam fugiat cum, iure nihil quasi
-                                  sunt delectus voluptate!
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="card-data">
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col md="6">
+                            <Label>First Name</Label>
                             <input
-                              placeholder="Card Number"
-                              type="tel"
-                              maxLength="19"
-                              minLength="19"
-                              value={cardForm.cardNumber}
-                              onChange={(e) => formatCardNumber(e.target.value)}
+                              type="text"
+                              className="form-group form-control"
+                              placeholder="First Name"
+                              {...register("cardData.firstName", {
+                                required: true,
+                              })}
                             />
-                            <div className="card-data-middle">
-                              <input
-                                placeholder="First Name"
-                                type="text"
-                                onChange={(e) =>
-                                  setCardForm({
-                                    ...cardForm,
-                                    firstName: e.target.value,
-                                  })
-                                }
-                              />
-                              <input
-                                placeholder="Lats Name"
-                                type="text"
-                                onChange={(e) =>
-                                  setCardForm({
-                                    ...cardForm,
-                                    lastName: e.target.value,
-                                  })
-                                }
-                              />
+                          </Col>
+                          <Col md="6">
+                            <Label>Lats Name</Label>
+                            <input
+                              type="tel"
+                              className="form-group form-control"
+                              placeholder="Lats Name"
+                              {...register("cardData.lastName", {
+                                required: true,
+                              })}
+                            />
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col md="12">
+                            <Label>Card Number</Label>
+                            <input
+                              type="tel"
+                              className="form-group form-control"
+                              placeholder="Card Number"
+                              minLength="16"
+                              maxLength="16"
+                              {...register("cardData.cardNumber", {
+                                required: true,
+                                maxLength: 16,
+                                minLength: 16,
+                              })}
+                            />
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col md="12">
+                            <Label>Phone Number</Label>
+                            <input
+                              type="tel"
+                              className="form-group form-control"
+                              placeholder="Phone Number"
+                              {...register("cardData.phoneNumber", {
+                                required: true,
+                              })}
+                            />
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col md="4">
+                            <Label>Exp Date</Label>
+                            <select
+                              {...register("cardData.month", {
+                                required: true,
+                              })}
+                            >
+                              {month.map((m) => (
+                                <option key={m} value={m}>
+                                  {m}
+                                </option>
+                              ))}
+                            </select>
+                          </Col>
+                          <Col md="4">
+                            <Label>&nbsp;</Label>
+                            <select
+                              {...register("cardData.year", {
+                                required: true,
+                              })}
+                            >
+                              {year.map((y) => (
+                                <option key={y} value={y}>
+                                  {y}
+                                </option>
+                              ))}
+                            </select>
+                          </Col>
+                          <Col md="4">
+                            <Label>CVC</Label>
+                            <input
+                              type="tel"
+                              className="form-group form-control"
+                              placeholder="CVC"
+                              maxLength="4"
+                              minLength="3"
+                              {...register("cardData.cvc", {
+                                required: true,
+                                maxLength: 4,
+                                minLength: 3,
+                              })}
+                            />
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col md="12">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                            do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col md="12">
+                            <div className="check-box-container">
+                              <div className="check-box">
+                                <input
+                                  type="checkbox"
+                                  onChange={(e) => {
+                                    setTermsChecked(e.target.checked);
+                                  }}
+                                />
+                                <label> Terms & Conditions</label>
+                              </div>
+                              <div className="check-box">
+                                <input
+                                  type="checkbox"
+                                  onChange={(e) => {
+                                    setPrivacyChecked(e.target.checked);
+                                  }}
+                                />
+                                <label> Privacy Policy</label>
+                              </div>
                             </div>
-                            <div className="card-data-bottom">
-                              <input
-                                placeholder="Exp Date"
-                                maxLength="7"
-                                minLength="7"
-                                type="text"
-                                value={cardForm.expireDate}
-                                onChange={(e) => formatExpireDate(e.target.value)}
-                              />
-                              <input
-                                placeholder="CVC"
-                                type="text"
-                                maxLength="3"
-                                minLength="3"
-                                onFocus={() => setBackSide(true)}
-                                onBlur={() => setBackSide(false)}
-                                onChange={(e) =>
-                                  setCardForm({
-                                    ...cardForm,
-                                    cvc: e.target.value,
-                                  })
-                                }
-                              />
-                            </div>
-                          </div>
-                          <button type="submit" className="btn-solid btn">
-                            Place Order
-                          </button>
-                        </div>
+                          </Col>
+                        </Row>
+                        <button
+                          type="submit"
+                          className="btn btn-solid"
+                          disabled={!termsChecked || !privacyChecked}
+                        >
+                          Place Order
+                        </button>
+                        <Row>
+                          <Col md="12">
+                            <span>Your charge descriptor is: test.com</span>
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col md="12">
+                            <img className="cards" src={cards.src} />
+                          </Col>
+                        </Row>
                       </div>
                     </div>
                   ) : (

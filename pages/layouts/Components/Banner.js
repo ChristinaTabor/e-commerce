@@ -5,11 +5,14 @@ import MasterBanner from "./MasterBanner";
 
 const Banner = () => {
   const commonContext = useContext(CommonContext);
-
+  const sliderSettings = {
+    autoplay: true,
+    autoplaySpeed: 2500
+  }
   return (
     <Fragment>
       <section className="p-0">
-        <Slider className="slide-1 home-slider">
+        <Slider {...sliderSettings} className="slide-1 home-slider">
           {commonContext.commonData.home_banner.map((data, i) => {
             return (
               <MasterBanner

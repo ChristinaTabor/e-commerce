@@ -57,9 +57,9 @@ const Fashion = ({ specialProducts, isLoading }) => {
         <ServiceLayout sectionClass="border-section small-section" />
       )}
 
-      <div className="section-b-space">
+      {/* <div className="section-b-space">
         <LogoBlock />
-      </div>
+      </div> */}
       <MasterFooter
         footerClass={`footer-light`}
         belowSection={"section-b-space light-layout"}

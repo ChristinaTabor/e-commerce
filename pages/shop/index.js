@@ -24,13 +24,13 @@ const LeftSidebar = ({ productsData, isLoading }) => {
         <div className="collection-wrapper">
           <Container>
             <Row>
-              <FilterPage
+              {/* <FilterPage
                 sm="3"
                 data={filterDataContext.filterData}
                 loading={isLoading}
                 sidebarView={sidebarView}
                 closeSidebar={() => openCloseSidebar(sidebarView)}
-              />
+              /> */}
               <ProductList
                 loading={isLoading}
                 data={productsData}

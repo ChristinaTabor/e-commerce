@@ -94,7 +94,7 @@ const ProductList = ({ data, loading, colClass, layoutList, openSidebar, noSideb
       <div className="page-main-content">
         <Row>
           <Col sm="12">
-            <Row>
+            {/* <Row>
               <Col xs="12">
                 <ul className="product-filter-tags">
                   {selectedBrands.map((brand, i) => (
@@ -132,7 +132,7 @@ const ProductList = ({ data, loading, colClass, layoutList, openSidebar, noSideb
                   }
                 </ul>
               </Col>
-            </Row>
+            </Row> */}
             <div className="collection-product-wrapper">
               <div className="product-top-filter">
                 {!noSidebar ? (

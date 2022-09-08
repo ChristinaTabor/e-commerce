@@ -1,6 +1,4 @@
 import React, { useContext } from "react";
-import { useQuery } from "@apollo/client";
-import { gql } from "@apollo/client";
 import { Media } from "reactstrap";
 import Slider from "react-slick";
 import { CurrencyContext } from "../../../helpers/Currency/CurrencyContext";
@@ -33,13 +31,6 @@ const NewProduct = ({data, loading}) => {
                       />
                     </a>
                     <div className="media-body align-self-center">
-                      <div className="rating">
-                        <i className="fa fa-star"></i>{" "}
-                        <i className="fa fa-star"></i>{" "}
-                        <i className="fa fa-star"></i>{" "}
-                        <i className="fa fa-star"></i>{" "}
-                        <i className="fa fa-star"></i>
-                      </div>
                       <a href={null}>
                         <h6>{product.title}</h6>
                       </a>
@@ -72,13 +63,6 @@ const NewProduct = ({data, loading}) => {
                       />
                     </a>
                     <div className="media-body align-self-center">
-                      <div className="rating">
-                        <i className="fa fa-star"></i>{" "}
-                        <i className="fa fa-star"></i>{" "}
-                        <i className="fa fa-star"></i>{" "}
-                        <i className="fa fa-star"></i>{" "}
-                        <i className="fa fa-star"></i>
-                      </div>
                       <a href={null}>
                         <h6>{product.title}</h6>
                       </a>
