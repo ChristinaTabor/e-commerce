@@ -61,8 +61,10 @@ const CheckoutPage = () => {
         browserTZ: new Date().getTimezoneOffset(),
       };
 
+      const userData = data.userData && Object.keys(data.userData).length ? data.userData : userContext.user
+      
       httpPost("placeOrder", {
-        userData: Object.keys(data).length ? data.userData : userContext.user,
+        userData: userData,
         cardData: data.cardData,
         productData: products,
         metaData: metaData,

@@ -7,7 +7,8 @@ const Banner = () => {
   const commonContext = useContext(CommonContext);
   const sliderSettings = {
     autoplay: true,
-    autoplaySpeed: 2500
+    autoplaySpeed: 3500,
+    speed: 1000
   }
   return (
     <Fragment>
