@@ -32,9 +32,14 @@ export default function MyApp({ Component, pageProps }) {
       queryParams: {
         filter: { "category._id": CAT_ID },
       },
-    }).then((res) => {
-      return res[0];
-    });
+    })
+      .catch((err) => {
+        localStorage.clear();
+        router.push('');
+      })
+      .then((res) => {
+        return res[0];
+      });
 
     if (common.theme) {
       let element = document.getElementsByTagName("body")[0];
