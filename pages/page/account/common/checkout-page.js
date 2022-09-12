@@ -1,5 +1,5 @@
 import React, { useContext, useState, useCallback } from "react";
-import { Container, Form, Row, Col, Label } from "reactstrap";
+import { Container, Form, Row, Col, Label, Spinner } from "reactstrap";
 import CartContext from "../../../../helpers/cart";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
@@ -24,6 +24,7 @@ const CheckoutPage = () => {
     "2030",
   ];
 
+  const [isSubmiting, setIsSubmiting] = useState(false);
   const userContext = useContext(UserContext);
   const cartContext = useContext(CartContext);
   const cartItems = cartContext.state;
@@ -62,6 +63,8 @@ const CheckoutPage = () => {
       };
 
       const userData = data.userData && Object.keys(data.userData).length ? data.userData : userContext.user
+
+      setIsSubmiting(true)
       
       httpPost("placeOrder", {
         userData: userData,
@@ -73,8 +76,6 @@ const CheckoutPage = () => {
           if (!res) {
             return;
           }
-
-          localStorage.removeItem('cartList')
 
           if (res.messagetype == "threeDSRes") {
             setCreq(res.message.creq);
@@ -91,7 +92,8 @@ const CheckoutPage = () => {
             query: JSON.stringify({ status: "successful", refNo: res.message.refNo }),
           });
         })
-        .catch(() => {});
+        .catch(() => {})
+        .finally(() => setIsSubmiting(false))
     } else {
       errors.showMessages();
     }
@@ -390,10 +392,10 @@ const CheckoutPage = () => {
                         </Row>
                         <button
                           type="submit"
-                          className="btn btn-solid"
+                          className="btn btn-solid place-order-btn"
                           disabled={!termsChecked || !privacyChecked}
                         >
-                          Place Order
+                          {isSubmiting ? <Spinner animation="border" /> : 'Place Order'}
                         </button>
                         <Row>
                           <Col md="12">

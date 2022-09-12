@@ -735,6 +735,10 @@ button {
   }
 }
 
+.place-order-btn{
+  min-width: 175px;
+}
+
 .btn-outline {
   display: inline-block;
   padding: 13px 29px;
@@ -12336,6 +12340,10 @@ footer {
   width: 1rem;
   height: 1rem;
   margin-right: 10px;
+
+  .visually-hidden{
+    display: none;
+  }
 }
 
 // Quick-view //
