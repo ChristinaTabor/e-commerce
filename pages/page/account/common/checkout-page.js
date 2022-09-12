@@ -74,6 +74,8 @@ const CheckoutPage = () => {
             return;
           }
 
+          localStorage.removeItem('cartList')
+
           if (res.messagetype == "threeDSRes") {
             setCreq(res.message.creq);
             if (typeof document.getElementById("creq-form").submit === "object") {
