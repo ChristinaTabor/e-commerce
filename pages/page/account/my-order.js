@@ -7,6 +7,14 @@ import AccountLayout from "../../../components/account/account-layout";
 import NewAddress from "../../../components/account/new-address";
 import { buckets, post, patch, remove, update } from "../../../services/api/data.service";
 
+
+const status_msg = {
+  PENDING_PAYMENT: 'Pending Payment',
+  ORDER_PROCESSING: 'Order Processing',
+  SHIPPED: 'Shipped',
+  CANCELED: 'Canceled'
+}
+
 const MyOrder = () => {
   const userContext = useContext(UserContext);
   const user = userContext.user;
@@ -20,7 +28,7 @@ const MyOrder = () => {
           </div>
           <div className="order-section">
             <Row className="header">
-              <Col lg="2">Order Id</Col>
+              <Col lg="2">Reference Id</Col>
               <Col lg="4">Product</Col>
               <Col lg="2">Quantity</Col>
               <Col lg="2">Price</Col>
@@ -28,7 +36,7 @@ const MyOrder = () => {
             </Row>
             {user?.orders.map((order) => (
               <Row>
-                <Col lg="2">{order.order_id}</Col>
+                <Col lg="2">{order.reference_no}</Col>
                 <Col lg="4" className="product">
                   {order.products.map((soldProduct) => (
                     <span>
@@ -49,7 +57,7 @@ const MyOrder = () => {
                 </Col>
                 <Col lg="2">
                   <span className={`status ${order.status}`}>
-                  {order.status}
+                  {status_msg[order.status]}
                   </span>
                 </Col>
               </Row>

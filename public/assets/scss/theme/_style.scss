@@ -10827,13 +10827,16 @@ footer {
     border-radius: 20px;
     color: $white;
 
-    &.Pending {
+    &.PENDING_PAYMENT {
       background: #6c757d;
     }
-    &.Shipped{
+    &.ORDER_PROCESSING {
+      background: #6c757d;
+    }
+    &.SHIPPED{
       background: $green;
     }
-    &.Canceled{
+    &.CANCELED{
       background: $red;
     }
   }
