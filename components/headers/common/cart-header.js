@@ -12,7 +12,7 @@ const CartHeader = ({ item, symbol }) => {
         <div className="media">
           <Link href={"/product-details/" + item._id}>
             <a>
-              <Media alt="" className="mr-3" src={`${item.images[0].src}`} />
+              <Media alt="" className="mr-3 shopping-cart-media" src={`${item.images[0].src}`} />
             </a>
           </Link>
           <div className="media-body">

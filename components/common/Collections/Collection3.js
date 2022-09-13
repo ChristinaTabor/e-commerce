@@ -74,7 +74,7 @@ const TopCollection = ({
                     </div>
                   </div>
                 ) : (
-                  <Slider {...productSlider} className="product-m no-arrow">
+                  <Slider {...productSlider} className="product-m no-arrow gift-card-slider">
                     {data &&
                       data.map((product, i) => (
                         <div key={i}>

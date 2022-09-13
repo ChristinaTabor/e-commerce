@@ -505,6 +505,12 @@ del {
   &::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
+
+  .shopping-cart-media{
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+  }
 }
 
 [data-notify="progressbar"] {
@@ -1966,13 +1972,69 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 30px 0;
+  margin: 100px 0;
 
   .middle-box-inner{
-    width: calc(100% - 60px);
+    width: 100%;
     height: 160px;
-    background: #d9d9d9;
+    background: #f5f5f5;
     border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0 100px;
+    gap: 50px;
+
+    span{
+      font-size: 1rem;
+      flex: 2;
+      text-align: center;
+    }
+   
+    &.bottom{
+      img {
+        height: 92px;
+      }
+    }
+  }
+}
+
+.home-banner-2{
+  padding-top: 0;
+  padding-bottom: 100px;
+  position: relative;
+  color: white !important;
+  
+  img{
+    border-radius: 15px;
+  }
+
+  .form-col{
+    height: max-content;
+    scale: 1;
+    transition: all 0.7s;
+
+    &:hover{
+      scale: 1.05;
+    }
+
+    &.right{
+      .offer{
+        right: 50px;
+        left: unset;
+      }
+    }
+  }
+
+  .offer{
+    position: absolute;
+    bottom: 10px;
+    left: 50px;
+  }
+
+  h2{
+    color: white;
   }
 }
 
@@ -3126,6 +3188,21 @@ header {
       margin: 0 15px;
     }
   }
+
+  &.gift-card-slider{
+    .img-wrapper{
+      height: 364px;
+      max-width: 255px;
+    }
+    .front{
+      height: 100%;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
 }
 
 .margin-default {
@@ -3791,7 +3868,7 @@ header {
     }
 
     i {
-      color: #000;
+      color: #fff;
       font-size: 18px;
       padding-right: 10px;
       padding-left: 10px;
@@ -8456,6 +8533,35 @@ footer {
 }
 
 .footer-light {
+  background-image: url("/assets/img/game/footer.jpeg");
+  background-size: cover;
+  background-position: center center;
+
+  .section-b-space{
+    background: rgba($color: #000000, $alpha: 0.8);
+    padding: 200px 0;
+  }
+
+  *{
+    color: white !important;
+  }
+
+  .sub-footer{
+    background-color: black;
+
+    &:after {
+      content: "";
+      position: absolute;
+      background: url("/assets/img/game/top.png");
+      top: -1px;
+      width: 100%;
+      height: 85px;
+      z-index: 1;
+      background-repeat: no-repeat;
+    }
+  
+  }
+
   .subscribe {
     display: flex;
     height: 100%;
@@ -13915,7 +14021,7 @@ footer {
   &:after {
     content: "";
     position: absolute;
-    background: url("/assets/img/top.png");
+    background: url("/assets/img/game/top.png");
     top: -1px;
     width: 100%;
     height: 85px;
@@ -13926,7 +14032,7 @@ footer {
   &:before {
     content: "";
     position: absolute;
-    background: url("/assets/img/back.png");
+    background: url("/assets/img/game/back.png");
     bottom: -12px;
     width: 100%;
     height: 110px;

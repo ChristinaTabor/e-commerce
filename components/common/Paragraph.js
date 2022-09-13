@@ -6,7 +6,7 @@ const Paragraph = ({title, inner, line ,hrClass}) => {
         <>
             <div className={title}>
                 <h4>special offer</h4>
-                <h2 className={inner}>top collection</h2>
+                <h2 className={inner}>gift cards</h2>
                 {
                     line ?
                         <div className="line"></div> : 

@@ -8,6 +8,7 @@ import cards from "../../../../public/assets/img/cards.png";
 
 import UserContext from "../../../../helpers/user/UserContext";
 import { httpPost } from "../../../../services/api/data.service";
+import { toast } from "react-toastify";
 
 const CheckoutPage = () => {
   const month = ["Month", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
@@ -62,10 +63,13 @@ const CheckoutPage = () => {
         browserTZ: new Date().getTimezoneOffset(),
       };
 
-      const userData = data.userData && Object.keys(data.userData).length ? data.userData : userContext.user
+      const userData =
+        data.userData && Object.keys(data.userData).length
+          ? data.userData
+          : userContext.user;
 
-      setIsSubmiting(true)
-      
+      setIsSubmiting(true);
+
       httpPost("placeOrder", {
         userData: userData,
         cardData: data.cardData,
@@ -92,16 +96,13 @@ const CheckoutPage = () => {
             query: JSON.stringify({ status: "successful", refNo: res.message.refNo }),
           });
         })
-        .catch(() => {})
-        .finally(() => setIsSubmiting(false))
+        .catch((err) => {
+          toast.error(err.message);
+        })
+        .finally(() => setIsSubmiting(false));
     } else {
       errors.showMessages();
     }
-  };
-
-  const setStateFromInput = (event) => {
-    obj[event.target.name] = event.target.value;
-    setObj(obj);
   };
 
   return (
@@ -395,7 +396,7 @@ const CheckoutPage = () => {
                           className="btn btn-solid place-order-btn"
                           disabled={!termsChecked || !privacyChecked}
                         >
-                          {isSubmiting ? <Spinner animation="border" /> : 'Place Order'}
+                          {isSubmiting ? <Spinner animation="border" /> : "Place Order"}
                         </button>
                         <Row>
                           <Col md="12">

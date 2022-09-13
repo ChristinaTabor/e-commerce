@@ -13,8 +13,14 @@ import MasterFooter from "../components/footers/common/MasterFooter";
 import { CAT_ID } from "../services/api/data.service";
 import { getProducts } from "../services/api/shop.service";
 import CommonContext from "../helpers/common/CommonContext";
+import Link from "next/link";
+import { Container, Row, Col } from "reactstrap";
+import BannerImg1 from "../public/assets/img/game/1.jpeg";
+import BannerImg2 from "../public/assets/img/game/2.jpeg";
+import ImgSupport from "../public/assets/img/support.svg";
+import ImgReliable from "../public/assets/img/reliable.png";
 
-const Fashion = ({ specialProducts, isLoading }) => {
+const Fashion = ({ specialProducts, topCollection, isLoading }) => {
   const commonContext = useContext(CommonContext);
 
   return (
@@ -30,21 +36,51 @@ const Fashion = ({ specialProducts, isLoading }) => {
         noTitle="null"
         backImage={false}
         type="fashion"
-        title="top collection"
+        title="gift cards"
         subtitle="special offer"
         productSlider={Product4}
-        designClass="section-b-space p-t-0 ratio_asos"
+        designClass="p-t-0 ratio_asos"
         noSlider="false"
         cartClass="cart-info cart-wrap"
-        data={specialProducts}
+        data={topCollection}
         loading={isLoading}
       />
 
-      {/* <div className="middle-box-1">
-        <div className="middle-box-inner">
-
+      <Container>
+        <div className="middle-box-1">
+          <div className="middle-box-inner">
+            <h3>Lorem ipsum</h3>
+            <span>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+            </span>
+            <Link href={"/shop"}>
+              <a className={`btn btn-solid`}>Shop Now</a>
+            </Link>
+          </div>
         </div>
-      </div> */}
+      </Container>
+
+      <section className="home-banner-2">
+        <Container>
+          <Row>
+            <Col md="6" className="form-col left">
+              <img src={BannerImg1.src}></img>
+              <div className="offer">
+                <h4>for xbox</h4>
+                <h2>save 10%</h2>
+              </div>
+            </Col>
+            <Col md="6" className="form-col right">
+              <img src={BannerImg2.src}></img>
+              <div className="offer">
+                <h4>for psp</h4>
+                <h2>save 15%</h2>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </section>
 
       <Parallax />
       <SpecialProducts
@@ -64,12 +100,26 @@ const Fashion = ({ specialProducts, isLoading }) => {
         <ServiceLayout sectionClass="border-section small-section" />
       )}
 
-      {/* <div className="section-b-space">
-        <LogoBlock />
-      </div> */}
+      <Container>
+        <div className="middle-box-1">
+          <div className="middle-box-inner bottom">
+            <h3>Lorem ipsum</h3>
+            <span>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+            </span>
+            {/* <Link href={"/shop"}>
+              <a className={`btn btn-solid`}>Shop Now</a>
+            </Link> */}
+            <img src={ImgReliable.src} />
+            <img src={ImgSupport.src} />
+          </div>
+        </div>
+      </Container>
+
       <MasterFooter
         footerClass={`footer-light`}
-        belowSection={"section-b-space light-layout"}
+        belowSection={"section-b-space"}
         logoName={"logo.png"}
         data={commonContext.commonData}
       />
@@ -80,12 +130,19 @@ const Fashion = ({ specialProducts, isLoading }) => {
 export default Fashion;
 
 export async function getStaticProps() {
-  const specialProducts = await getProducts({
+  const topCollection = await getProducts({
     queryParams: {
       relation: true,
-      filter: { "category._id": CAT_ID },
+      filter: { "category._id": CAT_ID, type: "gift_card" },
     },
   });
 
-  return { props: { isLoading: false, specialProducts }, revalidate: 10 };
+  const specialProducts = await getProducts({
+    queryParams: {
+      relation: true,
+      filter: { "category._id": CAT_ID, type: "game" },
+    },
+  });
+
+  return { props: { isLoading: false, specialProducts, topCollection }, revalidate: 10 };
 }
