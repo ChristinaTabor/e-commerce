@@ -4,7 +4,7 @@ import { Container, Row, Col } from "reactstrap";
 const MasterParallaxBanner = ({ data, parallaxSectionClass, parallaxClass }) => {
   return (
     <Fragment>
-      <section className={`p-0 ${parallaxSectionClass}`}>
+      <section className={`p-0 effect-cls`}>
         <div
           style={{ "backgroundImage": `url(${data.img})` }}
           className={`full-banner parallax ${parallaxClass}`}

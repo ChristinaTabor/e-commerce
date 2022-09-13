@@ -39,6 +39,13 @@ const Fashion = ({ specialProducts, isLoading }) => {
         data={specialProducts}
         loading={isLoading}
       />
+
+      {/* <div className="middle-box-1">
+        <div className="middle-box-inner">
+
+        </div>
+      </div> */}
+
       <Parallax />
       <SpecialProducts
         type="fashion"

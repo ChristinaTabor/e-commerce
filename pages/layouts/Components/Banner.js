@@ -12,7 +12,7 @@ const Banner = () => {
   }
   return (
     <Fragment>
-      <section className="p-0">
+      <section className="p-0 effect-cls">
         <Slider {...sliderSettings} className="slide-1 home-slider">
           {commonContext.commonData.home_banner.map((data, i) => {
             return (
