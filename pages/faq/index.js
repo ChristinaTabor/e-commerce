@@ -24,7 +24,7 @@ const FaqList = ({ faq }) => {
             data-toggle="collapse"
             onClick={toggle}
             data-target="#collapseOne"
-            aria-expanded="true"
+            aria-expanded={isOpen}
             aria-controls="collapseOne"
           >
             {faq.qus}

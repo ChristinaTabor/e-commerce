@@ -9,6 +9,7 @@ import cards from "../../../../public/assets/img/cards.png";
 import UserContext from "../../../../helpers/user/UserContext";
 import { httpPost } from "../../../../services/api/data.service";
 import { toast } from "react-toastify";
+import {countryList} from '../../../../services/countries'
 
 const CheckoutPage = () => {
   const month = ["Month", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
@@ -176,9 +177,9 @@ const CheckoutPage = () => {
                           placeholder="Country"
                           {...register("userData.country", { required: true })}
                         >
-                          <option>United State</option>
-                          <option>Australia</option>
-                          <option>South Africa</option>
+                          {countryList.map((country, index) => (
+                            <option key={index}>{country}</option>
+                          ))}
                         </select>
                       </Col>
                     </Row>

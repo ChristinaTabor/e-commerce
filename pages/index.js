@@ -51,8 +51,7 @@ const Fashion = ({ specialProducts, topCollection, isLoading }) => {
           <div className="middle-box-inner">
             <h3>Lorem ipsum</h3>
             <span>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+            Make a purchase at a favorable price and win a discount coupon.
             </span>
             <Link href={"/shop"}>
               <a className={`btn btn-solid`}>Shop Now</a>
@@ -103,10 +102,10 @@ const Fashion = ({ specialProducts, topCollection, isLoading }) => {
       <Container>
         <div className="middle-box-1">
           <div className="middle-box-inner bottom">
-            <h3>Lorem ipsum</h3>
+            <h3>Support <br/>and<br/> Reliability</h3>
             <span>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+              You can contact us at any time. We provide continuous support and guarantee
+              the safety of your purchases
             </span>
             {/* <Link href={"/shop"}>
               <a className={`btn btn-solid`}>Shop Now</a>
