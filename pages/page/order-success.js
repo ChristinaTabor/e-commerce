@@ -26,7 +26,7 @@ const OrderSuccess = () => {
                 <div className="result-text success-text">
                   <i className="fa fa-check-circle" aria-hidden="true"></i>
                   <h2>thank you</h2>
-                  <p>Payment is successfully processsed and your order is on the way</p>
+                  <p>Payment is successfully processsed</p>
                   <p>Reference No:{result.refNo}</p>
                 </div>
               ) : (

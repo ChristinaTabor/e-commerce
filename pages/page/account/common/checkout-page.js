@@ -395,7 +395,7 @@ const CheckoutPage = () => {
                         <button
                           type="submit"
                           className="btn btn-solid place-order-btn"
-                          disabled={!termsChecked || !privacyChecked}
+                          disabled={!termsChecked || !privacyChecked || isSubmiting}
                         >
                           {isSubmiting ? <Spinner animation="border" /> : "Place Order"}
                         </button>

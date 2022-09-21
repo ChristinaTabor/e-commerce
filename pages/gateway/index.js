@@ -1,10 +1,12 @@
-import React, { useContext, useState, useCallback } from "react";
-import { Container, Form, Row, Col, Label } from "reactstrap";
+import React, { useState } from "react";
+import { Container, Form, Row, Col, Label, Spinner } from "reactstrap";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
-import { httpPost } from "../../services/api/data.service";
+import { toast } from "react-toastify";
 
 const Gateway = () => {
+  const purchaseUrl =
+    "https://fintech-2c1ee.hq.spicaengine.com/api/fn-execute/payment/purchase";
   const month = ["Month", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
   const year = [
     "Year",
@@ -19,7 +21,9 @@ const Gateway = () => {
     "2030",
   ];
 
+  const [isSubmiting, setIsSubmiting] = useState(false);
   const [obj, setObj] = useState({});
+  const [resultObj, setResultObj] = useState();
   const {
     register,
     handleSubmit,
@@ -27,15 +31,18 @@ const Gateway = () => {
   } = useForm();
 
   const router = useRouter();
+  const { refNo, result } = router.query;
   const [creq, setCreq] = useState("");
 
+  if (result) {
+    result = JSON.parse(result);
+    if (!resultObj) {
+      setResultObj(result);
+    }
+  }
   const onSubmit = (data) => {
     if (data !== "") {
-      const products = [];
-
-      cartItems.forEach((el) => {
-        products.push({ _id: el._id, qty: el.qty });
-      });
+      setIsSubmiting(true);
 
       const metaData = {
         browserIP: "192.168.1.107",
@@ -48,33 +55,57 @@ const Gateway = () => {
         browserTZ: new Date().getTimezoneOffset(),
       };
 
-      // httpPost("placeOrder", {
-      //   userData: Object.keys(data).length ? data.userData : userContext.user,
-      //   cardData: data.cardData,
-      //   productData: products,
-      //   metaData: metaData,
-      // })
-      //   .then((res) => {
-      //     if (!res) {
-      //       return;
-      //     }
+      const obj = {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          creditCard: {
+            number: data.cardData.cardNumber,
+            expiryMonth: data.cardData.month,
+            expiryYear: data.cardData.year,
+            cvv: data.cardData.cvc,
+          },
+          referenceNo: refNo,
+          description: "",
+          bankDescriptor: "",
+          is3d: "",
+          only3d: "",
+          isPreAuth: "",
+          returnUrl: "",
+          browserMetadata: metaData,
+          isProvison: true,
+        }),
+      };
 
-      //     if (res.messagetype == "threeDSRes") {
-      //       setCreq(res.message.creq);
-      //       if (typeof document.getElementById("creq-form").submit === "object") {
-      //         document.getElementById("creq-form").submit.remove();
-      //       }
-      //       document.getElementById("creq-form").submit();
-      //       return;
-      //     }
+      fetch(purchaseUrl, obj)
+        .then(async (res) => {
+          if (res.ok) {
+            return res.json();
+          }
 
-      //     router.push({
-      //       pathname: "/page/order-success",
-      //       state: { items: cartItems, orderTotal: cartTotal, symbol: symbol },
-      //       query: JSON.stringify({ status: "successful", refNo: res.message.refNo }),
-      //     });
-      //   })
-      //   .catch(() => {});
+          const resErr = await res.json();
+          throw new Error(resErr.message || "Something went wrong");
+        })
+        .then((resJson) => {
+          if (resJson.status == "failure") {
+            toast.error(resJson.message.error);
+            return;
+          }
+
+          if (resJson.messagetype == "threeDSRes") {
+            setCreq(resJson.message.creq);
+            if (typeof document.getElementById("creq-form").submit === "object") {
+              document.getElementById("creq-form").submit.remove();
+            }
+            document.getElementById("creq-form").submit();
+            return;
+          }
+        })
+        .catch(console.error)
+        .finally(() => setIsSubmiting(false));
     } else {
       errors.showMessages();
     }
@@ -95,131 +126,161 @@ const Gateway = () => {
       >
         <input type="hidden" name="creq" value={creq} />
       </form>
-      <Container>
-        <div className="checkout-page">
-          <div className="checkout-form">
-            <Form onSubmit={handleSubmit(onSubmit)}>
-              <Row className="main-row">
-                <Col lg="6" sm="12" xs="12">
-                  <div className="checkout-details">
-                    <div className="payment-box">
-                      <Row>
-                        <Col md="12">
-                          <div className="checkout-title">
-                            <h3>Credit Card Details</h3>
-                          </div>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col md="12">
-                          <Label>Card Number</Label>
-                          <input
-                            type="tel"
-                            className="form-group form-control"
-                            placeholder="Card Number"
-                            minLength="16"
-                            maxLength="16"
-                            {...register("cardData.cardNumber", {
-                              required: true,
-                              maxLength: 16,
-                              minLength: 16,
-                            })}
-                          />
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col md="6">
-                          <Label>First Name</Label>
-                          <input
-                            type="text"
-                            className="form-group form-control"
-                            placeholder="First Name"
-                            {...register("cardData.firstName", {
-                              required: true,
-                            })}
-                          />
-                        </Col>
-                        <Col md="6">
-                          <Label>Lats Name</Label>
-                          <input
-                            type="tel"
-                            className="form-group form-control"
-                            placeholder="Lats Name"
-                            {...register("cardData.lastName", {
-                              required: true,
-                            })}
-                          />
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col md="12">
-                          <Label>Phone Number</Label>
-                          <input
-                            type="tel"
-                            className="form-group form-control"
-                            placeholder="Phone Number"
-                            {...register("cardData.phoneNumber", {
-                              required: true,
-                            })}
-                          />
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col md="4">
-                          <Label>Exp Date</Label>
-                          <select
-                            {...register("cardData.month", {
-                              required: true,
-                            })}
-                          >
-                            {month.map((m) => (
-                              <option key={m} value={m}>
-                                {m}
-                              </option>
-                            ))}
-                          </select>
-                        </Col>
-                        <Col md="4">
-                          <Label>&nbsp;</Label>
-                          <select
-                            {...register("cardData.year", {
-                              required: true,
-                            })}
-                          >
-                            {year.map((y) => (
-                              <option key={y} value={y}>
-                                {y}
-                              </option>
-                            ))}
-                          </select>
-                        </Col>
-                        <Col md="4">
-                          <Label>CVC</Label>
-                          <input
-                            type="tel"
-                            className="form-group form-control"
-                            placeholder="CVC"
-                            maxLength="4"
-                            minLength="3"
-                            {...register("cardData.cvc", {
-                              required: true,
-                              maxLength: 4,
-                              minLength: 3,
-                            })}
-                          />
-                        </Col>
-                      </Row>
-                      <button type="submit" className="btn btn-solid">
-                        Pay
-                      </button>
-                    </div>
+      {resultObj ? (
+        <section className="section-b-space light-layout">
+          <Container>
+            <Row>
+              <Col md="12">
+                {result.status == "successful" ? (
+                  <div className="result-text success-text">
+                    <i className="fa fa-check-circle" aria-hidden="true"></i>
+                    <h2>thank you</h2>
+                    <p>Payment is successfully processsed</p>
+                    <p>Reference No:{result.refNo}</p>
                   </div>
-                </Col>
-              </Row>
-            </Form>
+                ) : (
+                  <div className="result-text fail-text">
+                    <i className="fa fa-times-circle" aria-hidden="true"></i>
+                    <h2>payment failure</h2>
+                    <p>An error occurred during payment. Please try again later</p>
+                    <p>Reference No:{result.refNo}</p>
+                  </div>
+                )}
+              </Col>
+            </Row>
+          </Container>
+        </section>
+      ) : (
+        <Container>
+          <div className="checkout-page">
+            <div className="checkout-form">
+              <Form onSubmit={handleSubmit(onSubmit)}>
+                <Row className="main-row">
+                  <Col lg="6" sm="12" xs="12">
+                    <div className="checkout-details">
+                      <div className="payment-box">
+                        <Row>
+                          <Col md="12">
+                            <div className="checkout-title">
+                              <h3>Credit Card Details</h3>
+                            </div>
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col md="12">
+                            <Label>Card Number</Label>
+                            <input
+                              type="tel"
+                              className="form-group form-control"
+                              placeholder="Card Number"
+                              minLength="16"
+                              maxLength="16"
+                              {...register("cardData.cardNumber", {
+                                required: true,
+                                maxLength: 16,
+                                minLength: 16,
+                              })}
+                            />
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col md="6">
+                            <Label>First Name</Label>
+                            <input
+                              type="text"
+                              className="form-group form-control"
+                              placeholder="First Name"
+                              {...register("cardData.firstName", {
+                                required: true,
+                              })}
+                            />
+                          </Col>
+                          <Col md="6">
+                            <Label>Lats Name</Label>
+                            <input
+                              type="tel"
+                              className="form-group form-control"
+                              placeholder="Lats Name"
+                              {...register("cardData.lastName", {
+                                required: true,
+                              })}
+                            />
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col md="12">
+                            <Label>Phone Number</Label>
+                            <input
+                              type="tel"
+                              className="form-group form-control"
+                              placeholder="Phone Number"
+                              {...register("cardData.phoneNumber", {
+                                required: true,
+                              })}
+                            />
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col md="4">
+                            <Label>Exp Date</Label>
+                            <select
+                              {...register("cardData.month", {
+                                required: true,
+                              })}
+                            >
+                              {month.map((m) => (
+                                <option key={m} value={m}>
+                                  {m}
+                                </option>
+                              ))}
+                            </select>
+                          </Col>
+                          <Col md="4">
+                            <Label>&nbsp;</Label>
+                            <select
+                              {...register("cardData.year", {
+                                required: true,
+                              })}
+                            >
+                              {year.map((y) => (
+                                <option key={y} value={y}>
+                                  {y}
+                                </option>
+                              ))}
+                            </select>
+                          </Col>
+                          <Col md="4">
+                            <Label>CVC</Label>
+                            <input
+                              type="tel"
+                              className="form-group form-control"
+                              placeholder="CVC"
+                              maxLength="4"
+                              minLength="3"
+                              {...register("cardData.cvc", {
+                                required: true,
+                                maxLength: 4,
+                                minLength: 3,
+                              })}
+                            />
+                          </Col>
+                        </Row>
+                        <button
+                          type="submit"
+                          className="btn btn-solid"
+                          disabled={isSubmiting}
+                        >
+                          {isSubmiting ? <Spinner animation="border" /> : "Pay"}
+                        </button>
+                      </div>
+                    </div>
+                  </Col>
+                </Row>
+              </Form>
+            </div>
           </div>
-        </div>
-      </Container>
+        </Container>
+      )}
     </section>
   );
 };
