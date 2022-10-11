@@ -14,7 +14,7 @@ const Banner = () => {
     <Fragment>
       <section className="p-0 effect-cls">
         <Slider {...sliderSettings} className="slide-1 home-slider">
-          {commonContext.commonData.home_banner.map((data, i) => {
+          {commonContext.commonData?.home_banner?.map((data, i) => {
             return (
               <MasterBanner
                 key={i}

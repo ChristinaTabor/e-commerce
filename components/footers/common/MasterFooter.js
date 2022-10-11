@@ -13,7 +13,12 @@ const MasterFooter = ({
 }) => {
   const [isOpen, setIsOpen] = useState();
   const [collapse, setCollapse] = useState(0);
-  const width = window.innerWidth < 750;
+  let width;
+
+  useEffect(() => {
+    if (window) window.innerWidth < 750;
+  }, []);
+
   useEffect(() => {
     const changeCollapse = () => {
       if (window.innerWidth < 750) {
@@ -53,9 +58,9 @@ const MasterFooter = ({
                 <Collapse isOpen={width ? (collapse === 1 ? isOpen : false) : true}>
                   <div className="footer-contant">
                     <div className="footer-logo">
-                      <LogoImage logo={data.logo} />
+                      <LogoImage logo={data?.logo} />
                     </div>
-                    <p>{data.description}</p>
+                    <p>{data?.description}</p>
                     <div className="footer-social">
                       <ul>
                         <li>
@@ -110,14 +115,14 @@ const MasterFooter = ({
                       <ul className="contact-list">
                         <li>
                           <i className="fa fa-map-marker"></i>
-                          {data.address}
+                          {data?.address}
                         </li>
                         <li>
-                          <i className="fa fa-phone"></i>Call Us: {data.phone}
+                          <i className="fa fa-phone"></i>Call Us: {data?.phone}
                         </li>
                         <li>
                           <i className="fa fa-envelope-o"></i>Email Us:{" "}
-                          <a href="#">{data.email}</a>
+                          <a href="#">{data?.email}</a>
                         </li>
                       </ul>
                     </div>
@@ -128,7 +133,11 @@ const MasterFooter = ({
           </Container>
         </section>
 
-        <CopyRight message={data.footer_end} layout={layoutClass} fluid={copyRightFluid ? copyRightFluid : ""} />
+        <CopyRight
+          message={data?.footer_end}
+          layout={layoutClass}
+          fluid={copyRightFluid ? copyRightFluid : ""}
+        />
       </footer>
     </div>
   );

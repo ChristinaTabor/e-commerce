@@ -6,16 +6,16 @@ const MasterParallaxBanner = ({ data, parallaxSectionClass, parallaxClass }) => 
     <Fragment>
       <section className={`p-0 effect-cls`}>
         <div
-          style={{ "backgroundImage": `url(${data.img})` }}
+          style={{ "backgroundImage": `url(${data?.img})` }}
           className={`full-banner parallax ${parallaxClass}`}
         >
           <Container>
             <Row>
               <Col>
                 <div className="banner-contain">
-                  <h2>{data.title}</h2>
-                  <h3>{data.sub_title_1}</h3>
-                  <h4>{data.sub_title_2}</h4>
+                  <h2>{data?.title}</h2>
+                  <h3>{data?.sub_title_1}</h3>
+                  <h4>{data?.sub_title_2}</h4>
                 </div>
               </Col>
             </Row>

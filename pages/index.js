@@ -95,7 +95,7 @@ const Fashion = ({ specialProducts, topCollection, isLoading }) => {
         data={specialProducts}
         loading={isLoading}
       />
-      {commonContext.commonData.service_layout && (
+      {commonContext?.commonData?.service_layout && (
         <ServiceLayout sectionClass="border-section small-section" />
       )}
 
@@ -126,7 +126,6 @@ const Fashion = ({ specialProducts, topCollection, isLoading }) => {
   );
 };
 
-export default Fashion;
 
 export async function getStaticProps() {
   const topCollection = await getProducts({
@@ -145,3 +144,5 @@ export async function getStaticProps() {
 
   return { props: { isLoading: false, specialProducts, topCollection }, revalidate: 10 };
 }
+
+export default Fashion;

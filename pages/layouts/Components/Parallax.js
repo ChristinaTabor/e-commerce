@@ -8,7 +8,7 @@ const Parallax = () => {
   return (
     <Fragment>
       <MasterParallaxBanner
-        data={commonContext.commonData.home_parallax}
+        data={commonContext.commonData?.home_parallax}
         parallaxClass="text-center p-left"
       />
     </Fragment>

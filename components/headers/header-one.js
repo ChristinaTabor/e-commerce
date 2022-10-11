@@ -56,7 +56,7 @@ const HeaderOne = ({ data, topClass }) => {
               <div className="main-menu">
                 <div className="menu-left">
                   <div className="brand-logo">
-                    <LogoImage logo={data.logo} />
+                    <LogoImage logo={data?.logo} />
                   </div>
                 </div>
                 <div className="menu-right pull-right">
