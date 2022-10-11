@@ -8,14 +8,7 @@ import PostLoader from "../PostLoader";
 import { CurrencyContext } from "../../../helpers/Currency/CurrencyContext";
 import emptySearch from "../../../public/assets/images/empty-search.jpg";
 
-const TabContent = ({
-  data,
-  loading,
-  startIndex,
-  endIndex,
-  cartClass,
-  backImage,
-}) => {
+const TabContent = ({ data, loading, startIndex, endIndex, cartClass, backImage }) => {
   const context = useContext(CartContext);
   const wishListContext = useContext(WishlistContext);
   const curContext = useContext(CurrencyContext);
@@ -24,19 +17,12 @@ const TabContent = ({
 
   return (
     <Row className="no-slider">
-      {!data ||
-      data.length === 0 ||
-      loading ? (
-        data &&
-        data.length === 0 ? (
+      {!data || data.length === 0 || loading ? (
+        data && data.length === 0 ? (
           <Col xs="12">
             <div>
               <div className="col-sm-12 empty-cart-cls text-center">
-                <Media
-                  src={emptySearch}
-                  className="img-fluid mb-4 mx-auto"
-                  alt=""
-                />
+                <Media src={emptySearch} className="img-fluid mb-4 mx-auto" alt="" />
                 <h3>
                   <strong>Your Cart is Empty</strong>
                 </h3>
@@ -92,7 +78,7 @@ const SpecialProducts = ({
   hrClass,
   backImage,
   data,
-  loading
+  loading,
 }) => {
   const [activeTab, setActiveTab] = useState(type);
   const context = useContext(CartContext);
@@ -122,8 +108,16 @@ const SpecialProducts = ({
             </div>
           )}
 
-          <Tabs className="theme-tab">
+          <TabContent
+            data={data}
+            loading={loading}
+            startIndex={0}
+            endIndex={8}
+            cartClass={cartClass}
+            backImage={backImage}
+          />
 
+          {/* <Tabs className="theme-tab">
             <TabPanel>
               <TabContent
                 data={data}
@@ -154,7 +148,7 @@ const SpecialProducts = ({
                 backImage={backImage}
               />
             </TabPanel>
-          </Tabs>
+          </Tabs> */}
         </Container>
       </section>
     </div>

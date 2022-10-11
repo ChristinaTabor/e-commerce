@@ -13,10 +13,6 @@ const LeftSidebar = () => {
   const [product, setProduct] = useState();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const filterDataContext = useContext(FilterDataContext);
-
-  const colors = filterDataContext.filterData.colors;
-  const sizes = filterDataContext.filterData.sizes;
 
   useEffect(() => {
     getProduct(id, {

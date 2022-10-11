@@ -50,9 +50,7 @@ const Fashion = ({ specialProducts, topCollection, isLoading }) => {
         <div className="middle-box-1">
           <div className="middle-box-inner">
             <h3>Lorem ipsum</h3>
-            <span>
-            Make a purchase at a favorable price and win a discount coupon.
-            </span>
+            <span>Make a purchase at a favorable price and win a discount coupon.</span>
             <Link href={"/shop"}>
               <a className={`btn btn-solid`}>Shop Now</a>
             </Link>
@@ -82,19 +80,22 @@ const Fashion = ({ specialProducts, topCollection, isLoading }) => {
       </section>
 
       <Parallax />
-      <SpecialProducts
-        type="fashion"
-        backImage={false}
-        productSlider={Product4}
-        line={true}
-        title="title1 section-t-space"
-        inner="title-inner1"
-        designClass="section-b-space p-t-0 ratio_asos"
-        noSlider="true"
-        cartClass="cart-info cart-wrap"
-        data={specialProducts}
-        loading={isLoading}
-      />
+
+     
+        <SpecialProducts
+          type="fashion"
+          backImage={false}
+          productSlider={Product4}
+          line={true}
+          title="title1 section-t-space"
+          inner="title-inner1"
+          designClass="section-b-space p-t-0 ratio_asos"
+          noSlider="true"
+          cartClass="cart-info cart-wrap"
+          data={specialProducts}
+          loading={isLoading}
+        />
+
       {commonContext?.commonData?.service_layout && (
         <ServiceLayout sectionClass="border-section small-section" />
       )}
@@ -102,7 +103,11 @@ const Fashion = ({ specialProducts, topCollection, isLoading }) => {
       <Container>
         <div className="middle-box-1">
           <div className="middle-box-inner bottom">
-            <h3>Support <br/>and<br/> Reliability</h3>
+            <h3>
+              Support <br />
+              and
+              <br /> Reliability
+            </h3>
             <span>
               You can contact us at any time. We provide continuous support and guarantee
               the safety of your purchases
@@ -125,7 +130,6 @@ const Fashion = ({ specialProducts, topCollection, isLoading }) => {
     </>
   );
 };
-
 
 export async function getStaticProps() {
   const topCollection = await getProducts({
