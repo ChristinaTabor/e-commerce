@@ -19,7 +19,7 @@ let sortBy = "AscOrder";
 const filter = { "category._id": CAT_ID };
 
 const ProductList = ({ data, loading, colClass, layoutList, openSidebar, noSidebar }) => {
-  let [products, setProducts] = useState(data.items);
+  let [products, setProducts] = useState(data?.items || []);
   const cartContext = useContext(CartContext);
   const quantity = cartContext.quantity;
   const wishlistContext = useContext(WishlistContext);
@@ -94,45 +94,6 @@ const ProductList = ({ data, loading, colClass, layoutList, openSidebar, noSideb
       <div className="page-main-content">
         <Row>
           <Col sm="12">
-            {/* <Row>
-              <Col xs="12">
-                <ul className="product-filter-tags">
-                  {selectedBrands.map((brand, i) => (
-                    <li key={i}>
-                      <a href={null} className="filter_tag">
-                        {brand}
-                        <i className="fa fa-close" onClick={() => removeBrand(brand)}></i>
-                      </a>
-                    </li>
-                  ))}
-                  {selectedColor ? (
-                    <li>
-                      <a href={null} className="filter_tag">
-                        {selectedColor}
-                        <i className="fa fa-close" onClick={removeColor}></i>
-                      </a>
-                    </li>
-                  ) : (
-                    ""
-                  )}
-                  {selectedSize.map((size, i) => (
-                    <li key={i}>
-                      <a href={null} className="filter_tag">
-                        {size}
-                        <i className="fa fa-close" onClick={() => removeSize(size)}></i>
-                      </a>
-                    </li>
-                  ))}
-                  {
-                    <li>
-                      <a href={null} className="filter_tag">
-                        price: {selectedPrice.min}- {selectedPrice.max}
-                      </a>
-                    </li>
-                  }
-                </ul>
-              </Col>
-            </Row> */}
             <div className="collection-product-wrapper">
               <div className="product-top-filter">
                 {!noSidebar ? (

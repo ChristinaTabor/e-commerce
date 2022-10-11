@@ -83,11 +83,11 @@ export default function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      {/* {isLoading ? (
+      {isLoading ? (
         <div className="loader-wrapper">
           <div className="loader"></div>
         </div>
-      ) : ( */}
+      ) : (
         <CommonContext.Provider
           value={{
             commonData,
@@ -128,7 +128,7 @@ export default function MyApp({ Component, pageProps }) {
             </UserContext.Provider>
           </FilterDataContext.Provider>
         </CommonContext.Provider>
-      {/* )} */}
+      )}
     </>
   );
 }

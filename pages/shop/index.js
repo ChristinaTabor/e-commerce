@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import CommonLayout from "../../components/shop/common-layout";
 import ProductList from "./common/productList";
 import { Container, Row } from "reactstrap";
-import FilterPage from "./common/filter";
 import { CAT_ID } from "../../services/api/data.service";
 import { getProducts } from "../../services/api/shop.service";
 import FilterDataContext from "../../helpers/filter-data/FilterDataContext";
@@ -24,13 +23,6 @@ const LeftSidebar = ({ productsData, isLoading }) => {
         <div className="collection-wrapper">
           <Container>
             <Row>
-              {/* <FilterPage
-                sm="3"
-                data={filterDataContext.filterData}
-                loading={isLoading}
-                sidebarView={sidebarView}
-                closeSidebar={() => openCloseSidebar(sidebarView)}
-              /> */}
               <ProductList
                 loading={isLoading}
                 data={productsData}

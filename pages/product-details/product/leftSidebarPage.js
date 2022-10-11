@@ -57,7 +57,7 @@ const LeftSidebarPage = ({ data, loading }) => {
                         ref={(slider) => (slider1.current = slider)}
                         className="product-slick"
                       >
-                        {data.images.map((vari, index) => (
+                        {data?.images?.map((vari, index) => (
                           <div key={index}>
                             <ImageZoom image={vari} />
                           </div>

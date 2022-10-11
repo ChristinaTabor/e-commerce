@@ -24,7 +24,7 @@ const DetailsWithPrice = ({ item, stickyClass, changeColorVar }) => {
     <>
       <div className={`product-right ${stickyClass}`}>
         Detail Price
-        <h2> {product.title} </h2>
+        <h2> {product?.title} </h2>
         <h4>
           <del>
             {symbol}
@@ -37,7 +37,7 @@ const DetailsWithPrice = ({ item, stickyClass, changeColorVar }) => {
           {product.price - (product.price * product.discount) / 100}
         </h3>
         {product?.variants?.map((vari) => {
-          var findItem = uniqueColor.find((x) => x.color === vari.color.title);
+          var findItem = uniqueColor.find((x) => x.color === vari.color?.title);
           if (!findItem) uniqueColor.push(vari);
           var findItemSize = uniqueSize.find((x) => x === vari.size);
           if (!findItemSize) uniqueSize.push(vari.size);
@@ -63,9 +63,9 @@ const DetailsWithPrice = ({ item, stickyClass, changeColorVar }) => {
                 {uniqueColor.map((vari, i) => {
                   return (
                     <li
-                      className={vari.color.title}
+                      className={vari.color?.title}
                       key={i}
-                      title={vari.color.title}
+                      title={vari.color?.title}
                       onClick={() => changeColorVar(i)}
                     ></li>
                   );
