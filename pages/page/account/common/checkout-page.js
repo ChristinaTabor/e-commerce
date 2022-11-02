@@ -9,7 +9,7 @@ import cards from "../../../../public/assets/img/cards.png";
 import UserContext from "../../../../helpers/user/UserContext";
 import { httpPost } from "../../../../services/api/data.service";
 import { toast } from "react-toastify";
-import {countryList} from '../../../../services/countries'
+import { countryList } from "../../../../services/countries";
 
 const CheckoutPage = () => {
   const month = ["Month", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
@@ -264,7 +264,18 @@ const CheckoutPage = () => {
                           </Col>
                         </Row>
                         <Row>
-                          <Col md="6">
+                          <Col md="12">
+                            <Label>Card Holder</Label>
+                            <input
+                              type="text"
+                              className="form-group form-control"
+                              placeholder="Card Holder"
+                              {...register("cardData.holder", {
+                                required: true,
+                              })}
+                            />
+                          </Col>
+                          {/* <Col md="6">
                             <Label>First Name</Label>
                             <input
                               type="text"
@@ -285,7 +296,7 @@ const CheckoutPage = () => {
                                 required: true,
                               })}
                             />
-                          </Col>
+                          </Col> */}
                         </Row>
                         <Row>
                           <Col md="12">

@@ -184,18 +184,18 @@ const Gateway = () => {
                           </Col>
                         </Row>
                         <Row>
-                          <Col md="6">
-                            <Label>First Name</Label>
+                          <Col md="12">
+                            <Label>Card Holder</Label>
                             <input
                               type="text"
                               className="form-group form-control"
-                              placeholder="First Name"
-                              {...register("cardData.firstName", {
+                              placeholder="Card Holder"
+                              {...register("cardData.holder", {
                                 required: true,
                               })}
                             />
                           </Col>
-                          <Col md="6">
+                          {/* <Col md="6">
                             <Label>Lats Name</Label>
                             <input
                               type="tel"
@@ -205,7 +205,7 @@ const Gateway = () => {
                                 required: true,
                               })}
                             />
-                          </Col>
+                          </Col> */}
                         </Row>
                         <Row>
                           <Col md="12">
