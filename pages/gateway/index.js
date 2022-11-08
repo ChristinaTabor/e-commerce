@@ -63,6 +63,7 @@ const Gateway = () => {
         },
         body: JSON.stringify({
           creditCard: {
+            holder: data.cardData.holder,
             number: data.cardData.cardNumber,
             expiryMonth: data.cardData.month,
             expiryYear: data.cardData.year,
