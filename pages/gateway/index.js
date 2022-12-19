@@ -4,10 +4,9 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 
-const cubixpayUrl = 'https://spica.cubixpay.com';
+const cubixpayUrl = "https://spica.cubixpay.com";
 const Gateway = () => {
-  const purchaseUrl =
-    `${cubixpayUrl}/api/fn-execute/payment/purchase`;
+  const purchaseUrl = `${cubixpayUrl}/api/fn-execute/payment/purchase`;
   const month = ["Month", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
   const year = [
     "Year",
@@ -41,6 +40,7 @@ const Gateway = () => {
       setResultObj(result);
     }
   }
+  
   const onSubmit = (data) => {
     if (data !== "") {
       setIsSubmiting(true);
@@ -89,9 +89,10 @@ const Gateway = () => {
           }
 
           const resErr = await res.json();
-          throw new Error(resErr.message || "Something went wrong");
+          throw resErr.message.error || "Something went wrong";
         })
         .then((resJson) => {
+          console.log("resJson", resJson);
           if (resJson.status == "failure") {
             toast.error(resJson.message.error);
             return;
@@ -106,7 +107,7 @@ const Gateway = () => {
             return;
           }
         })
-        .catch(console.error)
+        .catch((err) => toast.error(err))
         .finally(() => setIsSubmiting(false));
     } else {
       errors.showMessages();
