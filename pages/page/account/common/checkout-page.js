@@ -94,7 +94,7 @@ const CheckoutPage = () => {
           router.push({
             pathname: "/page/order-success",
             state: { items: cartItems, orderTotal: cartTotal, symbol: symbol },
-            query: JSON.stringify({ status: "successful", refNo: res.message.refNo }),
+            query: JSON.stringify({ status: "successful", referenceNo: res.message.referenceNo }),
           });
         })
         .catch((err) => {

@@ -31,7 +31,7 @@ const Gateway = () => {
   } = useForm();
 
   const router = useRouter();
-  const { refNo, result } = router.query;
+  const { referenceNo, result } = router.query;
   const [creq, setCreq] = useState("");
 
   if (result) {
@@ -69,7 +69,7 @@ const Gateway = () => {
             expiryYear: data.cardData.year,
             cvv: data.cardData.cvc,
           },
-          referenceNo: refNo,
+          referenceNo: referenceNo,
           description: "",
           bankDescriptor: "",
           is3d: "",
@@ -137,14 +137,14 @@ const Gateway = () => {
                     <i className="fa fa-check-circle" aria-hidden="true"></i>
                     <h2>thank you</h2>
                     <p>Payment is successfully processsed</p>
-                    <p>Reference No:{result.refNo}</p>
+                    <p>Reference No:{result.referenceNo}</p>
                   </div>
                 ) : (
                   <div className="result-text fail-text">
                     <i className="fa fa-times-circle" aria-hidden="true"></i>
                     <h2>payment failure</h2>
                     <p>An error occurred during payment. Please try again later</p>
-                    <p>Reference No:{result.refNo}</p>
+                    <p>Reference No:{result.referenceNo}</p>
                   </div>
                 )}
               </Col>
