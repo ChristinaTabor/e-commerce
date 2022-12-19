@@ -4,9 +4,10 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 
+const cubixpayUrl = 'https://spica.cubixpay.com';
 const Gateway = () => {
   const purchaseUrl =
-    "https://fintech-2c1ee.hq.spicaengine.com/api/fn-execute/payment/purchase";
+    `${cubixpayUrl}/api/fn-execute/payment/purchase`;
   const month = ["Month", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
   const year = [
     "Year",
