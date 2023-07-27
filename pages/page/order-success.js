@@ -14,7 +14,8 @@ const OrderSuccess = () => {
   const curContext = useContext(CurrencyContext);
   const symbol = curContext.state.symbol;
 
-  const result = JSON.parse(router.query.result);
+  const referenceNo = router.query.referenceNo;
+  const status = router.query.status;
 
   return (
     <CommonLayout parent="home" title="order success">
@@ -22,19 +23,19 @@ const OrderSuccess = () => {
         <Container>
           <Row>
             <Col md="12">
-              {result.status == "successful" ? (
+              {status == "succeeded" ? (
                 <div className="result-text success-text">
                   <i className="fa fa-check-circle" aria-hidden="true"></i>
                   <h2>thank you</h2>
                   <p>Payment is successfully processsed</p>
-                  <p>Reference No:{result.referenceNo}</p>
+                  <p>Reference No:{referenceNo}</p>
                 </div>
               ) : (
                 <div className="result-text fail-text">
                   <i className="fa fa-times-circle" aria-hidden="true"></i>
                   <h2>payment failure</h2>
                   <p>An error occurred during payment. Please try again later</p>
-                  <p>Reference No:{result.referenceNo}</p>
+                  <p>Reference No:{referenceNo}</p>
                 </div>
               )}
             </Col>
@@ -108,7 +109,7 @@ const OrderSuccess = () => {
                 <Col sm="6">
                   <h4>summery</h4>
                   <ul className="order-detail">
-                    <li>Reference No: {result.referenceNo}</li>
+                    <li>Reference No: {referenceNo}</li>
                     <li>Order Date: {new Date().toLocaleDateString()}</li>
                     <li>Order Total: ${cartTotal}</li>
                   </ul>

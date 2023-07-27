@@ -1,4 +1,4 @@
-import React, { useContext, useState, useCallback } from "react";
+import React, { useContext, useState } from "react";
 import { Container, Form, Row, Col, Label, Spinner } from "reactstrap";
 import CartContext from "../../../../helpers/cart";
 import { useForm } from "react-hook-form";
@@ -35,7 +35,6 @@ const CheckoutPage = () => {
   const symbol = curContext.state.symbol;
   const [termsChecked, setTermsChecked] = useState(false);
   const [privacyChecked, setPrivacyChecked] = useState(false);
-  const [obj, setObj] = useState({});
   const {
     register,
     handleSubmit,
@@ -43,79 +42,71 @@ const CheckoutPage = () => {
   } = useForm();
 
   const router = useRouter();
-  const [creq, setCreq] = useState("");
 
   const onSubmit = (data) => {
-    if (data !== "") {
-      const products = [];
-
-      cartItems.forEach((el) => {
-        products.push({ _id: el._id, qty: el.qty });
-      });
-
-      const metaData = {
-        browserIP: "192.168.1.107",
-        browserUserAgent: navigator.userAgent,
-        browserLanguage: navigator.language,
-        browserJavaEnabled: navigator.javaEnabled(),
-        browserScreenWidth: screen.width,
-        browserScreenHeight: screen.height,
-        browserColorDepth: screen.colorDepth,
-        browserTZ: new Date().getTimezoneOffset(),
-      };
-
-      const userData =
-        data.userData && Object.keys(data.userData).length
-          ? data.userData
-          : userContext.user;
-
-      setIsSubmiting(true);
-
-      httpPost("placeOrder", {
-        userData: userData,
-        cardData: data.cardData,
-        productData: products,
-        metaData: metaData,
-      })
-        .then((res) => {
-          if (!res) {
-            return;
-          }
-
-          if (res.messagetype == "threeDSRes") {
-            setCreq(res.message.creq);
-            if (typeof document.getElementById("creq-form").submit === "object") {
-              document.getElementById("creq-form").submit.remove();
-            }
-            document.getElementById("creq-form").submit();
-            return;
-          }
-
-          router.push({
-            pathname: "/page/order-success",
-            state: { items: cartItems, orderTotal: cartTotal, symbol: symbol },
-            query: JSON.stringify({ status: "successful", referenceNo: res.message.referenceNo }),
-          });
-        })
-        .catch((err) => {
-          toast.error(err.message);
-        })
-        .finally(() => setIsSubmiting(false));
-    } else {
+    if (!data) {
       errors.showMessages();
+      return;
     }
+
+    const products = [];
+
+    cartItems.forEach((el) => {
+      products.push({ _id: el._id, qty: el.qty });
+    });
+
+    const metaData = {
+      browserIP: "192.168.1.107",
+      browserUserAgent: navigator.userAgent,
+      browserLanguage: navigator.language,
+      browserJavaEnabled: navigator.javaEnabled(),
+      browserScreenWidth: window.screen.width,
+      browserScreenHeight: window.screen.height,
+      browserColorDepth: window.screen.colorDepth,
+      browserTZ: new Date().getTimezoneOffset(),
+    };
+
+    const customer =
+      data.userData && Object.keys(data.userData).length
+        ? data.userData
+        : userContext.user;
+
+    setIsSubmiting(true);
+
+    let postBody = {
+      customer: { ...customer, phone: data.customer.phone },
+      creditCard: data.creditCard,
+      productData: products,
+      metaData: metaData,
+    }
+
+    if (customer.addresses && customer.addresses[0]) {
+      postBody = { ...postBody, ...customer.addresses[0] }
+    }
+
+    httpPost("placeOrder", postBody)
+      .then((res) => {
+        if (!res) {
+          return;
+        }
+        const redirectUrl = res.message?.redirectUrl;
+        if (res.message.error) {
+          toast.error(res.message.error);
+          return;
+        }
+        if (redirectUrl) {
+          window.location.href = res.message.redirectUrl;
+        }
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      })
+      .finally(() => setIsSubmiting(false));
+
   };
 
   return (
     <section className="section-b-space">
-      <form
-        autoComplete="off"
-        action="https://www.threedsecurempi.com/EMVTDS/AUT?Action=ProcessCReq"
-        method="post"
-        id="creq-form"
-      >
-        <input type="hidden" name="creq" value={creq} />
-      </form>
       <Container>
         <div className="checkout-page">
           <div className="checkout-form">
@@ -149,15 +140,7 @@ const CheckoutPage = () => {
                       </Col>
                     </Row>
                     <Row>
-                      <Col md="6">
-                        <Label>Phone</Label>
-                        <input
-                          className="form-group form-control"
-                          placeholder="Phone"
-                          {...register("userData.phone", { pattern: /\d+/ })}
-                        />
-                      </Col>
-                      <Col md="6">
+                      <Col md="12">
                         <Label>Email Address</Label>
                         <input
                           className="form-group form-control"
@@ -177,8 +160,8 @@ const CheckoutPage = () => {
                           placeholder="Country"
                           {...register("userData.country", { required: true })}
                         >
-                          {countryList.map((country, index) => (
-                            <option key={index}>{country}</option>
+                          {countryList.map((country) => (
+                            <option value={country.code} key={country.code}>{country.name}</option>
                           ))}
                         </select>
                       </Col>
@@ -270,33 +253,11 @@ const CheckoutPage = () => {
                               type="text"
                               className="form-group form-control"
                               placeholder="Card Holder"
-                              {...register("cardData.holder", {
+                              {...register("creditCard.holder", {
                                 required: true,
                               })}
                             />
                           </Col>
-                          {/* <Col md="6">
-                            <Label>First Name</Label>
-                            <input
-                              type="text"
-                              className="form-group form-control"
-                              placeholder="First Name"
-                              {...register("cardData.firstName", {
-                                required: true,
-                              })}
-                            />
-                          </Col>
-                          <Col md="6">
-                            <Label>Lats Name</Label>
-                            <input
-                              type="tel"
-                              className="form-group form-control"
-                              placeholder="Lats Name"
-                              {...register("cardData.lastName", {
-                                required: true,
-                              })}
-                            />
-                          </Col> */}
                         </Row>
                         <Row>
                           <Col md="12">
@@ -307,7 +268,7 @@ const CheckoutPage = () => {
                               placeholder="Card Number"
                               minLength="16"
                               maxLength="16"
-                              {...register("cardData.cardNumber", {
+                              {...register("creditCard.number", {
                                 required: true,
                                 maxLength: 16,
                                 minLength: 16,
@@ -322,7 +283,7 @@ const CheckoutPage = () => {
                               type="tel"
                               className="form-group form-control"
                               placeholder="Phone Number"
-                              {...register("cardData.phoneNumber", {
+                              {...register("customer.phone", {
                                 required: true,
                               })}
                             />
@@ -332,8 +293,9 @@ const CheckoutPage = () => {
                           <Col md="4">
                             <Label>Exp Date</Label>
                             <select
-                              {...register("cardData.month", {
+                              {...register("creditCard.expiryMonth", {
                                 required: true,
+                                validate: (value) => value !== 'Month',
                               })}
                             >
                               {month.map((m) => (
@@ -346,8 +308,9 @@ const CheckoutPage = () => {
                           <Col md="4">
                             <Label>&nbsp;</Label>
                             <select
-                              {...register("cardData.year", {
+                              {...register("creditCard.expiryYear", {
                                 required: true,
+                                validate: (value) => value !== 'Year',
                               })}
                             >
                               {year.map((y) => (
@@ -358,14 +321,14 @@ const CheckoutPage = () => {
                             </select>
                           </Col>
                           <Col md="4">
-                            <Label>CVC</Label>
+                            <Label>&nbsp;</Label>
                             <input
                               type="tel"
                               className="form-group form-control"
-                              placeholder="CVC"
+                              placeholder="CVC/CVV"
                               maxLength="4"
                               minLength="3"
-                              {...register("cardData.cvc", {
+                              {...register("creditCard.cvv", {
                                 required: true,
                                 maxLength: 4,
                                 minLength: 3,
@@ -406,7 +369,7 @@ const CheckoutPage = () => {
                         <button
                           type="submit"
                           className="btn btn-solid place-order-btn"
-                          disabled={!termsChecked || !privacyChecked || isSubmiting}
+                          disabled={!termsChecked || !privacyChecked || isSubmiting || Object.keys(errors).length > 0}
                         >
                           {isSubmiting ? <Spinner animation="border" /> : "Place Order"}
                         </button>
