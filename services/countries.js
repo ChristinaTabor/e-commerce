@@ -15,7 +15,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/afg.svg",
     "dialling_code": "+93",
-    "isoCode": "004"
+    "iso_code": "004"
   },
   {
     "name": "Albania",
@@ -33,7 +33,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/alb.svg",
     "dialling_code": "+355",
-    "isoCode": "008"
+    "iso_code": "008"
   },
   {
     "name": "Algeria",
@@ -51,7 +51,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/dza.svg",
     "dialling_code": "+213",
-    "isoCode": "012"
+    "iso_code": "012"
   },
   {
     "name": "American Samoa",
@@ -69,7 +69,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/asm.svg",
     "dialling_code": "+1",
-    "isoCode": "016"
+    "iso_code": "016"
   },
   {
     "name": "Andorra",
@@ -87,7 +87,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/and.svg",
     "dialling_code": "+376",
-    "isoCode": "020"
+    "iso_code": "020"
   },
   {
     "name": "Angola",
@@ -105,7 +105,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/ago.svg",
     "dialling_code": "+244",
-    "isoCode": "024"
+    "iso_code": "024"
   },
   {
     "name": "Anguilla",
@@ -123,7 +123,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/aia.svg",
     "dialling_code": "+43",
-    "isoCode": "660"
+    "iso_code": "660"
   },
   {
     "name": "Antigua and Barbuda",
@@ -141,7 +141,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/atg.svg",
     "dialling_code": "+1",
-    "isoCode": "028"
+    "iso_code": "028"
   },
   {
     "name": "Argentina",
@@ -159,7 +159,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/arg.svg",
     "dialling_code": "+54",
-    "isoCode": "032"
+    "iso_code": "032"
   },
   {
     "name": "Armenia",
@@ -177,7 +177,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/arm.svg",
     "dialling_code": "+374",
-    "isoCode": "051"
+    "iso_code": "051"
   },
   {
     "name": "Aruba",
@@ -195,7 +195,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/abw.svg",
     "dialling_code": "+297",
-    "isoCode": "533"
+    "iso_code": "533"
   },
   {
     "name": "Australia",
@@ -213,7 +213,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/aus.svg",
     "dialling_code": "+61",
-    "isoCode": "036"
+    "iso_code": "036"
   },
   {
     "name": "Azerbaijan",
@@ -231,7 +231,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/aze.svg",
     "dialling_code": "+994",
-    "isoCode": "031"
+    "iso_code": "031"
   },
   {
     "name": "Bahamas",
@@ -249,7 +249,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/bhs.svg",
     "dialling_code": "+1",
-    "isoCode": "044"
+    "iso_code": "044"
   },
   {
     "name": "Bahrain",
@@ -267,7 +267,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/bhr.svg",
     "dialling_code": "+973",
-    "isoCode": "048"
+    "iso_code": "048"
   },
   {
     "name": "Bangladesh",
@@ -285,7 +285,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/bgd.svg",
     "dialling_code": "+880",
-    "isoCode": "050"
+    "iso_code": "050"
   },
   {
     "name": "Barbados",
@@ -303,7 +303,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/brb.svg",
     "dialling_code": "+1",
-    "isoCode": "052"
+    "iso_code": "052"
   },
   {
     "name": "Belarus",
@@ -321,7 +321,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/blr.svg",
     "dialling_code": "+375",
-    "isoCode": "112"
+    "iso_code": "112"
   },
   {
     "name": "Belgium",
@@ -339,7 +339,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/bel.svg",
     "dialling_code": "+32",
-    "isoCode": "056"
+    "iso_code": "056"
   },
   {
     "name": "Belize",
@@ -357,7 +357,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/blz.svg",
     "dialling_code": "+501",
-    "isoCode": "084"
+    "iso_code": "084"
   },
   {
     "name": "Benin",
@@ -375,7 +375,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/ben.svg",
     "dialling_code": "+229",
-    "isoCode": "204"
+    "iso_code": "204"
   },
   {
     "name": "Bermuda",
@@ -393,7 +393,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/bmu.svg",
     "dialling_code": "+1",
-    "isoCode": "060"
+    "iso_code": "060"
   },
   {
     "name": "Bhutan",
@@ -411,7 +411,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/btn.svg",
     "dialling_code": "+975",
-    "isoCode": "064"
+    "iso_code": "064"
   },
   {
     "name": "Bolivia (Plurinational State of)",
@@ -429,7 +429,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/bol.svg",
     "dialling_code": "+591",
-    "isoCode": "068"
+    "iso_code": "068"
   },
   {
     "name": "Bosnia and Herzegovina",
@@ -447,7 +447,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/bih.svg",
     "dialling_code": "+387",
-    "isoCode": "070"
+    "iso_code": "070"
   },
   {
     "name": "Botswana",
@@ -465,7 +465,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/bwa.svg",
     "dialling_code": "+267",
-    "isoCode": "072"
+    "iso_code": "072"
   },
   {
     "name": "Brazil",
@@ -483,7 +483,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/bra.svg",
     "dialling_code": "+55",
-    "isoCode": "076"
+    "iso_code": "076"
   },
   {
     "name": "British Indian Ocean Territory",
@@ -501,7 +501,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/iot.svg",
     "dialling_code": "+246",
-    "isoCode": "086"
+    "iso_code": "086"
   },
   {
     "name": "Virgin Islands (British)",
@@ -519,7 +519,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/vgb.svg",
     "dialling_code": "+1",
-    "isoCode": "092"
+    "iso_code": "092"
   },
   {
     "name": "Virgin Islands (U.S.)",
@@ -537,7 +537,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/vir.svg",
     "dialling_code": "+1",
-    "isoCode": "850"
+    "iso_code": "850"
   },
   {
     "name": "Brunei Darussalam",
@@ -555,7 +555,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/brn.svg",
     "dialling_code": "+673",
-    "isoCode": "096"
+    "iso_code": "096"
   },
   {
     "name": "Bulgaria",
@@ -573,7 +573,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/bgr.svg",
     "dialling_code": "+359",
-    "isoCode": "100"
+    "iso_code": "100"
   },
   {
     "name": "Burkina Faso",
@@ -591,7 +591,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/bfa.svg",
     "dialling_code": "+226",
-    "isoCode": "854"
+    "iso_code": "854"
   },
   {
     "name": "Burundi",
@@ -609,7 +609,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/bdi.svg",
     "dialling_code": "+257",
-    "isoCode": "108"
+    "iso_code": "108"
   },
   {
     "name": "Cambodia",
@@ -627,7 +627,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/khm.svg",
     "dialling_code": "+855",
-    "isoCode": "116"
+    "iso_code": "116"
   },
   {
     "name": "Cameroon",
@@ -645,7 +645,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/cmr.svg",
     "dialling_code": "+237",
-    "isoCode": "120"
+    "iso_code": "120"
   },
   {
     "name": "Canada",
@@ -663,7 +663,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/can.svg",
     "dialling_code": "+1",
-    "isoCode": "124"
+    "iso_code": "124"
   },
   {
     "name": "Cabo Verde",
@@ -683,7 +683,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/cpv.svg",
     "dialling_code": "+238",
-    "isoCode": "132"
+    "iso_code": "132"
   },
   {
     "name": "Cayman Islands",
@@ -702,7 +702,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/cym.svg",
     "dialling_code": "+1",
-    "isoCode": "136"
+    "iso_code": "136"
   },
   {
     "name": "Central African Republic",
@@ -720,7 +720,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/caf.svg",
     "dialling_code": "+236",
-    "isoCode": "140"
+    "iso_code": "140"
   },
   {
     "name": "Central African Republic",
@@ -738,7 +738,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/caf.svg",
     "dialling_code": "+236",
-    "isoCode": "140"
+    "iso_code": "140"
   },
   {
     "name": "Chile",
@@ -758,7 +758,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/chl.svg",
     "dialling_code": "+56",
-    "isoCode": "152"
+    "iso_code": "152"
   },
   {
     "name": "China",
@@ -776,7 +776,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/chn.svg",
     "dialling_code": "+86",
-    "isoCode": "156"
+    "iso_code": "156"
   },
   {
     "name": "Colombia",
@@ -794,7 +794,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/col.svg",
     "dialling_code": "+57",
-    "isoCode": "170"
+    "iso_code": "170"
   },
   {
     "name": "Comoros",
@@ -812,7 +812,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/com.svg",
     "dialling_code": "+269",
-    "isoCode": "174"
+    "iso_code": "174"
   },
   {
     "name": "Congo",
@@ -830,7 +830,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/cog.svg",
     "dialling_code": "+242",
-    "isoCode": "178"
+    "iso_code": "178"
   },
   {
     "name": "Congo (Democratic Republic of the)",
@@ -848,7 +848,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/cod.svg",
     "dialling_code": "+243",
-    "isoCode": "180"
+    "iso_code": "180"
   },
   {
     "name": "Cook Islands",
@@ -866,7 +866,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/cok.svg",
     "dialling_code": "+682",
-    "isoCode": "184"
+    "iso_code": "184"
   },
   {
     "name": "Costa Rica",
@@ -884,7 +884,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/cri.svg",
     "dialling_code": "+506",
-    "isoCode": "188"
+    "iso_code": "188"
   },
   {
     "name": "Croatia",
@@ -902,7 +902,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/hrv.svg",
     "dialling_code": "+385",
-    "isoCode": "191"
+    "iso_code": "191"
   },
   {
     "name": "Cuba",
@@ -920,7 +920,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/cub.svg",
     "dialling_code": "+53",
-    "isoCode": "192"
+    "iso_code": "192"
   },
   {
     "name": "Cuba",
@@ -938,7 +938,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/cub.svg",
     "dialling_code": "+53",
-    "isoCode": "192"
+    "iso_code": "192"
   },
   {
     "name": "Cyprus",
@@ -956,7 +956,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/cyp.svg",
     "dialling_code": "+357",
-    "isoCode": "196"
+    "iso_code": "196"
   },
   {
     "name": "Czech Republic",
@@ -974,7 +974,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/cze.svg",
     "dialling_code": "+420",
-    "isoCode": "203"
+    "iso_code": "203"
   },
   {
     "name": "Denmark",
@@ -992,7 +992,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/dnk.svg",
     "dialling_code": "+45",
-    "isoCode": "208"
+    "iso_code": "208"
   },
   {
     "name": "Djibouti",
@@ -1010,7 +1010,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/dji.svg",
     "dialling_code": "+253",
-    "isoCode": "262"
+    "iso_code": "262"
   },
   {
     "name": "Dominica",
@@ -1028,7 +1028,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/dma.svg",
     "dialling_code": "+1",
-    "isoCode": "212"
+    "iso_code": "212"
   },
   {
     "name": "Dominican Republic",
@@ -1046,7 +1046,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/dom.svg",
     "dialling_code": "+1",
-    "isoCode": "214"
+    "iso_code": "214"
   },
   {
     "name": "Ecuador",
@@ -1064,7 +1064,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/ecu.svg",
     "dialling_code": "+593",
-    "isoCode": "218"
+    "iso_code": "218"
   },
   {
     "name": "Egypt",
@@ -1082,7 +1082,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/egy.svg",
     "dialling_code": "+20",
-    "isoCode": "818"
+    "iso_code": "818"
   },
   {
     "name": "El Salvador",
@@ -1100,7 +1100,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/slv.svg",
     "dialling_code": "+503",
-    "isoCode": "222"
+    "iso_code": "222"
   },
   {
     "name": "Equatorial Guinea",
@@ -1120,7 +1120,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/gnq.svg",
     "dialling_code": "+240",
-    "isoCode": "226"
+    "iso_code": "226"
   },
   {
     "name": "Eritrea",
@@ -1138,7 +1138,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/eri.svg",
     "dialling_code": "+291",
-    "isoCode": "232"
+    "iso_code": "232"
   },
   {
     "name": "Estonia",
@@ -1156,7 +1156,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/est.svg",
     "dialling_code": "+372",
-    "isoCode": "233"
+    "iso_code": "233"
   },
   {
     "name": "Ethiopia",
@@ -1174,7 +1174,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/eth.svg",
     "dialling_code": "+251",
-    "isoCode": "231"
+    "iso_code": "231"
   },
   {
     "name": "Falkland Islands (Malvinas)",
@@ -1192,7 +1192,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/flk.svg",
     "dialling_code": "+500",
-    "isoCode": "238"
+    "iso_code": "238"
   },
   {
     "name": "Faroe Islands",
@@ -1210,7 +1210,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/fro.svg",
     "dialling_code": "+298",
-    "isoCode": "234"
+    "iso_code": "234"
   },
   {
     "name": "Fiji",
@@ -1228,7 +1228,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/fji.svg",
     "dialling_code": "+679",
-    "isoCode": "242"
+    "iso_code": "242"
   },
   {
     "name": "Finland",
@@ -1248,7 +1248,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/fin.svg",
     "dialling_code": "+358",
-    "isoCode": "246"
+    "iso_code": "246"
   },
   {
     "name": "France",
@@ -1267,7 +1267,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/fra.svg",
     "dialling_code": "+33",
-    "isoCode": "250"
+    "iso_code": "250"
   },
   {
     "name": "French Guiana",
@@ -1285,7 +1285,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/guf.svg",
     "dialling_code": "+594",
-    "isoCode": "254"
+    "iso_code": "254"
   },
   {
     "name": "French Polynesia",
@@ -1303,7 +1303,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/pyf.svg",
     "dialling_code": "+689",
-    "isoCode": "258"
+    "iso_code": "258"
   },
   {
     "name": "Gabon",
@@ -1321,7 +1321,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/gab.svg",
     "dialling_code": "+241",
-    "isoCode": "266"
+    "iso_code": "266"
   },
   {
     "name": "Gambia",
@@ -1339,7 +1339,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/gmb.svg",
     "dialling_code": "+220",
-    "isoCode": "270"
+    "iso_code": "270"
   },
   {
     "name": "Georgia",
@@ -1357,7 +1357,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/geo.svg",
     "dialling_code": "+995",
-    "isoCode": "268"
+    "iso_code": "268"
   },
   {
     "name": "Germany",
@@ -1375,7 +1375,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/deu.svg",
     "dialling_code": "+49",
-    "isoCode": "276"
+    "iso_code": "276"
   },
   {
     "name": "Ghana",
@@ -1393,7 +1393,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/gha.svg",
     "dialling_code": "+233",
-    "isoCode": "288"
+    "iso_code": "288"
   },
   {
     "name": "Gibraltar",
@@ -1411,7 +1411,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/gib.svg",
     "dialling_code": "+350",
-    "isoCode": "292"
+    "iso_code": "292"
   },
   {
     "name": "Greece",
@@ -1429,7 +1429,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/grc.svg",
     "dialling_code": "+30",
-    "isoCode": "300"
+    "iso_code": "300"
   },
   {
     "name": "Greenland",
@@ -1447,7 +1447,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/grl.svg",
     "dialling_code": "+299",
-    "isoCode": "304"
+    "iso_code": "304"
   },
   {
     "name": "Grenada",
@@ -1465,7 +1465,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/grd.svg",
     "dialling_code": "+1",
-    "isoCode": "308"
+    "iso_code": "308"
   },
   {
     "name": "Guadeloupe",
@@ -1483,7 +1483,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/glp.svg",
     "dialling_code": "+590",
-    "isoCode": "312"
+    "iso_code": "312"
   },
   {
     "name": "Guam",
@@ -1501,7 +1501,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/gum.svg",
     "dialling_code": "+1",
-    "isoCode": "316"
+    "iso_code": "316"
   },
   {
     "name": "Guatemala",
@@ -1519,7 +1519,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/gtm.svg",
     "dialling_code": "+502",
-    "isoCode": "320"
+    "iso_code": "320"
   },
   {
     "name": "Guinea",
@@ -1537,7 +1537,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/gin.svg",
     "dialling_code": "+224",
-    "isoCode": "324"
+    "iso_code": "324"
   },
   {
     "name": "Guinea-Bissau",
@@ -1555,7 +1555,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/gnb.svg",
     "dialling_code": "+245",
-    "isoCode": "624"
+    "iso_code": "624"
   },
   {
     "name": "Guyana",
@@ -1573,7 +1573,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/guy.svg",
     "dialling_code": "+592",
-    "isoCode": "328"
+    "iso_code": "328"
   },
   {
     "name": "Haiti",
@@ -1591,7 +1591,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/hti.svg",
     "dialling_code": "+509",
-    "isoCode": "332"
+    "iso_code": "332"
   },
   {
     "name": "Holy See",
@@ -1609,7 +1609,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/vat.svg",
     "dialling_code": "+39",
-    "isoCode": "336"
+    "iso_code": "336"
   },
   {
     "name": "Honduras",
@@ -1627,7 +1627,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/hnd.svg",
     "dialling_code": "+504",
-    "isoCode": "340"
+    "iso_code": "340"
   },
   {
     "name": "Hong Kong",
@@ -1645,7 +1645,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/hkg.svg",
     "dialling_code": "+852",
-    "isoCode": "344"
+    "iso_code": "344"
   },
   {
     "name": "Hungary",
@@ -1663,7 +1663,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/hun.svg",
     "dialling_code": "+36",
-    "isoCode": "348"
+    "iso_code": "348"
   },
   {
     "name": "Iceland",
@@ -1681,7 +1681,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/isl.svg",
     "dialling_code": "+354",
-    "isoCode": "352"
+    "iso_code": "352"
   },
   {
     "name": "India",
@@ -1699,7 +1699,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/ind.svg",
     "dialling_code": "+91",
-    "isoCode": "356"
+    "iso_code": "356"
   },
   {
     "name": "Indonesia",
@@ -1717,7 +1717,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/idn.svg",
     "dialling_code": "+62",
-    "isoCode": "360"
+    "iso_code": "360"
   },
   {
     "name": "Côte d'Ivoire",
@@ -1735,7 +1735,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/civ.svg",
     "dialling_code": "+225",
-    "isoCode": "384"
+    "iso_code": "384"
   },
   {
     "name": "Iran (Islamic Republic of)",
@@ -1753,7 +1753,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/irn.svg",
     "dialling_code": "+98",
-    "isoCode": "364"
+    "iso_code": "364"
   },
   {
     "name": "Iraq",
@@ -1771,7 +1771,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/irq.svg",
     "dialling_code": "+964",
-    "isoCode": "368"
+    "iso_code": "368"
   },
   {
     "name": "Ireland",
@@ -1789,7 +1789,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/irl.svg",
     "dialling_code": "+353",
-    "isoCode": "372"
+    "iso_code": "372"
   },
   {
     "name": "Israel",
@@ -1807,7 +1807,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/isr.svg",
     "dialling_code": "+972",
-    "isoCode": "376"
+    "iso_code": "376"
   },
   {
     "name": "Italy",
@@ -1825,7 +1825,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/ita.svg",
     "dialling_code": "+39",
-    "isoCode": "380"
+    "iso_code": "380"
   },
   {
     "name": "Jamaica",
@@ -1843,7 +1843,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/jam.svg",
     "dialling_code": "+1",
-    "isoCode": "388"
+    "iso_code": "388"
   },
   {
     "name": "Japan",
@@ -1861,7 +1861,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/jpn.svg",
     "dialling_code": "+81",
-    "isoCode": "392"
+    "iso_code": "392"
   },
   {
     "name": "Jordan",
@@ -1879,7 +1879,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/jor.svg",
     "dialling_code": "+962",
-    "isoCode": "400"
+    "iso_code": "400"
   },
   {
     "name": "Kazakhstan",
@@ -1897,7 +1897,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/kaz.svg",
     "dialling_code": "+7",
-    "isoCode": "398"
+    "iso_code": "398"
   },
   {
     "name": "Kenya",
@@ -1915,7 +1915,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/ken.svg",
     "dialling_code": "+254",
-    "isoCode": "404"
+    "iso_code": "404"
   },
   {
     "name": "Kiribati",
@@ -1933,7 +1933,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/kir.svg",
     "dialling_code": "+686",
-    "isoCode": "296"
+    "iso_code": "296"
   },
   {
     "name": "Kuwait",
@@ -1951,7 +1951,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/kwt.svg",
     "dialling_code": "+965",
-    "isoCode": "414"
+    "iso_code": "414"
   },
   {
     "name": "Kyrgyzstan",
@@ -1969,7 +1969,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/kgz.svg",
     "dialling_code": "+996",
-    "isoCode": "417"
+    "iso_code": "417"
   },
   {
     "name": "Lao People's Democratic Republic",
@@ -1987,7 +1987,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/lao.svg",
     "dialling_code": "+856",
-    "isoCode": "418"
+    "iso_code": "418"
   },
   {
     "name": "Latvia",
@@ -2005,7 +2005,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/lva.svg",
     "dialling_code": "+371",
-    "isoCode": "428"
+    "iso_code": "428"
   },
   {
     "name": "Lebanon",
@@ -2023,7 +2023,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/lbn.svg",
     "dialling_code": "+961",
-    "isoCode": "422"
+    "iso_code": "422"
   },
   {
     "name": "Lesotho",
@@ -2041,7 +2041,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/lso.svg",
     "dialling_code": "+266",
-    "isoCode": "426"
+    "iso_code": "426"
   },
   {
     "name": "Liberia",
@@ -2059,7 +2059,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/lbr.svg",
     "dialling_code": "+231",
-    "isoCode": "430"
+    "iso_code": "430"
   },
   {
     "name": "Libya",
@@ -2077,7 +2077,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/lby.svg",
     "dialling_code": "+218",
-    "isoCode": "434"
+    "iso_code": "434"
   },
   {
     "name": "Liechtenstein",
@@ -2095,7 +2095,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/lie.svg",
     "dialling_code": "+423",
-    "isoCode": "438"
+    "iso_code": "438"
   },
   {
     "name": "Lithuania",
@@ -2113,7 +2113,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/ltu.svg",
     "dialling_code": "+370",
-    "isoCode": "440"
+    "iso_code": "440"
   },
   {
     "name": "Luxembourg",
@@ -2131,7 +2131,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/lux.svg",
     "dialling_code": "+352",
-    "isoCode": "442"
+    "iso_code": "442"
   },
   {
     "name": "Macao",
@@ -2149,7 +2149,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/mac.svg",
     "dialling_code": "+853",
-    "isoCode": "446"
+    "iso_code": "446"
   },
   {
     "name": "Macedonia (the former Yugoslav Republic of)",
@@ -2167,7 +2167,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/mkd.svg",
     "dialling_code": "+389",
-    "isoCode": "807"
+    "iso_code": "807"
   },
   {
     "name": "Madagascar",
@@ -2185,7 +2185,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/mdg.svg",
     "dialling_code": "+261",
-    "isoCode": "450"
+    "iso_code": "450"
   },
   {
     "name": "Malawi",
@@ -2203,7 +2203,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/mwi.svg",
     "dialling_code": "+265",
-    "isoCode": "454"
+    "iso_code": "454"
   },
   {
     "name": "Malaysia",
@@ -2221,7 +2221,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/mys.svg",
     "dialling_code": "+60",
-    "isoCode": "458"
+    "iso_code": "458"
   },
   {
     "name": "Maldives",
@@ -2239,7 +2239,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/mdv.svg",
     "dialling_code": "+960",
-    "isoCode": "462"
+    "iso_code": "462"
   },
   {
     "name": "Mali",
@@ -2257,7 +2257,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/mli.svg",
     "dialling_code": "+223",
-    "isoCode": "466"
+    "iso_code": "466"
   },
   {
     "name": "Malta",
@@ -2275,7 +2275,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/mlt.svg",
     "dialling_code": "+356",
-    "isoCode": "470"
+    "iso_code": "470"
   },
   {
     "name": "Marshall Islands",
@@ -2293,7 +2293,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/mhl.svg",
     "dialling_code": "+692",
-    "isoCode": "584"
+    "iso_code": "584"
   },
   {
     "name": "Martinique",
@@ -2311,7 +2311,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/mtq.svg",
     "dialling_code": "+596",
-    "isoCode": "474"
+    "iso_code": "474"
   },
   {
     "name": "Mauritania",
@@ -2329,7 +2329,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/mrt.svg",
     "dialling_code": "+222",
-    "isoCode": "478"
+    "iso_code": "478"
   },
   {
     "name": "Mauritius",
@@ -2347,7 +2347,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/mus.svg",
     "dialling_code": "+230",
-    "isoCode": "480"
+    "iso_code": "480"
   },
   {
     "name": "Mayotte",
@@ -2365,7 +2365,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/myt.svg",
     "dialling_code": "+262",
-    "isoCode": "175"
+    "iso_code": "175"
   },
   {
     "name": "Mexico",
@@ -2383,7 +2383,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/mex.svg",
     "dialling_code": "+52",
-    "isoCode": "484"
+    "iso_code": "484"
   },
   {
     "name": "Micronesia (Federated States of)",
@@ -2401,7 +2401,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/fsm.svg",
     "dialling_code": "+691",
-    "isoCode": "583"
+    "iso_code": "583"
   },
   {
     "name": "Moldova (Republic of)",
@@ -2419,7 +2419,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/mda.svg",
     "dialling_code": "+373",
-    "isoCode": "498"
+    "iso_code": "498"
   },
   {
     "name": "Monaco",
@@ -2437,7 +2437,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/mco.svg",
     "dialling_code": "+377",
-    "isoCode": "492"
+    "iso_code": "492"
   },
   {
     "name": "Mongolia",
@@ -2455,7 +2455,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/mng.svg",
     "dialling_code": "+976",
-    "isoCode": "496"
+    "iso_code": "496"
   },
   {
     "name": "Montenegro",
@@ -2473,7 +2473,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/mne.svg",
     "dialling_code": "+382",
-    "isoCode": "499"
+    "iso_code": "499"
   },
   {
     "name": "Montserrat",
@@ -2491,7 +2491,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/msr.svg",
     "dialling_code": "+1",
-    "isoCode": "500"
+    "iso_code": "500"
   },
   {
     "name": "Morocco",
@@ -2509,7 +2509,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/mar.svg",
     "dialling_code": "+212",
-    "isoCode": "504"
+    "iso_code": "504"
   },
   {
     "name": "Mozambique",
@@ -2527,7 +2527,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/moz.svg",
     "dialling_code": "+258",
-    "isoCode": "508"
+    "iso_code": "508"
   },
   {
     "name": "Myanmar",
@@ -2545,7 +2545,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/mmr.svg",
     "dialling_code": "+95",
-    "isoCode": "104"
+    "iso_code": "104"
   },
   {
     "name": "Namibia",
@@ -2563,7 +2563,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/nam.svg",
     "dialling_code": "+264",
-    "isoCode": "516"
+    "iso_code": "516"
   },
   {
     "name": "Nauru",
@@ -2581,7 +2581,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/nru.svg",
     "dialling_code": "+674",
-    "isoCode": "520"
+    "iso_code": "520"
   },
   {
     "name": "Nepal",
@@ -2599,7 +2599,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/npl.svg",
     "dialling_code": "+977",
-    "isoCode": "524"
+    "iso_code": "524"
   },
   {
     "name": "Netherlands",
@@ -2617,7 +2617,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/nld.svg",
     "dialling_code": "+31",
-    "isoCode": "528"
+    "iso_code": "528"
   },
   {
     "name": "New Caledonia",
@@ -2635,7 +2635,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/ncl.svg",
     "dialling_code": "+687",
-    "isoCode": "540"
+    "iso_code": "540"
   },
   {
     "name": "New Zealand",
@@ -2653,7 +2653,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/nzl.svg",
     "dialling_code": "+64",
-    "isoCode": "554"
+    "iso_code": "554"
   },
   {
     "name": "Nicaragua",
@@ -2671,7 +2671,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/nic.svg",
     "dialling_code": "+505",
-    "isoCode": "558"
+    "iso_code": "558"
   },
   {
     "name": "Niger",
@@ -2689,7 +2689,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/ner.svg",
     "dialling_code": "+227",
-    "isoCode": "562"
+    "iso_code": "562"
   },
   {
     "name": "Nigeria",
@@ -2707,7 +2707,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/nga.svg",
     "dialling_code": "+234",
-    "isoCode": "566"
+    "iso_code": "566"
   },
   {
     "name": "Niue",
@@ -2725,7 +2725,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/niu.svg",
     "dialling_code": "+683",
-    "isoCode": "570"
+    "iso_code": "570"
   },
   {
     "name": "Norfolk Island",
@@ -2743,7 +2743,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/nfk.svg",
     "dialling_code": "+672",
-    "isoCode": "574"
+    "iso_code": "574"
   },
   {
     "name": "Korea (Democratic People's Republic of)",
@@ -2761,7 +2761,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/prk.svg",
     "dialling_code": "+850",
-    "isoCode": "408"
+    "iso_code": "408"
   },
   {
     "name": "Northern Mariana Islands",
@@ -2779,7 +2779,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/mnp.svg",
     "dialling_code": "+1",
-    "isoCode": "580"
+    "iso_code": "580"
   },
   {
     "name": "Norway",
@@ -2797,7 +2797,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/nor.svg",
     "dialling_code": "+47",
-    "isoCode": "578"
+    "iso_code": "578"
   },
   {
     "name": "Oman",
@@ -2815,7 +2815,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/omn.svg",
     "dialling_code": "+968",
-    "isoCode": "512"
+    "iso_code": "512"
   },
   {
     "name": "Pakistan",
@@ -2833,7 +2833,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/pak.svg",
     "dialling_code": "+92",
-    "isoCode": "586"
+    "iso_code": "586"
   },
   {
     "name": "Palau",
@@ -2851,7 +2851,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/plw.svg",
     "dialling_code": "+680",
-    "isoCode": "585"
+    "iso_code": "585"
   },
   {
     "name": "Palestine, State of",
@@ -2869,7 +2869,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/pse.svg",
     "dialling_code": "+970",
-    "isoCode": "275"
+    "iso_code": "275"
   },
   {
     "name": "Panama",
@@ -2887,7 +2887,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/pan.svg",
     "dialling_code": "+507",
-    "isoCode": "591"
+    "iso_code": "591"
   },
   {
     "name": "Papua New Guinea",
@@ -2905,7 +2905,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/png.svg",
     "dialling_code": "+675",
-    "isoCode": "598"
+    "iso_code": "598"
   },
   {
     "name": "Paraguay",
@@ -2923,7 +2923,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/pry.svg",
     "dialling_code": "+595",
-    "isoCode": "600"
+    "iso_code": "600"
   },
   {
     "name": "Peru",
@@ -2941,7 +2941,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/per.svg",
     "dialling_code": "+51",
-    "isoCode": "604"
+    "iso_code": "604"
   },
   {
     "name": "Philippines",
@@ -2959,7 +2959,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/phl.svg",
     "dialling_code": "+63",
-    "isoCode": "608"
+    "iso_code": "608"
   },
   {
     "name": "Poland",
@@ -2977,7 +2977,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/pol.svg",
     "dialling_code": "+48",
-    "isoCode": "616"
+    "iso_code": "616"
   },
   {
     "name": "Portugal",
@@ -2995,7 +2995,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/prt.svg",
     "dialling_code": "+351",
-    "isoCode": "620"
+    "iso_code": "620"
   },
   {
     "name": "Puerto Rico",
@@ -3013,7 +3013,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/pri.svg",
     "dialling_code": "+1",
-    "isoCode": "630"
+    "iso_code": "630"
   },
   {
     "name": "Qatar",
@@ -3031,7 +3031,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/qat.svg",
     "dialling_code": "+974",
-    "isoCode": "634"
+    "iso_code": "634"
   },
   {
     "name": "Republic of Kosovo",
@@ -3049,7 +3049,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/kos.svg",
     "dialling_code": "+381",
-    "isoCode": "383"
+    "iso_code": "383"
   },
   {
     "name": "Réunion",
@@ -3067,7 +3067,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/reu.svg",
     "dialling_code": "+262",
-    "isoCode": "638"
+    "iso_code": "638"
   },
   {
     "name": "Romania",
@@ -3085,7 +3085,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/rou.svg",
     "dialling_code": "+40",
-    "isoCode": "642"
+    "iso_code": "642"
   },
   {
     "name": "Russian Federation",
@@ -3103,7 +3103,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/rus.svg",
     "dialling_code": "+7",
-    "isoCode": "643"
+    "iso_code": "643"
   },
   {
     "name": "Rwanda",
@@ -3121,7 +3121,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/rwa.svg",
     "dialling_code": "+250",
-    "isoCode": "646"
+    "iso_code": "646"
   },
   {
     "name": "Saint Barthélemy",
@@ -3139,7 +3139,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/blm.svg",
     "dialling_code": "+590",
-    "isoCode": "652"
+    "iso_code": "652"
   },
   {
     "name": "Saint Helena, Ascension and Tristan da Cunha",
@@ -3157,7 +3157,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/shn.svg",
     "dialling_code": "+290",
-    "isoCode": "654"
+    "iso_code": "654"
   },
   {
     "name": "Saint Kitts and Nevis",
@@ -3175,7 +3175,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/kna.svg",
     "dialling_code": "+1",
-    "isoCode": "659"
+    "iso_code": "659"
   },
   {
     "name": "Saint Lucia",
@@ -3193,7 +3193,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/lca.svg",
     "dialling_code": "+1",
-    "isoCode": "662"
+    "iso_code": "662"
   },
   {
     "name": "Saint Martin (French part)",
@@ -3211,7 +3211,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/maf.svg",
     "dialling_code": "+590",
-    "isoCode": "663"
+    "iso_code": "663"
   },
   {
     "name": "Saint Pierre and Miquelon",
@@ -3229,7 +3229,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/spm.svg",
     "dialling_code": "+508",
-    "isoCode": "666"
+    "iso_code": "666"
   },
   {
     "name": "Saint Vincent and the Grenadines",
@@ -3247,7 +3247,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/vct.svg",
     "dialling_code": "+1",
-    "isoCode": "670"
+    "iso_code": "670"
   },
   {
     "name": "Samoa",
@@ -3265,7 +3265,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/wsm.svg",
     "dialling_code": "+685",
-    "isoCode": "882"
+    "iso_code": "882"
   },
   {
     "name": "San Marino",
@@ -3283,7 +3283,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/smr.svg",
     "dialling_code": "+378",
-    "isoCode": "674"
+    "iso_code": "674"
   },
   {
     "name": "Sao Tome and Principe",
@@ -3301,7 +3301,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/stp.svg",
     "dialling_code": "+239",
-    "isoCode": "678"
+    "iso_code": "678"
   },
   {
     "name": "Saudi Arabia",
@@ -3319,7 +3319,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/sau.svg",
     "dialling_code": "+966",
-    "isoCode": "682"
+    "iso_code": "682"
   },
   {
     "name": "Senegal",
@@ -3337,7 +3337,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/sen.svg",
     "dialling_code": "+221",
-    "isoCode": "686"
+    "iso_code": "686"
   },
   {
     "name": "Serbia",
@@ -3355,7 +3355,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/srb.svg",
     "dialling_code": "+381",
-    "isoCode": "688"
+    "iso_code": "688"
   },
   {
     "name": "Seychelles",
@@ -3373,7 +3373,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/syc.svg",
     "dialling_code": "+248",
-    "isoCode": "690"
+    "iso_code": "690"
   },
   {
     "name": "Sierra Leone",
@@ -3391,7 +3391,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/sle.svg",
     "dialling_code": "+232",
-    "isoCode": "694"
+    "iso_code": "694"
   },
   {
     "name": "Singapore",
@@ -3409,7 +3409,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/sgp.svg",
     "dialling_code": "+65",
-    "isoCode": "702"
+    "iso_code": "702"
   },
   {
     "name": "Singapore",
@@ -3427,7 +3427,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/sgp.svg",
     "dialling_code": "+65",
-    "isoCode": "702"
+    "iso_code": "702"
   },
   {
     "name": "Slovakia",
@@ -3445,7 +3445,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/svk.svg",
     "dialling_code": "+421",
-    "isoCode": "703"
+    "iso_code": "703"
   },
   {
     "name": "Slovenia",
@@ -3463,7 +3463,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/svn.svg",
     "dialling_code": "+386",
-    "isoCode": "705"
+    "iso_code": "705"
   },
   {
     "name": "Solomon Islands",
@@ -3481,7 +3481,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/slb.svg",
     "dialling_code": "+677",
-    "isoCode": "090"
+    "iso_code": "090"
   },
   {
     "name": "Somalia",
@@ -3499,7 +3499,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/som.svg",
     "dialling_code": "+252",
-    "isoCode": "706"
+    "iso_code": "706"
   },
   {
     "name": "South Africa",
@@ -3519,7 +3519,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/zaf.svg",
     "dialling_code": "+27",
-    "isoCode": "710"
+    "iso_code": "710"
   },
   {
     "name": "Korea (Republic of)",
@@ -3537,7 +3537,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/kor.svg",
     "dialling_code": "+82",
-    "isoCode": "410"
+    "iso_code": "410"
   },
   {
     "name": "Spain",
@@ -3555,7 +3555,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/esp.svg",
     "dialling_code": "+34",
-    "isoCode": "724"
+    "iso_code": "724"
   },
   {
     "name": "Sri Lanka",
@@ -3575,7 +3575,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/lka.svg",
     "dialling_code": "+94",
-    "isoCode": "144"
+    "iso_code": "144"
   },
   {
     "name": "Sudan",
@@ -3593,7 +3593,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/sdn.svg",
     "dialling_code": "+249",
-    "isoCode": "729"
+    "iso_code": "729"
   },
   {
     "name": "Suriname",
@@ -3611,7 +3611,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/sur.svg",
     "dialling_code": "+597",
-    "isoCode": "740"
+    "iso_code": "740"
   },
   {
     "name": "Swaziland",
@@ -3629,7 +3629,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/swz.svg",
     "dialling_code": "+268",
-    "isoCode": "748"
+    "iso_code": "748"
   },
   {
     "name": "Sweden",
@@ -3647,7 +3647,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/swe.svg",
     "dialling_code": "+46",
-    "isoCode": "752"
+    "iso_code": "752"
   },
   {
     "name": "Switzerland",
@@ -3665,7 +3665,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/che.svg",
     "dialling_code": "+41",
-    "isoCode": "756"
+    "iso_code": "756"
   },
   {
     "name": "Syrian Arab Republic",
@@ -3683,7 +3683,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/syr.svg",
     "dialling_code": "+963",
-    "isoCode": "760"
+    "iso_code": "760"
   },
   {
     "name": "Taiwan",
@@ -3701,7 +3701,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/twn.svg",
     "dialling_code": "+886",
-    "isoCode": "158"
+    "iso_code": "158"
   },
   {
     "name": "Tajikistan",
@@ -3719,7 +3719,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/tjk.svg",
     "dialling_code": "+992",
-    "isoCode": "762"
+    "iso_code": "762"
   },
   {
     "name": "Tanzania, United Republic of",
@@ -3737,7 +3737,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/tza.svg",
     "dialling_code": "+255",
-    "isoCode": "834"
+    "iso_code": "834"
   },
   {
     "name": "Thailand",
@@ -3755,7 +3755,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/tha.svg",
     "dialling_code": "+66",
-    "isoCode": "764"
+    "iso_code": "764"
   },
   {
     "name": "Timor-Leste",
@@ -3773,7 +3773,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/tls.svg",
     "dialling_code": "+670",
-    "isoCode": "626"
+    "iso_code": "626"
   },
   {
     "name": "Togo",
@@ -3791,7 +3791,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/tgo.svg",
     "dialling_code": "+228",
-    "isoCode": "768"
+    "iso_code": "768"
   },
   {
     "name": "Tokelau",
@@ -3809,7 +3809,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/tkl.svg",
     "dialling_code": "+690",
-    "isoCode": "772"
+    "iso_code": "772"
   },
   {
     "name": "Tonga",
@@ -3827,7 +3827,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/ton.svg",
     "dialling_code": "+676",
-    "isoCode": "776"
+    "iso_code": "776"
   },
   {
     "name": "Trinidad and Tobago",
@@ -3845,7 +3845,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/tto.svg",
     "dialling_code": "+1",
-    "isoCode": "780"
+    "iso_code": "780"
   },
   {
     "name": "Tunisia",
@@ -3863,7 +3863,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/tun.svg",
     "dialling_code": "+216",
-    "isoCode": "788"
+    "iso_code": "788"
   },
   {
     "name": "Turkey",
@@ -3881,7 +3881,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/tur.svg",
     "dialling_code": "+90",
-    "isoCode": "792"
+    "iso_code": "792"
   },
   {
     "name": "Turkmenistan",
@@ -3899,7 +3899,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/tkm.svg",
     "dialling_code": "+993",
-    "isoCode": "795"
+    "iso_code": "795"
   },
   {
     "name": "Turks and Caicos Islands",
@@ -3917,7 +3917,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/tca.svg",
     "dialling_code": "+1",
-    "isoCode": "796"
+    "iso_code": "796"
   },
   {
     "name": "Tuvalu",
@@ -3935,7 +3935,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/tuv.svg",
     "dialling_code": "+688",
-    "isoCode": "798"
+    "iso_code": "798"
   },
   {
     "name": "Uganda",
@@ -3953,7 +3953,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/uga.svg",
     "dialling_code": "+256",
-    "isoCode": "800"
+    "iso_code": "800"
   },
   {
     "name": "Ukraine",
@@ -3971,7 +3971,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/ukr.svg",
     "dialling_code": "+380",
-    "isoCode": "804"
+    "iso_code": "804"
   },
   {
     "name": "United Arab Emirates",
@@ -3989,7 +3989,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/are.svg",
     "dialling_code": "+971",
-    "isoCode": "784"
+    "iso_code": "784"
   },
   {
     "name": "United Kingdom of Great Britain and Northern Ireland",
@@ -4007,7 +4007,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/gbr.svg",
     "dialling_code": "+44",
-    "isoCode": "826"
+    "iso_code": "826"
   },
   {
     "name": "United States of America",
@@ -4027,7 +4027,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/usa.svg",
     "dialling_code": "+1",
-    "isoCode": "840"
+    "iso_code": "840"
   },
   {
     "name": "Uruguay",
@@ -4045,7 +4045,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/ury.svg",
     "dialling_code": "+598",
-    "isoCode": "858"
+    "iso_code": "858"
   },
   {
     "name": "Uzbekistan",
@@ -4063,7 +4063,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/uzb.svg",
     "dialling_code": "+998",
-    "isoCode": "860"
+    "iso_code": "860"
   },
   {
     "name": "Vanuatu",
@@ -4081,7 +4081,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/vut.svg",
     "dialling_code": "+678",
-    "isoCode": "548"
+    "iso_code": "548"
   },
   {
     "name": "Venezuela (Bolivarian Republic of)",
@@ -4099,7 +4099,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/ven.svg",
     "dialling_code": "+58",
-    "isoCode": "862"
+    "iso_code": "862"
   },
   {
     "name": "Viet Nam",
@@ -4117,7 +4117,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/vnm.svg",
     "dialling_code": "+84",
-    "isoCode": "704"
+    "iso_code": "704"
   },
   {
     "name": "Wallis and Futuna",
@@ -4135,7 +4135,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/wlf.svg",
     "dialling_code": "+681",
-    "isoCode": "876"
+    "iso_code": "876"
   },
   {
     "name": "Wallis and Futuna",
@@ -4153,7 +4153,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/wlf.svg",
     "dialling_code": "+681",
-    "isoCode": "876"
+    "iso_code": "876"
   },
   {
     "name": "Yemen",
@@ -4171,7 +4171,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/yem.svg",
     "dialling_code": "+967",
-    "isoCode": "887"
+    "iso_code": "887"
   },
   {
     "name": "Zambia",
@@ -4189,7 +4189,7 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/zmb.svg",
     "dialling_code": "+260",
-    "isoCode": "894"
+    "iso_code": "894"
   },
   {
     "name": "Zimbabwe",
@@ -4209,6 +4209,6 @@ export const countryList = [
     },
     "flag": "https://restcountries.eu/data/zwe.svg",
     "dialling_code": "+263",
-    "isoCode": "716"
+    "iso_code": "716"
   }
 ]
