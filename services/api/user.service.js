@@ -40,6 +40,7 @@ export async function userRegister(data) {
 }
 
 export async function getUser(userId, options) {
+  console.log("test")
   return get(buckets.USER, userId, options);
 }
 

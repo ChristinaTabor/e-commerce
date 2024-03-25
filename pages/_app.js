@@ -47,6 +47,7 @@ export default function MyApp({ Component, pageProps }) {
     }
 
     setCommonData(common);
+    console.log(common);
 
     let userId = localStorage.getItem("userId");
 
@@ -57,6 +58,7 @@ export default function MyApp({ Component, pageProps }) {
         console.log(err);
       });
       setUser(userData);
+      console.log(userData)
     }
 
     let timer = setTimeout(function () {

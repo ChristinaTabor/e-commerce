@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Container, Row, Form, Label, Col } from "reactstrap";
 
-const NewAddress = ({ address, saveAddress }) => {
+const NewAddress = ({ address = {}, saveAddress }) => {
   const {
     register,
     handleSubmit,
@@ -84,12 +84,12 @@ const NewAddress = ({ address, saveAddress }) => {
                 <Col md="12" className="form-col">
                   <Label for="review">Postal Code</Label>
                   <input
-                    type="number"
+                    //type="number"
                     className={`${errors.postal_code ? "error_border" : ""}`}
                     name="postal_code"
                     {...register("postal_code", {
                       value: address?.postal_code,
-                      valueAsNumber: true,
+                      //valueAsNumber: true,
                       required: true,
                     })}
                   />

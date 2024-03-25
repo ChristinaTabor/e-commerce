@@ -19,9 +19,9 @@ const Paragraph = ({title, inner, line ,hrClass}) => {
                 <Row>
                     <Col lg="6" className="m-auto">
                         <div className="product-para">
-                            <p className="text-center">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's
-                        standard dummy text ever since the 1500s,</p>
+                            <p className="text-center">Spoil yourself or someone you love!
+                            We guarantee you'll find what you need.
+                        </p>
                         </div>
                     </Col>
                 </Row>

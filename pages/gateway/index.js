@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Container, Form, Row, Col, Label, Spinner } from "reactstrap";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
+import CartContext from "../../../../helpers/cart";
 
 const cubixpayUrl = "https://spica.cubixpay.com";
 const Gateway = () => {
@@ -33,6 +34,7 @@ const Gateway = () => {
   const router = useRouter();
   const { referenceNo, result } = router.query;
   const [creq, setCreq] = useState("");
+  const context = useContext(CartContext);
 
   if (result) {
     result = JSON.parse(result);
@@ -119,6 +121,10 @@ const Gateway = () => {
     setObj(obj);
   };
 
+  const clearCart = () => {
+    context.setCartItems([]);
+  }
+
   return (
     <section className="section-b-space gateway">
       <form
@@ -138,8 +144,9 @@ const Gateway = () => {
                   <div className="result-text success-text">
                     <i className="fa fa-check-circle" aria-hidden="true"></i>
                     <h2>thank you</h2>
-                    <p>Payment is successfully processsed</p>
+                    <p>Payment is successfully processed</p>
                     <p>Reference No:{result.referenceNo}</p>
+                    
                   </div>
                 ) : (
                   <div className="result-text fail-text">

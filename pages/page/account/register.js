@@ -1,13 +1,15 @@
-import React from "react";
+import React, {useState} from "react";
 import { useForm } from "react-hook-form";
 import CommonLayout from "../../../components/shop/common-layout";
-import { Container, Row, Form, Label, Col } from "reactstrap";
+import { Container, Row, Form, Label, Col, Spinner } from "reactstrap";
 import { userRegister } from "../../../services/api/user.service";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
+import { countryList } from "c:/Users/chris/Documents/GitHub/cubixpay-game-next/services/countries";
 
 const Register = () => {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -17,6 +19,7 @@ const Register = () => {
 
   const onSubmit = (data) => {
     if (data !== "") {
+      setLoading(true);
       userRegister(data)
         .then((_) => {
           toast.success("Register is successfully");
@@ -24,11 +27,18 @@ const Register = () => {
         })
         .catch((err) => {
           toast.success(err.message || "Error! Please try again later");
+        })
+        .finally(() => {
+          setLoading(false);
         });
+
     } else {
       errors.showMessages();
     }
   };
+
+  const today = new Date().toISOString().split("T")[0];
+  
 
   return (
     <CommonLayout parent="home" title="register">
@@ -61,7 +71,7 @@ const Register = () => {
                     </Col>
                   </Row>
                   <Row>
-                    <Col md="6" className="form-col">
+                  <Col md="6" className="form-col">
                       <Label for="email">email</Label>
                       <input
                         type="text"
@@ -73,7 +83,38 @@ const Register = () => {
                           pattern: /^\S+@\S+$/i,
                         })}
                       />
+                    </Col>         
+                    <Col md="6" className="form-col">
+                    <Label for="review">Date Of Birth</Label>
+                      <input
+                      
+                        type="date"
+                        className={`${errors.date_of_birth ? "error_border" : ""}`}
+                        name="date_of_birth"
+                        max = {today}
+                        {...register("date_of_birth", { required: true })}
+                      />
+                      {/* <Label for="review">Date Of Birth</Label>
+                      <input
+                        type="date"
+                        className={`${errors.date_of_birth ? "error_border" : ""}`}
+                        name="date_of_birth"
+                        {...register("date_of_birth", { required: true,
+                        validate:{
+                          notFutureDate: value => {
+                            const selectedDate =new Date(value);
+                            const today = new Date();
+                            return selectedDate <= today;
+                          }
+                        } 
+                      })}
+                      />
+                      {errors.date_of_birth && errors.date_of_birth.type === "notFutureDate" && (
+                      <span className="error_message">Invalid date of Birth!</span>
+                      )} */}
                     </Col>
+                  </Row>
+                  <Row>
                     <Col md="6" className="form-col">
                       <Label for="review">Password</Label>
                       <input
@@ -84,8 +125,83 @@ const Register = () => {
                         {...register("password", { required: true })}
                       />
                     </Col>
-                    <button type="submit" className="btn btn-solid">
-                      create Account
+                  </Row>
+                    <Row>
+                      <Col md="12">
+                        <div className="checkout-title">
+                          <h3>Billing Details</h3>
+                        </div>
+                      </Col>
+                    </Row>
+
+                    <Row>
+                      <Col md="12">
+                        <Label>Country</Label>
+                        <select
+                          className="form-group form-control"
+                          placeholder="Country"
+                          {...register("userData.country", { required: true })}
+                        >
+                          {countryList.map((country) => (
+                            <option value={country.code} key={country.code}>{country.name}</option>
+                          ))}
+                        </select>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md="12">
+                        <Label>Address</Label>
+                        <input
+                          className="form-group form-control"
+                          placeholder="Address"
+                          {...register("userData.address", { required: true })}
+                        />
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md="12">
+                        <Label>Town / City</Label>
+                        <input
+                          className="form-group form-control"
+                          placeholder="Town/City"
+                          {...register("userData.city", { required: true })}
+                        />
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md="12">
+                        <Label>State / County</Label>
+                        <input
+                          className="form-group form-control"
+                          placeholder="State / County"
+                          {...register("userData.state", { required: true })}
+                        />
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md="12">
+                        <Label>Postal Code</Label>
+                        <input
+                          className="form-group form-control"
+                          placeholder="Postal Code"
+                          {...register("userData.postal_code")}
+                        />
+                      </Col>
+                    </Row>
+                  <Row>
+                  <Col md="12">
+                        <Label>Phone Number</Label>
+                        <input
+                          type="tel"
+                          className="form-group form-control"
+                          placeholder="Phone Number"
+                          {...register("userData.phone", { required: true })}
+                        />
+                      </Col>
+                  </Row>
+                  <Row>
+                    <button type="submit" className="btn btn-solid" diasabled={loading}>
+                      {loading ? <Spinner animation="border" /> : "Create Account"}
                     </button>
                   </Row>
                 </Form>

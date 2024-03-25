@@ -13,9 +13,10 @@ const AccountLayout = ({ children }) => {
   let activePath = pathArr[pathArr.length - 1];
 
   const handleLogout = () => {
-    userContext.setUser();
-    userLogout();
     navigateToPage("/page/account/login");
+    userContext.setUser();
+    //userLogout();
+    
   };
 
   const navigateToPage = (path) => {
@@ -67,7 +68,7 @@ const AccountLayout = ({ children }) => {
                       </a>
                     </li>
                     <li className="last">
-                      <a href="#" onClick={handleLogout}>
+                      <a onClick={handleLogout}>
                         Log Out
                       </a>
                     </li>

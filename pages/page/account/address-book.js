@@ -27,7 +27,7 @@ const Dashboard = () => {
     let addressData;
 
     if (data.action == "create") {
-      addressData = await post(buckets.ADDRESS, data.data).catch((err) => {
+      addressData = await post(buckets.ADDRESS, {...data.data,user:user._id}).catch((err) => {
         console.log(err);
       });
     } else {
@@ -42,7 +42,7 @@ const Dashboard = () => {
       user.addresses = user.addresses || [];
 
       if (data.action == "create") {
-        user.addresses.push(res);
+        user.addresses.push(addressData);
         await patch(buckets.USER, user._id, { addresses: user.addresses });
       } else {
         const addressIndex = user.addresses.findIndex((el) => {
@@ -116,7 +116,7 @@ const Dashboard = () => {
         className="new-address-modal"
         toggle={addressToggle}
       >
-        <NewAddress address={selectedAddress} saveAddress={(data) => saveAddress(data)} />
+      <NewAddress address={selectedAddress} saveAddress={(data) => saveAddress(data)} />
       </Modal>
       <Modal
         centered

@@ -12,6 +12,7 @@ export const buckets = {
   USER: "62e12d0af3ffc4002b57c2fc",
   ADDRESS: "62e2811ef3ffc4002b57c587",
   COMMON: "62f4b619452333002c001d63",
+  ORDER: "62e3ca58f3ffc4002b57c717"
 };
 
 function init() {

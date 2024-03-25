@@ -14,6 +14,7 @@ const FaqList = ({ faq }) => {
   const [isOpen, setIsOpen] = useState(false);
   
   const toggle = () => setIsOpen(!isOpen);
+
   return (
     <Card>
       <CardHeader id="headingOne">

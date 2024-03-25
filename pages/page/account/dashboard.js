@@ -22,7 +22,7 @@ const Dashboard = () => {
         </div>
         <div className="welcome-msg">
           <p>
-            Hello, {user.first_name} {user.last_name}!
+            Hello, {user?.first_name} {user?.last_name}!
           </p>
           <p>
             From your My Account Dashboard you have the ability to view a snapshot of your
@@ -43,9 +43,9 @@ const Dashboard = () => {
                 </div>
                 <div className="box-content">
                   <h6>
-                    {user.first_name} {user.last_name}
+                    {user?.first_name} {user?.last_name}
                   </h6>
-                  <h6>{user.email}</h6>
+                  <h6>{user?.email}</h6>
                   <h6>
                     <a onClick={() => navigateToPage("change-password")}>Change Password</a>
                   </h6>
@@ -62,8 +62,8 @@ const Dashboard = () => {
                 <Col>
                   <h6>Default Shipping Address</h6>
                   <address>
-                    {user.addresses[0]
-                      ? `${user.addresses[0].address} ${user.addresses[0].state}/${user.addresses[0].city}`
+                    {user?.addresses[0]
+                      ? `${user?.addresses[0].address} ${user?.addresses[0].state}/${user?.addresses[0].city}`
                       : "You have not set a default shipping address."}
 
                     <br />

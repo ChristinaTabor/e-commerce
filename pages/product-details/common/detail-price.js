@@ -5,8 +5,10 @@ import { Modal, ModalBody, ModalHeader, Media, Input } from "reactstrap";
 import { CurrencyContext } from "../../../helpers/Currency/CurrencyContext";
 import CartContext from "../../../helpers/cart";
 import MasterSocial from "./master_social";
+import { useRouter } from "next/router";
 
 const DetailsWithPrice = ({ item, stickyClass, changeColorVar }) => {
+  const router = useRouter();
   const [modal, setModal] = useState(false);
   const CurContect = useContext(CurrencyContext);
   const symbol = CurContect.state.symbol;
@@ -19,6 +21,11 @@ const DetailsWithPrice = ({ item, stickyClass, changeColorVar }) => {
   const quantity = context.quantity;
   const uniqueColor = [];
   const uniqueSize = [];
+
+  const onBuy = () => {
+    context.addToCart(product, quantity);
+    router.push(`/page/account/checkout`);
+  }
 
   return (
     <>
@@ -119,10 +126,8 @@ const DetailsWithPrice = ({ item, stickyClass, changeColorVar }) => {
             onClick={() => context.addToCart(product, quantity)}
           >
             add to cart
-          </a>
-          <Link href={`/page/account/checkout`}>
-            <a className="btn btn-solid">buy now</a>
-          </Link>
+          </a> 
+            <a className="btn btn-solid" onClick={onBuy}>buy now</a>
         </div>
         <div className="border-product">
           <h6 className="product-title">product details</h6>

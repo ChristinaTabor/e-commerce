@@ -110,6 +110,7 @@ const CartProvider = (props) => {
         plusQty: plusQty,
         minusQty: minusQty,
         updateQty: updateQty,
+        setCartItems:setCartItems
       }}
     >
       {props.children}

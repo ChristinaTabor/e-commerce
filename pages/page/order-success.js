@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CommonLayout from "../../components/shop/common-layout";
 import { Container, Row, Col, Media } from "reactstrap";
 import CartContext from "../../helpers/cart";
@@ -8,14 +8,21 @@ import { useRouter } from "next/router";
 const OrderSuccess = () => {
   const router = useRouter();
 
-  const cartContext = useContext(CartContext);
-  const cartItems = cartContext.state;
-  const cartTotal = cartContext.cartTotal;
   const curContext = useContext(CurrencyContext);
   const symbol = curContext.state.symbol;
 
   const referenceNo = router.query.referenceNo;
   const status = router.query.status;
+  const [cartItems, setCartItems] = useState([])
+  const [cartTotal, setCartTotal] = useState(0)
+
+  useEffect(() => {
+    const successCart = localStorage.getItem("successCart")
+    if(!successCart) return;
+    const successCartJson = JSON.parse(successCart)
+    setCartItems(successCartJson.items)
+    setCartTotal(successCartJson.total)
+  }, []);
 
   return (
     <CommonLayout parent="home" title="order success">
@@ -34,7 +41,9 @@ const OrderSuccess = () => {
                 <div className="result-text fail-text">
                   <i className="fa fa-times-circle" aria-hidden="true"></i>
                   <h2>payment failure</h2>
-                  <p>An error occurred during payment. Please try again later</p>
+                  <p>
+                    An error occurred during payment. Please try again later
+                  </p>
                   <p>Reference No:{referenceNo}</p>
                 </div>
               )}

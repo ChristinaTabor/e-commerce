@@ -41,6 +41,7 @@
     "react-apexcharts": "^1.4.0",
     "react-content-loader": "^6.2.0",
     "react-countdown": "^2.3.2",
+    "react-datepicker": "^6.2.0",
     "react-dom": "17.0.2",
     "react-fullpage": "^0.1.19",
     "react-helmet": "^6.1.0",
@@ -63,6 +64,5 @@
     "responsive-loader": "^3.0.4",
     "rxjs-compat": "^6.6.7",
     "sass": "^1.52.3"
-  },
-  "devDependencies": {}
+  }
 }

@@ -49,7 +49,7 @@ const Fashion = ({ specialProducts, topCollection, isLoading }) => {
       <Container>
         <div className="middle-box-1">
           <div className="middle-box-inner">
-            <h3>Lorem ipsum</h3>
+            <h3>Discounts & Offers</h3>
             <span>Make a purchase at a favorable price and win a discount coupon.</span>
             <Link href={"/shop"}>
               <a className={`btn btn-solid`}>Shop Now</a>
