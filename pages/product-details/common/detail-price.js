@@ -127,7 +127,7 @@ const DetailsWithPrice = ({ item, stickyClass, changeColorVar }) => {
           >
             add to cart
           </a> 
-            <a className="btn btn-solid" onClick={onBuy}>buy now</a>
+            {/* <a className="btn btn-solid" onClick={onBuy}>buy now</a> */}
         </div>
         <div className="border-product">
           <h6 className="product-title">product details</h6>
