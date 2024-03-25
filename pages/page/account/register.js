@@ -5,7 +5,7 @@ import { Container, Row, Form, Label, Col, Spinner } from "reactstrap";
 import { userRegister } from "../../../services/api/user.service";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
-import { countryList } from "c:/Users/chris/Documents/GitHub/cubixpay-game-next/services/countries";
+import { countryList } from "../../../services/countries";
 
 const Register = () => {
   const router = useRouter();
