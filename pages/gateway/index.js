@@ -3,7 +3,6 @@ import { Container, Form, Row, Col, Label, Spinner } from "reactstrap";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
-import CartContext from "../../../../helpers/cart";
 
 const cubixpayUrl = "https://spica.cubixpay.com";
 const Gateway = () => {
@@ -34,7 +33,6 @@ const Gateway = () => {
   const router = useRouter();
   const { referenceNo, result } = router.query;
   const [creq, setCreq] = useState("");
-  const context = useContext(CartContext);
 
   if (result) {
     result = JSON.parse(result);
@@ -115,15 +113,6 @@ const Gateway = () => {
       errors.showMessages();
     }
   };
-
-  const setStateFromInput = (event) => {
-    obj[event.target.name] = event.target.value;
-    setObj(obj);
-  };
-
-  const clearCart = () => {
-    context.setCartItems([]);
-  }
 
   return (
     <section className="section-b-space gateway">
