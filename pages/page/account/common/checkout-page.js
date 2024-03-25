@@ -74,7 +74,7 @@ const CheckoutPage = () => {
     setIsSubmiting(true);
 
     let postBody = {
-      customer: { ...customer, phone: data.customer.phone },
+      customer: { ...customer },
       creditCard: data.creditCard,
       productData: products,
       metaData: metaData,
@@ -95,15 +95,19 @@ const CheckoutPage = () => {
           return;
         }
         if (redirectUrl) {
+          localStorage.setItem("successCart", JSON.stringify({items: cartItems, total: cartTotal}))
+          cartContext.setCartItems([]);
           window.location.href = res.message.redirectUrl;
         }
       })
       .catch((err) => {
         toast.error(err.message);
       })
-      .finally(() => setIsSubmiting(false));
-
+      .finally(() => setIsSubmiting(false));  
+      
   };
+  
+  const today = new Date().toISOString().split("T")[0];
 
   return (
     <section className="section-b-space">
@@ -140,7 +144,7 @@ const CheckoutPage = () => {
                       </Col>
                     </Row>
                     <Row>
-                      <Col md="12">
+                      <Col md="6">
                         <Label>Email Address</Label>
                         <input
                           className="form-group form-control"
@@ -151,6 +155,17 @@ const CheckoutPage = () => {
                           })}
                         />
                       </Col>
+                      <Col md="6" className="form-col">
+                      <Label for="review">Date Of Birth</Label>
+                      <input
+                        type="date"
+                        //className={`${errors.date_of_birth ? "error_border" : ""}`}
+                        className="form-group form-control"
+                        name="date_of_birth"
+                        max = {today}
+                        {...register("userData.date_of_birth", { required: true })}
+                      />
+                    </Col>
                     </Row>
                     <Row>
                       <Col md="12">
@@ -203,6 +218,19 @@ const CheckoutPage = () => {
                           className="form-group form-control"
                           placeholder="Postal Code"
                           {...register("userData.postal_code")}
+                        />
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md="12">
+                        <Label>Phone Number</Label>
+                        <input
+                          type="tel"
+                          className="form-group form-control"
+                          placeholder="Phone Number"
+                          {...register("userData.phone", {
+                            required: true,
+                          })}
                         />
                       </Col>
                     </Row>
@@ -277,19 +305,7 @@ const CheckoutPage = () => {
                           </Col>
                         </Row>
                         <Row>
-                          <Col md="12">
-                            <Label>Phone Number</Label>
-                            <input
-                              type="tel"
-                              className="form-group form-control"
-                              placeholder="Phone Number"
-                              {...register("customer.phone", {
-                                required: true,
-                              })}
-                            />
-                          </Col>
-                        </Row>
-                        <Row>
+
                           <Col md="4">
                             <Label>Exp Date</Label>
                             <select
@@ -338,8 +354,7 @@ const CheckoutPage = () => {
                         </Row>
                         <Row>
                           <Col md="12">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                            do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                          By proceeding, you are confirming that you have read and accepted the Terms & Conditions and Privacy Policy.
                           </Col>
                         </Row>
                         <Row>
@@ -371,7 +386,7 @@ const CheckoutPage = () => {
                           className="btn btn-solid place-order-btn"
                           disabled={!termsChecked || !privacyChecked || isSubmiting || Object.keys(errors).length > 0}
                         >
-                          {isSubmiting ? <Spinner animation="border" /> : "Place Order"}
+                          {isSubmiting ? <Spinner animation="border"/> : "Place Order"}
                         </button>
                         <Row>
                           <Col md="12">

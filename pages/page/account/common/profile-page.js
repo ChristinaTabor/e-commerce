@@ -16,6 +16,7 @@ const ProfilePage = ({user, saveUser }) => {
       errors.showMessages();
     }
   };
+  const today = new Date().toISOString().split("T")[0];
 
   return (
     <div className="contact-page register-page account-page">
@@ -49,6 +50,16 @@ const ProfilePage = ({user, saveUser }) => {
                   className="form-control"
                   placeholder="Email"
                   {...register("email", { value: user?.email, required: true })}
+                />
+              </Col>
+              <Col md="6">
+                <Label for="review">Date Of Birth</Label>
+                <input
+                  type="date"
+                  className="form-control"
+                  name="date_of_birth"
+                  max = {today}
+                  {...register("date_of_birth", { value: user?.date_of_birth, required: true })}
                 />
               </Col>
             </Row>
