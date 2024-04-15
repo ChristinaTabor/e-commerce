@@ -388,11 +388,11 @@ const CheckoutPage = () => {
                         >
                           {isSubmiting ? <Spinner animation="border"/> : "Place Order"}
                         </button>
-                        <Row>
+                        {/* <Row>
                           <Col md="12">
                             <span>Your charge descriptor is: test.com</span>
                           </Col>
-                        </Row>
+                        </Row> */}
                         <Row>
                           <Col md="12">
                             <img className="cards" src={cards.src} />
