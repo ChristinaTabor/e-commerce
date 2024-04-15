@@ -135,9 +135,7 @@ const DetailsWithPrice = ({ item, stickyClass, changeColorVar }) => {
         </div>
         <div className="border-product">
           <h6 className="product-title">share it</h6>
-          <div className="product-icon">
-            <MasterSocial />
-          </div>
+         
         </div>
       </div>
     </>

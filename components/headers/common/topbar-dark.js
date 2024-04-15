@@ -28,9 +28,6 @@ const TopBarDark = ({ data, topClass, fluid }) => {
             <div className="header-contact">
               <ul>
                 <li>{data?.welcome_message}</li>
-                <li>
-                  <i className="fa fa-phone" aria-hidden="true"></i>Call Us: {data?.phone}
-                </li>
               </ul>
             </div>
           </Col>
