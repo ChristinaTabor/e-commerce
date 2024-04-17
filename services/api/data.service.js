@@ -16,19 +16,17 @@ export const buckets = {
 };
 
 function init() {
-  let initializeConfig;
+  const configs = {
+    publicUrl,
+    apikey: publicApiKey,
+  };
+
   if (typeof window !== "undefined" && localStorage.getItem("spicaToken")) {
-    initializeConfig = {
-      publicUrl,
-      identity: localStorage.getItem("spicaToken"),
-    };
-  } else {
-    initializeConfig = {
-      publicUrl,
-      apikey: publicApiKey,
-    };
+    delete configs.apikey;
+    configs["identity"] = localStorage.getItem("spicaToken");
   }
-  Bucket.initialize(initializeConfig);
+
+  Bucket.initialize(configs);
 }
 
 export async function getAll(bucketId, options) {
@@ -64,7 +62,7 @@ export async function remove(bucketId, documentId) {
   return Bucket.data.remove(bucketId, documentId);
 }
 
-export async function httpGet() {}
+export async function httpGet() { }
 
 export async function httpPost(path, data) {
   let token = localStorage.getItem("spicaToken");

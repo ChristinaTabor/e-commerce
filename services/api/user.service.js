@@ -40,7 +40,6 @@ export async function userRegister(data) {
 }
 
 export async function getUser(userId, options) {
-  console.log("test")
   return get(buckets.USER, userId, options);
 }
 
@@ -54,6 +53,16 @@ export async function changeEmail(data) {
 
 export async function changePassword(data) {
   return httpPost("changePassword", data)
+}
+
+export async function verifyToken() {
+  const token = getToken();
+  if (!token) return;
+  return Identity.verifyToken(token);
+}
+
+export function getToken() {
+  return localStorage.getItem("spicaToken");
 }
 
 function tokenDecode(token) {

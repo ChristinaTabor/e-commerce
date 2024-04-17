@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import CommonLayout from "../../../components/shop/common-layout";
-import { Container, Row, Form, Label, Input, Col } from "reactstrap";
+import { Container, Row, Form, Label, Spinner, Col } from "reactstrap";
 import { userLogin, getUser } from "../../../services/api/user.service";
 import UserContext from "../../../helpers/user/UserContext";
 import { useRouter } from "next/router";
@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 const Login = () => {
   const context = useContext(UserContext);
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -19,16 +20,18 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     if (data !== "") {
+      setLoading(true);
       const user = await userLogin(data.email, data.password).catch((err) => {
         toast.error(err.message || "Error! Please try again later");
+        setLoading(false)
       });
-    
+
       if (user) {
         let userData = await getUser(user._id, {
           queryParams: { relation: ["orders.products.product", "addresses"] },
         }).catch((err) => {
           console.log(err);
-        });
+        }).finally(() => setLoading(false));
 
         context.setUser(userData);
         router.push("/page/account/dashboard");
@@ -68,7 +71,7 @@ const Login = () => {
                     />
                   </div>
                   <button type="submit" className="btn btn-solid">
-                    Login
+                    {loading ? <Spinner animation="border" /> : "Login"}
                   </button>
                 </Form>
               </div>

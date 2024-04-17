@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import ThemeSettings from "../components/customizer/theme-settings";
 import "../public/assets/scss/app.scss";
 import { ToastContainer } from "react-toastify";
 import TapTop from "../components/common/widgets/Tap-Top";
@@ -20,6 +19,7 @@ import {
   getProducts,
   getSizes,
 } from "../services/api/shop.service";
+import { userLogout } from "../services/api/user.service";
 
 export default function MyApp({ Component, pageProps }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -27,19 +27,26 @@ export default function MyApp({ Component, pageProps }) {
   const [commonData, setCommonData] = useState();
   const [filterData, setFilterData] = useState();
 
+
   useEffect(async () => {
-    let common = await getAll(buckets.COMMON, {
+    const common = await getAll(buckets.COMMON, {
       queryParams: {
         filter: { "category._id": CAT_ID },
       },
     })
-      .catch((err) => {
-        localStorage.clear();
-        router.push('');
-      })
       .then((res) => {
         return res[0];
-      });
+      })
+      .catch((err) => {
+        if (err.statusCode == 401) {
+          userLogout();
+          location.reload()
+        }
+      })
+
+    if(!common){
+      return;
+    }
 
     if (common.theme) {
       let element = document.getElementsByTagName("body")[0];
@@ -47,7 +54,6 @@ export default function MyApp({ Component, pageProps }) {
     }
 
     setCommonData(common);
-    console.log(common);
 
     let userId = localStorage.getItem("userId");
 
@@ -58,7 +64,6 @@ export default function MyApp({ Component, pageProps }) {
         console.log(err);
       });
       setUser(userData);
-      console.log(userData)
     }
 
     let timer = setTimeout(function () {

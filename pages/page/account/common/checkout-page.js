@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Container, Form, Row, Col, Label, Spinner } from "reactstrap";
 import CartContext from "../../../../helpers/cart";
 import { useForm } from "react-hook-form";
@@ -8,6 +8,7 @@ import cards from "../../../../public/assets/img/cards.png";
 
 import UserContext from "../../../../helpers/user/UserContext";
 import { httpPost } from "../../../../services/api/data.service";
+import { verifyToken } from "../../../../services/api/user.service";
 import { toast } from "react-toastify";
 import { countryList } from "../../../../services/countries";
 
@@ -15,8 +16,6 @@ const CheckoutPage = () => {
   const month = ["Month", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
   const year = [
     "Year",
-    "2022",
-    "2023",
     "2024",
     "2025",
     "2026",
@@ -24,8 +23,12 @@ const CheckoutPage = () => {
     "2028",
     "2029",
     "2030",
+    "2031",
+    "2032",
+    "2033",
   ];
 
+  const [isLoading, setIsLoading] = useState(true);
   const [isSubmiting, setIsSubmiting] = useState(false);
   const userContext = useContext(UserContext);
   const cartContext = useContext(CartContext);
@@ -41,7 +44,7 @@ const CheckoutPage = () => {
     formState: { errors },
   } = useForm();
 
-  const router = useRouter();
+  const router = useRouter()
 
   const onSubmit = (data) => {
     if (!data) {
@@ -95,7 +98,7 @@ const CheckoutPage = () => {
           return;
         }
         if (redirectUrl) {
-          localStorage.setItem("successCart", JSON.stringify({items: cartItems, total: cartTotal}))
+          localStorage.setItem("successCart", JSON.stringify({ items: cartItems, total: cartTotal }))
           cartContext.setCartItems([]);
           window.location.href = res.message.redirectUrl;
         }
@@ -103,10 +106,10 @@ const CheckoutPage = () => {
       .catch((err) => {
         toast.error(err.message);
       })
-      .finally(() => setIsSubmiting(false));  
-      
+      .finally(() => setIsSubmiting(false));
+
   };
-  
+
   const today = new Date().toISOString().split("T")[0];
 
   return (
@@ -156,16 +159,16 @@ const CheckoutPage = () => {
                         />
                       </Col>
                       <Col md="6" className="form-col">
-                      <Label for="review">Date Of Birth</Label>
-                      <input
-                        type="date"
-                        //className={`${errors.date_of_birth ? "error_border" : ""}`}
-                        className="form-group form-control"
-                        name="date_of_birth"
-                        max = {today}
-                        {...register("userData.date_of_birth", { required: true })}
-                      />
-                    </Col>
+                        <Label for="review">Date Of Birth</Label>
+                        <input
+                          type="date"
+                          //className={`${errors.date_of_birth ? "error_border" : ""}`}
+                          className="form-group form-control"
+                          name="date_of_birth"
+                          max={today}
+                          {...register("userData.date_of_birth", { required: true })}
+                        />
+                      </Col>
                     </Row>
                     <Row>
                       <Col md="12">
@@ -354,7 +357,7 @@ const CheckoutPage = () => {
                         </Row>
                         <Row>
                           <Col md="12">
-                          By proceeding, you are confirming that you have read and accepted the Terms & Conditions and Privacy Policy.
+                            By proceeding, you are confirming that you have read and accepted the Terms & Conditions and Privacy Policy.
                           </Col>
                         </Row>
                         <Row>
@@ -386,7 +389,7 @@ const CheckoutPage = () => {
                           className="btn btn-solid place-order-btn"
                           disabled={!termsChecked || !privacyChecked || isSubmiting || Object.keys(errors).length > 0}
                         >
-                          {isSubmiting ? <Spinner animation="border"/> : "Place Order"}
+                          {isSubmiting ? <Spinner animation="border" /> : "Place Order"}
                         </button>
                         {/* <Row>
                           <Col md="12">

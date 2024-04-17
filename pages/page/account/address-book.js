@@ -31,7 +31,7 @@ const Dashboard = () => {
         console.log(err);
       });
     } else {
-      addressData = await update(buckets.ADDRESS, selectedAddress._id, data.data).catch(
+      addressData = await patch(buckets.ADDRESS, selectedAddress._id, data.data).catch(
         (err) => {
           console.log(err);
         }

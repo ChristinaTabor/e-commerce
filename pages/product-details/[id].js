@@ -22,7 +22,6 @@ const LeftSidebar = () => {
       },
     })
       .then((res) => {
-        console.log("res", res)
         // res.variants.forEach((el) => {
         //   el.color = colors.find((color) => {
         //     return color._id == el.color;

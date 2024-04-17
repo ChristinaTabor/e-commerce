@@ -10,8 +10,6 @@ const Gateway = () => {
   const month = ["Month", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
   const year = [
     "Year",
-    "2022",
-    "2023",
     "2024",
     "2025",
     "2026",
@@ -19,6 +17,9 @@ const Gateway = () => {
     "2028",
     "2029",
     "2030",
+    "2031",
+    "2032",
+    "2033",
   ];
 
   const [isSubmiting, setIsSubmiting] = useState(false);
@@ -92,7 +93,6 @@ const Gateway = () => {
           throw resErr.message.error || "Something went wrong";
         })
         .then((resJson) => {
-          console.log("resJson", resJson);
           if (resJson.status == "failure") {
             toast.error(resJson.message.error);
             return;

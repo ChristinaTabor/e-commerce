@@ -26,7 +26,7 @@ const Register = () => {
           router.push("login");
         })
         .catch((err) => {
-          toast.success(err.message || "Error! Please try again later");
+          toast.error(err.message || "Error! Please try again later");
         })
         .finally(() => {
           setLoading(false);
