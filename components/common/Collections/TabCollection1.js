@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import ProductItem from "../product-box/ProductBox1";
 import CartContext from "../../../helpers/cart/index";
 import { Container, Row, Col, Media } from "reactstrap";
@@ -80,13 +79,6 @@ const SpecialProducts = ({
   data,
   loading,
 }) => {
-  const [activeTab, setActiveTab] = useState(type);
-  const context = useContext(CartContext);
-  const wishListContext = useContext(WishlistContext);
-  const curContext = useContext(CurrencyContext);
-  const currency = curContext.state;
-  const quantity = context.quantity;
-
   return (
     <div>
       <section className={designClass}>
@@ -116,39 +108,6 @@ const SpecialProducts = ({
             cartClass={cartClass}
             backImage={backImage}
           />
-
-          {/* <Tabs className="theme-tab">
-            <TabPanel>
-              <TabContent
-                data={data}
-                loading={loading}
-                startIndex={0}
-                endIndex={8}
-                cartClass={cartClass}
-                backImage={backImage}
-              />
-            </TabPanel>
-            <TabPanel>
-              <TabContent
-                data={data}
-                loading={loading}
-                startIndex={0}
-                endIndex={8}
-                cartClass={cartClass}
-                backImage={backImage}
-              />
-            </TabPanel>
-            <TabPanel>
-              <TabContent
-                data={data}
-                loading={loading}
-                startIndex={0}
-                endIndex={8}
-                cartClass={cartClass}
-                backImage={backImage}
-              />
-            </TabPanel>
-          </Tabs> */}
         </Container>
       </section>
     </div>

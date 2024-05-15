@@ -135,12 +135,12 @@ const ProductSection = ({ data, loading }) => {
                         {uniqueTags ? (
                           <ul className="color-variant">
                             {selectedProduct.type === "jewellery" ||
-                            selectedProduct.type === "nursery" ||
-                            selectedProduct.type === "beauty" ||
-                            selectedProduct.type === "electronics" ||
-                            selectedProduct.type === "goggles" ||
-                            selectedProduct.type === "watch" ||
-                            selectedProduct.type === "pets" ? (
+                              selectedProduct.type === "nursery" ||
+                              selectedProduct.type === "beauty" ||
+                              selectedProduct.type === "electronics" ||
+                              selectedProduct.type === "goggles" ||
+                              selectedProduct.type === "watch" ||
+                              selectedProduct.type === "pets" ? (
                               ""
                             ) : (
                               <>
@@ -177,7 +177,7 @@ const ProductSection = ({ data, loading }) => {
                     )}
                     <div className="border-product">
                       <h6 className="product-title">product details</h6>
-                      <p>{selectedProduct.description}</p>
+                      <div dangerouslySetInnerHTML={{ __html: selectedProduct.description }}></div>
                     </div>
                     <div className="product-description border-product">
                       {selectedProduct.size ? (
@@ -195,42 +195,45 @@ const ProductSection = ({ data, loading }) => {
                       ) : (
                         ""
                       )}
-                      <h6 className="product-title">quantity</h6>
-                      <div className="qty-box">
-                        <div className="input-group">
-                          <span className="input-group-prepend">
-                            <button
-                              type="button"
-                              className="btn quantity-left-minus"
-                              onClick={minusQty}
-                              data-type="minus"
-                              data-field=""
-                            >
-                              <i className="fa fa-angle-left"></i>
-                            </button>
-                          </span>
-                          <input
-                            type="text"
-                            name="quantity"
-                            value={quantity}
-                            onChange={changeQty}
-                            className="form-control input-number"
-                          />
-                          <span className="input-group-prepend">
-                            <button
-                              type="button"
-                              className="btn quantity-right-plus"
-                              onClick={() => plusQty(selectedProduct)}
-                              data-type="plus"
-                              data-field=""
-                            >
-                              <i className="fa fa-angle-right"></i>
-                            </button>
-                          </span>
-                        </div>
-                      </div>
+
+                      {selectedProduct.stock ? <>
+                        <h6 className="product-title">quantity</h6>
+                        <div className="qty-box">
+                          <div className="input-group">
+                            <span className="input-group-prepend">
+                              <button
+                                type="button"
+                                className="btn quantity-left-minus"
+                                onClick={minusQty}
+                                data-type="minus"
+                                data-field=""
+                              >
+                                <i className="fa fa-angle-left"></i>
+                              </button>
+                            </span>
+                            <input
+                              type="text"
+                              readOnly
+                              name="quantity"
+                              value={quantity}
+                              onChange={changeQty}
+                              className="form-control input-number"
+                            />
+                            <span className="input-group-prepend">
+                              <button
+                                type="button"
+                                className="btn quantity-right-plus"
+                                onClick={() => plusQty(selectedProduct)}
+                                data-type="plus"
+                                data-field=""
+                              >
+                                <i className="fa fa-angle-right"></i>
+                              </button>
+                            </span>
+                          </div>
+                        </div></> : <h4 className="out-of-stock">Out of Stock !</h4>}
                     </div>
-                    <div className="product-buttons">
+                    {selectedProduct.stock ? <div className="product-buttons">
                       <button
                         className="btn btn-solid"
                         onClick={() => addToCart(selectedProduct, quantity)}
@@ -243,7 +246,7 @@ const ProductSection = ({ data, loading }) => {
                       >
                         View detail
                       </button>
-                    </div>
+                    </div> : null}
                   </div>
                 </Col>
               </Row>

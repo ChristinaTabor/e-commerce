@@ -91,6 +91,7 @@ const CartPage = () => {
                                 <div className="qty-box">
                                   <div className="input-group">
                                     <input
+                                      readOnly
                                       type="number"
                                       name="quantity"
                                       onChange={(e) =>
@@ -104,7 +105,7 @@ const CartPage = () => {
                                     />
                                   </div>
                                 </div>
-                                {item.qty >= item.stock ? "out of Stock" : ""}
+                                {item.qty > item.stock ? "out of Stock" : ""}
                               </div>
                               <div className="col-xs-3">
                                 <h2 className="td-color">
@@ -135,6 +136,7 @@ const CartPage = () => {
                             <div className="qty-box">
                               <div className="input-group">
                                 <input
+                                  readOnly
                                   type="number"
                                   name="quantity"
                                   onChange={(e) =>
@@ -148,7 +150,7 @@ const CartPage = () => {
                                 />
                               </div>
                             </div>
-                            {item.qty >= item.stock ? "out of Stock" : ""}
+                            {item.qty > item.stock ? "out of Stock" : ""}
                           </td>
                           <td>
                             <i

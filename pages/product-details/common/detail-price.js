@@ -15,9 +15,6 @@ const DetailsWithPrice = ({ item, stickyClass, changeColorVar }) => {
   const toggle = () => setModal(!modal);
   const product = item;
   const context = useContext(CartContext);
-  const stock = context.stock;
-  const plusQty = context.plusQty;
-  const minusQty = context.minusQty;
   const quantity = context.quantity;
   const uniqueColor = [];
   const uniqueSize = [];
@@ -83,8 +80,9 @@ const DetailsWithPrice = ({ item, stickyClass, changeColorVar }) => {
             )}
           </>
         )}
-        <div className="product-description border-product">
-          {product.variants && (
+
+        {product.variants && (
+          <div className="product-description border-product">
             <div>
               <h6 className="product-title size-text">
                 select size
@@ -117,25 +115,27 @@ const DetailsWithPrice = ({ item, stickyClass, changeColorVar }) => {
                 </ul>
               </div>
             </div>
-          )}
-        </div>
-        <div className="product-buttons">
-          <a
-            href={null}
-            className="btn btn-solid"
-            onClick={() => context.addToCart(product, quantity)}
-          >
-            add to cart
-          </a> 
-            {/* <a className="btn btn-solid" onClick={onBuy}>buy now</a> */}
-        </div>
+          </div>
+        )}
+        {
+          item.stock ?
+            <div className="product-buttons">
+              <a
+                href={null}
+                className="btn btn-solid"
+                onClick={() => context.addToCart(product, quantity)}
+              >
+                add to cart
+              </a>
+            </div> :
+            <h4 className="out-of-stock">Out of Stock !</h4>
+        }
         <div className="border-product">
           <h6 className="product-title">product details</h6>
-          <div dangerouslySetInnerHTML={{__html: product.description}}></div>
+          <div dangerouslySetInnerHTML={{ __html: product.description }}></div>
         </div>
         <div className="border-product">
           <h6 className="product-title">share it</h6>
-         
         </div>
       </div>
     </>

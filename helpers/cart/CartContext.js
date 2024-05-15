@@ -30,6 +30,10 @@ const CartProvider = (props) => {
 
   // Add Product To Cart
   const addToCart = (item, quantity) => {
+    if (!item.stock) {
+      toast.error("Out of stock !");
+      return
+    };
     toast.success("Product Added Successfully !");
     const index = cartItems.findIndex((itm) => itm.id === item.id);
 
@@ -110,7 +114,7 @@ const CartProvider = (props) => {
         plusQty: plusQty,
         minusQty: minusQty,
         updateQty: updateQty,
-        setCartItems:setCartItems
+        setCartItems: setCartItems
       }}
     >
       {props.children}
