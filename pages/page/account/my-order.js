@@ -1,11 +1,8 @@
 import React, { useState, useContext } from "react";
-import CommonLayout from "../../../components/shop/common-layout";
-import { Row, Col, Modal, ModalHeader, ModalBody } from "reactstrap";
+import { Row, Col } from "reactstrap";
 import UserContext from "../../../helpers/user/UserContext";
-import { useRouter } from "next/router";
 import AccountLayout from "../../../components/account/account-layout";
-import NewAddress from "../../../components/account/new-address";
-import { buckets, post, patch, remove, update } from "../../../services/api/data.service";
+import CurrencyContext from "../../../helpers/Currency/CurrencyContext";
 
 
 const status_msg = {
@@ -17,8 +14,10 @@ const status_msg = {
 
 const MyOrder = () => {
   const userContext = useContext(UserContext);
+  const currencyContext = useContext(CurrencyContext);
   const user = userContext.user;
-
+  const currency = currencyContext.selectedCurr;
+  
   return (
     <>
       <AccountLayout>
@@ -52,12 +51,12 @@ const MyOrder = () => {
                 </Col>
                 <Col lg="2">
                   {order.products.map((soldProduct) => (
-                    <span>${soldProduct.price * soldProduct.quantity}</span>
+                    <span>{currency.symbol} {(soldProduct.price * soldProduct.quantity * currency.value).toFixed(2)}</span>
                   ))}
                 </Col>
                 <Col lg="2">
                   <span className={`status ${order.status}`}>
-                  {status_msg[order.status]}
+                    {status_msg[order.status]}
                   </span>
                 </Col>
               </Row>

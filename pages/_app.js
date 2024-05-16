@@ -145,7 +145,7 @@ export default function MyApp({ Component, pageProps }) {
             >
               <Helmet>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <title>E-commerce React Template</title>
+                <title>One Fun For All </title>
               </Helmet>
               <div>
                 <SettingProvider>

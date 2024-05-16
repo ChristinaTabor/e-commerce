@@ -82,6 +82,7 @@ const CheckoutPage = () => {
       creditCard: data.creditCard,
       productData: products,
       metaData: metaData,
+      currency: currency.currency
     }
 
     if (customer.addresses && customer.addresses[0]) {
