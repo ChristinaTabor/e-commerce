@@ -3,11 +3,18 @@ import { Container, Row, Col } from "reactstrap";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import UserContext from "../../../helpers/user/UserContext";
+import CommonContext from "/helpers/common/CommonContext";
+import CurrencyContext from "/helpers/Currency/CurrencyContext";
 import { userLogout } from "../../../services/api/user.service";
 
 const TopBarDark = ({ data, topClass, fluid }) => {
   const userContext = useContext(UserContext);
+  const commonContext = useContext(CommonContext);
+  const currencyContext = useContext(CurrencyContext);
   const router = useRouter();
+
+  const availableCurrencies = commonContext.commonData.available_currencies;
+  const primaryCurrency = currencyContext.selectedCurr.currency;
 
   const handleLogout = () => {
     userContext.setUser();
@@ -19,6 +26,17 @@ const TopBarDark = ({ data, topClass, fluid }) => {
     if (!userContext.user) return;
     router.push("/page/account/dashboard");
   };
+
+  const handleChangeCurrency = (event) => {
+    const currencyObj = availableCurrencies.find(el => el.code == event.target.value);
+    const currency = {
+      currency: currencyObj.code,
+      symbol: currencyObj.symbol,
+      value: currencyObj.value,
+    }
+    currencyContext.selectedCurrency(currency)
+    localStorage.setItem("currency", JSON.stringify(currency))
+  }
 
   return (
     <div className={topClass}>
@@ -33,6 +51,13 @@ const TopBarDark = ({ data, topClass, fluid }) => {
           </Col>
           <Col lg="6" className="text-right">
             <ul className="header-dropdown">
+              {availableCurrencies.length ? <li>
+                <select value={primaryCurrency} onChange={handleChangeCurrency} className="select-currency">
+                  {availableCurrencies?.map((item) => (
+                    <option value={item.code} key={item.code}>{item.code}</option>
+                  ))}
+                </select>
+              </li> : null}
               <li className="mobile-wishlist">
                 <Link href="/page/account/wishlist">
                   <a>

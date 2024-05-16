@@ -2,14 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import CommonLayout from "../../components/shop/common-layout";
 import { Container, Row, Col, Media } from "reactstrap";
 import CartContext from "../../helpers/cart";
-import { CurrencyContext } from "../../helpers/Currency/CurrencyContext";
+import CurrencyContext from "../../helpers/Currency/CurrencyContext";
 import { useRouter } from "next/router";
 
 const OrderSuccess = () => {
   const router = useRouter();
 
   const curContext = useContext(CurrencyContext);
-  const symbol = curContext.state.symbol;
+  const symbol = curContext.selectedCurr.symbol;
 
   const referenceNo = router.query.referenceNo;
   const status = router.query.status;
@@ -85,7 +85,7 @@ const OrderSuccess = () => {
                         <h4>price</h4>
                         <h5>
                           {symbol}
-                          {item.price}
+                          {(item.price * curContext.selectedCurr.value).toFixed(2)}
                         </h5>
                       </div>
                     </Col>

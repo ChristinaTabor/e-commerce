@@ -3,7 +3,7 @@ import { Container, Form, Row, Col, Label, Spinner } from "reactstrap";
 import CartContext from "../../../../helpers/cart";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
-import { CurrencyContext } from "../../../../helpers/Currency/CurrencyContext";
+import CurrencyContext from "../../../../helpers/Currency/CurrencyContext";
 import cards from "../../../../public/assets/img/cards.png";
 
 import UserContext from "../../../../helpers/user/UserContext";
@@ -35,7 +35,8 @@ const CheckoutPage = () => {
   const cartItems = cartContext.state;
   const cartTotal = cartContext.cartTotal;
   const curContext = useContext(CurrencyContext);
-  const symbol = curContext.state.symbol;
+  const currency = curContext.selectedCurr;
+  const symbol = curContext.selectedCurr.symbol;
   const [termsChecked, setTermsChecked] = useState(false);
   const [privacyChecked, setPrivacyChecked] = useState(false);
   const {
@@ -254,7 +255,7 @@ const CheckoutPage = () => {
                               {item.title} × {item.qty}{" "}
                               <span>
                                 {symbol}
-                                {item.total}
+                                {(item.total * currency.value).toFixed(2)}
                               </span>
                             </li>
                           ))}
@@ -264,7 +265,7 @@ const CheckoutPage = () => {
                             Total{" "}
                             <span className="count">
                               {symbol}
-                              {cartTotal}
+                              {(cartTotal * currency.value).toFixed(2)}
                             </span>
                           </li>
                         </ul>

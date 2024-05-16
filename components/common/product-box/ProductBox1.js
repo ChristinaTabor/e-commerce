@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { Row, Col, Media, Modal, ModalBody } from "reactstrap";
 import CartContext from "../../../helpers/cart";
-import { CurrencyContext } from "../../../helpers/Currency/CurrencyContext";
+import CurrencyContext from "../../../helpers/Currency/CurrencyContext";
 import MasterProductDetail from "./MasterProductDetail";
 
 const ProductItem = ({
@@ -20,7 +20,7 @@ const ProductItem = ({
   const router = useRouter();
   const cartContext = useContext(CartContext);
   const curContext = useContext(CurrencyContext);
-  const currency = curContext.state;
+  const currency = curContext.selectedCurr;
   const plusQty = cartContext.plusQty;
   const minusQty = cartContext.minusQty;
   const quantity = cartContext.quantity;
@@ -206,6 +206,7 @@ const ProductItem = ({
                         <span className="input-group-prepend">
                           <button
                             type="button"
+                            disabled
                             className="btn quantity-left-minus"
                             onClick={minusQty}
                             data-type="minus"
@@ -225,6 +226,7 @@ const ProductItem = ({
                         <span className="input-group-prepend">
                           <button
                             type="button"
+                            disabled
                             className="btn quantity-right-plus"
                             onClick={() => plusQty(product)}
                             data-type="plus"

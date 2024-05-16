@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Container, Row, Col, Table } from 'reactstrap';
 import { WishlistContext } from '../../../../helpers/wishlist/WishlistContext';
 import CartContext from '../../../../helpers/cart/index';
+import CurrencyContext from '/helpers/Currency/CurrencyContext';
 import { useRouter } from 'next/router';
 import Link from 'next/link'
 
@@ -9,6 +10,9 @@ const WishlistPage = () => {
     const router = useRouter(); 
     const context = useContext(WishlistContext)
     const cartContext = useContext(CartContext);
+    const CurContect = useContext(CurrencyContext);
+
+    const currency = CurContect.selectedCurr;
 
     const wishlist = context.wishlistItems;
     const removeFromWish = context.removeFromWish;
@@ -57,7 +61,7 @@ const WishlistPage = () => {
                                                     </Row>
                                                 </td>
                                                 <td>
-                                                    <h2>${item.price}</h2>
+                                                    <h2>{(item.price * currency.value).toFixed(2)}</h2>
                                                 </td>
                                                 <td>
                                                     <p>{(item.stock > 0) ? 'In Stock' : 'out of Stock'}</p>

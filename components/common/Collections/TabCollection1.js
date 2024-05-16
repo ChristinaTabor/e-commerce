@@ -4,14 +4,14 @@ import CartContext from "../../../helpers/cart/index";
 import { Container, Row, Col, Media } from "reactstrap";
 import { WishlistContext } from "../../../helpers/wishlist/WishlistContext";
 import PostLoader from "../PostLoader";
-import { CurrencyContext } from "../../../helpers/Currency/CurrencyContext";
+import CurrencyContext from "../../../helpers/Currency/CurrencyContext";
 import emptySearch from "../../../public/assets/images/empty-search.jpg";
 
 const TabContent = ({ data, loading, startIndex, endIndex, cartClass, backImage }) => {
   const context = useContext(CartContext);
   const wishListContext = useContext(WishlistContext);
   const curContext = useContext(CurrencyContext);
-  const currency = curContext.state;
+  const currency = curContext.selectedCurr;
   const quantity = context.quantity;
 
   return (

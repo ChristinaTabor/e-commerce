@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import Link from "next/link";
 import sizeChart from "../../../public/assets/images/size-chart.jpg";
 import { Modal, ModalBody, ModalHeader, Media, Input } from "reactstrap";
-import { CurrencyContext } from "../../../helpers/Currency/CurrencyContext";
+import CurrencyContext from "../../../helpers/Currency/CurrencyContext";
 import CartContext from "../../../helpers/cart";
 import MasterSocial from "./master_social";
 import { useRouter } from "next/router";
@@ -11,7 +11,7 @@ const DetailsWithPrice = ({ item, stickyClass, changeColorVar }) => {
   const router = useRouter();
   const [modal, setModal] = useState(false);
   const CurContect = useContext(CurrencyContext);
-  const symbol = CurContect.state.symbol;
+  const symbol = CurContect.selectedCurr.symbol;
   const toggle = () => setModal(!modal);
   const product = item;
   const context = useContext(CartContext);
@@ -32,13 +32,13 @@ const DetailsWithPrice = ({ item, stickyClass, changeColorVar }) => {
         <h4>
           <del>
             {symbol}
-            {product.price}
+            {(product.price * CurContect.selectedCurr.value).toFixed(2)}
           </del>
           <span>{product.discount}% off</span>
         </h4>
         <h3>
           {symbol}
-          {product.price - (product.price * product.discount) / 100}
+          {((product.price - (product.price * product.discount) / 100) * CurContect.selectedCurr.value).toFixed(2)}
         </h3>
         {product?.variants?.map((vari) => {
           var findItem = uniqueColor.find((x) => x.color === vari.color?.title);

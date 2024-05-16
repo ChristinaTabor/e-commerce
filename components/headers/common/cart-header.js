@@ -1,10 +1,13 @@
 import React, { Fragment, useContext } from "react";
 import Link from "next/link";
 import CartContext from "../../../helpers/cart";
+import CurrencyContext from "/helpers/Currency/CurrencyContext";
 import { Media } from "reactstrap";
 
 const CartHeader = ({ item, symbol }) => {
   const context = useContext(CartContext);
+  const CurContect = useContext(CurrencyContext);
+  const currency = CurContect.selectedCurr;
 
   return (
     <Fragment>
@@ -25,7 +28,7 @@ const CartHeader = ({ item, symbol }) => {
             <h4>
               <span>
                 {item.qty} x {symbol}{" "}
-                {(item.price - (item.price * item.discount) / 100).toFixed(2)}
+                {((item.price - (item.price * item.discount) / 100) * currency.value).toFixed(2)}
               </span>
             </h4>
           </div>

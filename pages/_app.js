@@ -6,7 +6,7 @@ import CartContextProvider from "../helpers/cart/CartContext";
 import { WishlistContextProvider } from "../helpers/wishlist/WishlistContext";
 import FilterProvider from "../helpers/filter/FilterProvider";
 import SettingProvider from "../helpers/theme-setting/SettingProvider";
-import { CurrencyContextProvider } from "../helpers/Currency/CurrencyContext";
+import CurrencyContext from "../helpers/Currency/CurrencyContext";
 import Helmet from "react-helmet";
 import { getUser } from "../services/api/user.service";
 import { getAll, buckets, CAT_ID } from "../services/api/data.service";
@@ -26,12 +26,19 @@ export default function MyApp({ Component, pageProps }) {
   const [user, setUser] = useState();
   const [commonData, setCommonData] = useState();
   const [filterData, setFilterData] = useState();
+  const [selectedCurr, selectedCurrency] = useState({
+    currency: "",
+    symbol: "",
+    value: 1,
+  });
+
 
 
   useEffect(async () => {
     const common = await getAll(buckets.COMMON, {
       queryParams: {
         filter: { "category._id": CAT_ID },
+        relation: true
       },
     })
       .then((res) => {
@@ -44,7 +51,7 @@ export default function MyApp({ Component, pageProps }) {
         }
       })
 
-    if(!common){
+    if (!common) {
       return;
     }
 
@@ -54,6 +61,7 @@ export default function MyApp({ Component, pageProps }) {
     }
 
     setCommonData(common);
+    setPrimaryCurrency(common.primary_currency);
 
     let userId = localStorage.getItem("userId");
 
@@ -73,6 +81,29 @@ export default function MyApp({ Component, pageProps }) {
       clearTimeout(timer);
     };
   }, []);
+
+  function setPrimaryCurrency(primaryCurrency) {
+    const currencyStr = localStorage.getItem("currency");
+
+    if (currencyStr && currencyStr != "undefined") {
+      const currencyObj = JSON.parse(currencyStr)
+      const currency = {
+        currency: currencyObj.currency,
+        symbol: currencyObj.symbol,
+        value: currencyObj.value,
+      }
+      selectedCurrency(currency)
+      return;
+    }
+
+    const currency = {
+      currency: primaryCurrency.code,
+      symbol: primaryCurrency.symbol,
+      value: primaryCurrency.value,
+    }
+    selectedCurrency(currency)
+    localStorage.setItem("currency", JSON.stringify(currency))
+  }
 
   useEffect(async () => {
     const colors = await getColors();
@@ -118,7 +149,11 @@ export default function MyApp({ Component, pageProps }) {
               </Helmet>
               <div>
                 <SettingProvider>
-                  <CurrencyContextProvider>
+                  <CurrencyContext.Provider value={{
+                    selectedCurr,
+                    selectedCurrency,
+                  }}
+                  >
                     <CartContextProvider>
                       <WishlistContextProvider>
                         <FilterProvider>
@@ -126,7 +161,7 @@ export default function MyApp({ Component, pageProps }) {
                         </FilterProvider>
                       </WishlistContextProvider>
                     </CartContextProvider>
-                  </CurrencyContextProvider>
+                  </CurrencyContext.Provider>
                   {/* <ThemeSettings /> */}
                 </SettingProvider>
                 <ToastContainer />

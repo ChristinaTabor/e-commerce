@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Container, Row, Col, Media, Modal, ModalBody } from "reactstrap";
-import { CurrencyContext } from "../../../helpers/Currency/CurrencyContext";
+import CurrencyContext from "../../../helpers/Currency/CurrencyContext";
 import CartContext from "../../../helpers/cart";
 import { WishlistContext } from "../../../helpers/wishlist/WishlistContext";
 import { useRouter } from "next/router";
@@ -9,8 +9,8 @@ const ProductSection = ({ data, loading }) => {
   const router = useRouter();
   const curContext = useContext(CurrencyContext);
   const wishlistContext = useContext(WishlistContext);
-  const symbol = curContext.state.symbol;
-  const currency = curContext.state;
+  const symbol = curContext.selectedCurr.symbol;
+  const currency = curContext.selectedCurr;
   const cartCtx = useContext(CartContext);
   const addToCart = cartCtx.addToCart;
   const quantity = cartCtx.quantity;
@@ -96,7 +96,7 @@ const ProductSection = ({ data, loading }) => {
                         </a>
                         <h4>
                           {symbol}
-                          {product.price}
+                          {(product.price * currency.value).toFixed(2)}
                         </h4>
                       </div>
                     </div>
@@ -202,6 +202,7 @@ const ProductSection = ({ data, loading }) => {
                           <div className="input-group">
                             <span className="input-group-prepend">
                               <button
+                                disabled
                                 type="button"
                                 className="btn quantity-left-minus"
                                 onClick={minusQty}
@@ -221,6 +222,7 @@ const ProductSection = ({ data, loading }) => {
                             />
                             <span className="input-group-prepend">
                               <button
+                                disabled
                                 type="button"
                                 className="btn quantity-right-plus"
                                 onClick={() => plusQty(selectedProduct)}

@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { Col, Row, Media, Button, Spinner } from "reactstrap";
 import FilterContext from "../../../helpers/filter/FilterContext";
 import ProductItem from "../../../components/common/product-box/ProductBox1";
-import { CurrencyContext } from "../../../helpers/Currency/CurrencyContext";
+import CurrencyContext from "../../../helpers/Currency/CurrencyContext";
 import PostLoader from "../../../components/common/PostLoader";
 import CartContext from "../../../helpers/cart";
 import { WishlistContext } from "../../../helpers/wishlist/WishlistContext";
@@ -25,7 +25,7 @@ const ProductList = ({ data, loading, colClass, layoutList, openSidebar, noSideb
   const wishlistContext = useContext(WishlistContext);
   const curContext = useContext(CurrencyContext);
   const [grid, setGrid] = useState(colClass);
-  const symbol = curContext.state.symbol;
+  const symbol = curContext.selectedCurr.symbol;
   const filterContext = useContext(FilterContext);
   const selectedBrands = filterContext.selectedBrands;
   const selectedColor = filterContext.selectedColor;

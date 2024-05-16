@@ -3,12 +3,12 @@ import Link from "next/link";
 import CartHeader from "../headers/common/cart-header";
 import CartContext from "../../helpers/cart";
 import { Media } from "reactstrap";
-import { CurrencyContext } from "../../helpers/Currency/CurrencyContext";
+import CurrencyContext from "../../helpers/Currency/CurrencyContext";
 
 const CartContainer = ({ icon }) => {
   const context = useContext(CartContext);
   const currContext = useContext(CurrencyContext);
-  const symbol = currContext.state.symbol;
+  const currency = currContext.selectedCurr;
   const cartList = context.state;
   const total = context.cartTotal;
 
@@ -24,7 +24,7 @@ const CartContainer = ({ icon }) => {
         </Link>
         <ul className="show-div shopping-cart">
           {cartList.map((item, index) => (
-            <CartHeader key={index} item={item} total={total} symbol={symbol} />
+            <CartHeader key={index} item={item} total={total} symbol={currency.symbol} />
           ))}
           {cartList.length > 0 ? (
             <div>
@@ -33,8 +33,8 @@ const CartContainer = ({ icon }) => {
                   <h5>
                     subtotal :{" "}
                     <span>
-                      {symbol}
-                      {total}
+                      {currency.symbol}
+                      {(total * currency.value).toFixed(2)}
                     </span>
                   </h5>
                 </div>

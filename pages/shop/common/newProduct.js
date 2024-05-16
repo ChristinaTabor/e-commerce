@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import { Media } from "reactstrap";
 import Slider from "react-slick";
-import { CurrencyContext } from "../../../helpers/Currency/CurrencyContext";
+import CurrencyContext from "../../../helpers/Currency/CurrencyContext";
 
 const NewProduct = ({data, loading}) => {
   const CurContect = useContext(CurrencyContext);
-  const symbol = CurContect.state.symbol;
+  const currency = CurContect.selectedCurr;
+  const symbol = CurContect.selectedCurr.symbol;
 
   return (
     // <!-- side-bar single product slider start -->
@@ -36,7 +37,7 @@ const NewProduct = ({data, loading}) => {
                       </a>
                       <h4>
                         {symbol}
-                        {product.price}
+                        {(product.price * currency.value).toFixed(2)}
                       </h4>
                     </div>
                   </div>
@@ -68,7 +69,7 @@ const NewProduct = ({data, loading}) => {
                       </a>
                       <h4>
                         {symbol}
-                        {product.price}
+                        {(product.price * currency.value).toFixed(2)}
                       </h4>
                     </div>
                   </div>

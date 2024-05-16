@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import Link from "next/link";
 import CartContext from "../../../../helpers/cart";
 import { Container, Row, Col, Media, Input } from "reactstrap";
-import { CurrencyContext } from "../../../../helpers/Currency/CurrencyContext";
+import CurrencyContext from "../../../../helpers/Currency/CurrencyContext";
 import cart from "../../../../public/assets/images/icon-empty-cart.png";
 import { Router } from "next/router";
 
@@ -10,7 +10,8 @@ const CartPage = () => {
   const context = useContext(CartContext);
   const cartItems = context.state;
   const curContext = useContext(CurrencyContext);
-  const symbol = curContext.state.symbol;
+  const symbol = curContext.selectedCurr.symbol;
+  const currency = curContext.selectedCurr;
   const total = context.cartTotal;
   const removeFromCart = context.removeFromCart;
   const [quantity, setQty] = useState(1);
@@ -110,8 +111,7 @@ const CartPage = () => {
                               <div className="col-xs-3">
                                 <h2 className="td-color">
                                   {symbol}
-                                  {item.price -
-                                    (item.price * item.discount) / 100}
+                                  {((item.price - (item.price * item.discount) / 100) * currency.value).toFixed(2)}
                                 </h2>
                               </div>
                               <div className="col-xs-3">
@@ -129,7 +129,7 @@ const CartPage = () => {
                           <td>
                             <h2>
                               {symbol}
-                              {item.price - (item.price * item.discount) / 100}
+                              {((item.price - (item.price * item.discount) / 100) * currency.value).toFixed(2)}
                             </h2>
                           </td>
                           <td>
@@ -161,7 +161,7 @@ const CartPage = () => {
                           <td>
                             <h2 className="td-color">
                               {symbol}
-                              {item.total}
+                              {(item.total * currency.value).toFixed(2)}
                             </h2>
                           </td>
                         </tr>
@@ -175,7 +175,7 @@ const CartPage = () => {
                       <td>total price :</td>
                       <td>
                         <h2>
-                          {symbol} {total}{" "}
+                          {symbol} {(total * currency.value).toFixed(2)}{" "}
                         </h2>
                       </td>
                     </tr>
