@@ -61,7 +61,7 @@ export default function MyApp({ Component, pageProps }) {
     }
 
     setCommonData(common);
-    setPrimaryCurrency(common.primary_currency);
+    setPrimaryCurrency(common);
 
     let userId = localStorage.getItem("userId");
 
@@ -82,17 +82,23 @@ export default function MyApp({ Component, pageProps }) {
     };
   }, []);
 
-  function setPrimaryCurrency(primaryCurrency) {
+  function setPrimaryCurrency(common) {
+    const primaryCurrency = common.primary_currency;
+    const availableCurrencies = common.available_currencies;
+    
     const currencyStr = localStorage.getItem("currency");
 
     if (currencyStr && currencyStr != "undefined") {
       const currencyObj = JSON.parse(currencyStr)
+      const _currency = availableCurrencies?.find(el => el.code == currencyObj.currency);
+
       const currency = {
         currency: currencyObj.currency,
         symbol: currencyObj.symbol,
-        value: currencyObj.value,
+        value: _currency.value,
       }
       selectedCurrency(currency)
+      localStorage.setItem("currency", JSON.stringify(currency))
       return;
     }
 
