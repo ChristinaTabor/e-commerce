@@ -2060,7 +2060,7 @@ header{
   .header-5 {
     .top-header {
       .header-dropdown {
-        .mobile-wishlist, .mobile-account {
+        .mobile-wishlist, .mobile-account, .select-currency {
           img {
             filter: brightness(5);
           }
@@ -2077,10 +2077,17 @@ header{
   }
   .top-header {
     .header-dropdown {
-      .mobile-account, .mobile-wishlist{
+      .select-currency{
         position: fixed;
         bottom: 20px;
-        right: 30%;
+        font-size: 0;
+        padding: 0;
+        z-index: 9;
+      }
+      .mobile-account, .mobile-wishlist {
+        position: fixed;
+        bottom: 20px;
+        right: 25%;
         font-size: 0;
         padding: 0;
         z-index: 9;
@@ -2103,8 +2110,16 @@ header{
           }
         }
       }
-      .mobile-wishlist {
-        right: 62%;
+      .select-currency{
+        font-size: 1.5rem;
+        top: 95.3%;
+        left: 19%;
+        .currency-option{
+          font-size: 1rem;
+        }
+      }
+      .mobile-wishlist .mobile-cart, .mobile-account{
+        right: 55%;
         i {
           font-family: $font-awesome;
           color: $header-font !important;
@@ -2162,7 +2177,7 @@ header{
           }
         }
         .mobile-cart {
-          right: 48%;
+          right: 42%;
           .close-circle {
             i {
               font-size: 14px;

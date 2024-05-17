@@ -54,7 +54,7 @@ const TopBarDark = ({ data, topClass, fluid }) => {
               {availableCurrencies.length ? <li>
                 <select value={primaryCurrency} onChange={handleChangeCurrency} className="select-currency">
                   {availableCurrencies?.map((item) => (
-                    <option value={item.code} key={item.code}>{item.code}</option>
+                    <option className="currency-option" value={item.code} key={item.code}>{item.code}</option>
                   ))}
                 </select>
               </li> : null}
